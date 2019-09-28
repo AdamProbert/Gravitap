@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoalManager : MonoBehaviour
 {
     public GameObject goalPrefab;
     private GameObject currentGoal;
+    public GameObject map;
+    public float border = 10;
+    public int points = 0;
+    public Text pointText;
 
     // Start is called before the first frame update
     void Start()
@@ -18,19 +23,22 @@ public class GoalManager : MonoBehaviour
     {
         if (currentGoal == null)
         {
+            points++;
+            pointText.text = points.ToString();
             SpawnGoal();
         }
     }
 
-    // Spawns a new goal at random location on screen
+    // Spawns a new goal at random location on map
     void SpawnGoal()
     {
-        float spawnY = Random.Range
-                (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
-        float spawnX = Random.Range
-            (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+        float zValue = map.transform.localScale.z/2 - border;
+        float xValue = map.transform.localScale.x/2 - border;
 
-        Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+        float spawnZ = Random.Range(-zValue, zValue);
+        float spawnX = Random.Range(-xValue, xValue);
+
+        Vector3 spawnPosition = new Vector3(spawnX, 1, spawnZ);
         currentGoal = Instantiate(goalPrefab, spawnPosition, Quaternion.identity);
 
     }

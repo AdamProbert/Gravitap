@@ -1,0 +1,18 @@
+<ObjectsList>
+<BG  name="BG" x="138" y="170" width="1267" height="1518" />
+<close  name="close" x="104" y="136" width="133" height="141" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Score_Hud_BG  name="Score_Hud_BG" x="858" y="292" width="438" height="103" />
+<plus  name="plus" x="1148" y="292" width="144" height="100" />
+<1468  name="1468" x="914" y="311" width="167" height="61" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Home  name="Home" x="369" y="1747" width="240" height="206" />
+<Achievement  name="Achievement" x="646" y="1747" width="240" height="206" />
+<Setings  name="Setings" x="931" y="1747" width="240" height="206" />
+<Select  name="Select" x="948" y="710" width="462" height="182" />
+<Character_Name  name="Character_Name" x="446" y="1197" width="645" height="66" />
+<ObjectsList>

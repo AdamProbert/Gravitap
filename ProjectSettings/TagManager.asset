@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Body
   - World
+  - Goal
+  - FxTemporaire
+  - BodyClickTrigger
+  - KillFloor
   layers:
   - Default
   - TransparentFX

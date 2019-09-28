@@ -1,0 +1,86 @@
+<ObjectsList>
+<BG  name="BG" x="-1040" y="-784" width="3911" height="3616" />
+<Level_bg  name="Level_bg" x="61" y="55" width="1414" height="1936" />
+<Heading copy  name="Heading copy" x="236" y="55" width="1073" height="232" />
+<close  name="close" x="74" y="76" width="133" height="141" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_01  name="Level_01" x="187" y="349" width="318" height="268" />
+<star_bg  name="star_bg" x="240" y="629" width="227" height="68" />
+<1_star  name="1_star" x="255" y="633" width="61" height="58" />
+<2_star  name="2_star" x="321" y="633" width="61" height="58" />
+<3_star  name="3_star" x="388" y="633" width="61" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_02  name="Level_02" x="615" y="352" width="317" height="265" />
+<star_bg  name="star_bg" x="668" y="629" width="226" height="68" />
+<1_star  name="1_star" x="682" y="633" width="61" height="58" />
+<2_star  name="2_star" x="748" y="633" width="62" height="58" />
+<3_star  name="3_star" x="816" y="633" width="61" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_03  name="Level_03" x="1036" y="354" width="318" height="263" />
+<star_bg  name="star_bg" x="1089" y="629" width="227" height="68" />
+<1_star  name="1_star" x="1104" y="633" width="61" height="58" />
+<2_star  name="2_star" x="1170" y="633" width="62" height="58" />
+<3_star  name="3_star" x="1237" y="633" width="62" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_04  name="Level_04" x="181" y="757" width="324" height="275" />
+<star_bg  name="star_bg" x="240" y="1044" width="227" height="68" />
+<1_star  name="1_star" x="255" y="1048" width="61" height="58" />
+<2_star  name="2_star" x="321" y="1048" width="61" height="58" />
+<3_star  name="3_star" x="388" y="1048" width="62" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_05  name="Level_05" x="615" y="754" width="317" height="278" />
+<Star_bg  name="Star_bg" x="668" y="1044" width="226" height="68" />
+<1_star  name="1_star" x="682" y="1048" width="62" height="58" />
+<2_star  name="2_star" x="748" y="1047" width="62" height="59" />
+<3_star  name="3_star" x="816" y="1048" width="61" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_06  name="Level_06" x="1036" y="750" width="318" height="282" />
+<star_bg  name="star_bg" x="1089" y="1044" width="227" height="68" />
+<1_star  name="1_star" x="1104" y="1047" width="61" height="59" />
+<2_star  name="2_star" x="1169" y="1047" width="64" height="60" />
+<3_star  name="3_star" x="1236" y="1047" width="64" height="60" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_07  name="Level_07" x="187" y="1162" width="318" height="279" />
+<star_bg  name="star_bg" x="240" y="1453" width="227" height="68" />
+<1_star  name="1_star" x="255" y="1457" width="61" height="58" />
+<2_star  name="2_star" x="321" y="1457" width="61" height="58" />
+<3_star  name="3_star" x="388" y="1457" width="61" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_08  name="Level_08" x="615" y="1172" width="317" height="269" />
+<Star_bg  name="Star_bg" x="668" y="1453" width="226" height="68" />
+<1_star  name="1_star" x="682" y="1457" width="62" height="58" />
+<2_star  name="2_star" x="748" y="1457" width="62" height="58" />
+<3_star  name="3_star" x="816" y="1457" width="61" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_09  name="Level_09" x="1036" y="1170" width="318" height="271" />
+<Level_09  name="Level_09" x="1089" y="1453" width="227" height="68" />
+<1_star  name="1_star" x="1104" y="1457" width="61" height="58" />
+<2_star  name="2_star" x="1170" y="1457" width="62" height="58" />
+<3_star  name="3_star" x="1237" y="1457" width="62" height="58" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Level_10  name="Level_10" x="616" y="1584" width="317" height="261" />
+<Star_bg  name="Star_bg" x="669" y="1857" width="226" height="68" />
+<1_star  name="1_star" x="683" y="1861" width="61" height="58" />
+<2_star  name="2_star" x="749" y="1861" width="62" height="58" />
+<3_star  name="3_star" x="817" y="1861" width="61" height="58" />
+<ObjectsList>

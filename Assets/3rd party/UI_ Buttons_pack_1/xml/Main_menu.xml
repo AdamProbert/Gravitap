@@ -1,0 +1,9 @@
+<ObjectsList>
+<Setings  name="Setings" x="1217" y="104" width="240" height="206" />
+<MM_buttons_bg  name="MM_buttons_bg" x="113" y="1737" width="1371" height="359" />
+<MM_characters  name="MM_characters" x="226" y="1722" width="243" height="232" />
+<MM_Store  name="MM_Store" x="501" y="1738" width="243" height="216" />
+<MM_Achievement  name="MM_Achievement" x="779" y="1729" width="240" height="225" />
+<MM_Leaderboard  name="MM_Leaderboard" x="1051" y="1737" width="243" height="217" />
+<Tap to Play  name="Tap to Play" x="458" y="1330" width="630" height="89" />
+<ObjectsList>

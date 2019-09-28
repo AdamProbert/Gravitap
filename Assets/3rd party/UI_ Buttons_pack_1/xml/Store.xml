@@ -1,0 +1,37 @@
+<ObjectsList>
+<BG  name="BG" x="138" y="170" width="1267" height="1720" />
+<close  name="close" x="104" y="136" width="133" height="141" />
+<heading  name="heading" x="120" y="300" width="1335" height="194" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<BG_txt  name="BG_txt" x="245" y="554" width="1036" height="234" />
+<25_btn  name="25_btn" x="928" y="678" width="278" height="92" />
+<25  name="25" x="1031" y="698" width="76" height="60" />
+<Heading  name="Heading" x="510" y="584" width="335" height="73" />
+<5000 coins  name="5000 coins" x="508" y="699" width="348" height="57" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<BG_txt  name="BG_txt" x="245" y="835" width="1036" height="234" />
+<50_btn  name="50_btn" x="928" y="959" width="278" height="92" />
+<50  name="50" x="1026" y="979" width="88" height="60" />
+<Heading  name="Heading" x="510" y="865" width="335" height="73" />
+<5000 coins   name="5000 coins " x="508" y="980" width="348" height="57" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<bg_txt  name="bg_txt" x="245" y="1115" width="1036" height="234" />
+<75_btn  name="75_btn" x="928" y="1239" width="278" height="92" />
+<75  name="75" x="1029" y="1259" width="80" height="60" />
+<Heading   name="Heading " x="510" y="1145" width="335" height="73" />
+<5000 coins  name="5000 coins" x="508" y="1260" width="348" height="57" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<bg_txt  name="bg_txt" x="245" y="1396" width="1036" height="234" />
+<100_btn  name="100_btn" x="928" y="1520" width="278" height="92" />
+<100  name="100" x="1008" y="1541" width="125" height="59" />
+<Heading  name="Heading" x="510" y="1426" width="335" height="73" />
+<5000 coins   name="5000 coins " x="508" y="1541" width="348" height="57" />
+<ObjectsList>

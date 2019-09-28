@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 0ee036f4cad984bab999a3f549569f94
+labels:
+- Primitive
+- Primitives
+- BasicObjects
+- Cone
+- Cube
+- Hexagon
+- Hex
+- Cylinder
+- Pipe
+- Plane
+- Pyramid
+- Quad
+- Ramp
+- Star
+- Sphere
+- Torus
+- Triangle
+- PrimitiveObjects
+- Prototype
+DefaultImporter:
+  userData: 

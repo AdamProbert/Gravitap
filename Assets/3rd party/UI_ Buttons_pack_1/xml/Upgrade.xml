@@ -1,0 +1,53 @@
+<ObjectsList>
+<BG  name="BG" x="138" y="170" width="1267" height="1720" />
+<close   name="close " x="104" y="136" width="133" height="141" />
+<heading  name="heading" x="120" y="300" width="1335" height="194" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Buy_btn_bg  name="Buy_btn_bg" x="255" y="552" width="1026" height="515" />
+<Buy_btn  name="Buy_btn" x="958" y="947" width="278" height="92" />
+<Buy_txt  name="Buy_txt" x="294" y="811" width="668" height="143" />
+<text_bg  name="text_bg" x="245" y="554" width="1036" height="234" />
+<Icon  name="Icon" x="245" y="560" width="235" height="215" />
+<round_arrow  name="round_arrow" x="1213" y="643" width="52" height="52" />
+<25  name="25" x="1067" y="600" width="76" height="60" />
+<Heading  name="Heading" x="510" y="584" width="335" height="73" />
+<Lorem Ipsum is simply dummy te  name="Lorem Ipsum is simply dummy te" x="508" y="694" width="668" height="33" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Buy_btn_bg  name="Buy_btn_bg" x="255" y="835" width="1026" height="515" />
+<Buy_btn  name="Buy_btn" x="958" y="1230" width="278" height="92" />
+<buy_txt  name="buy_txt" x="294" y="1094" width="668" height="143" />
+<txt_bg  name="txt_bg" x="245" y="837" width="1036" height="234" />
+<Icon  name="Icon" x="245" y="843" width="235" height="215" />
+<round_arrow  name="round_arrow" x="1213" y="926" width="52" height="52" />
+<50  name="50" x="1067" y="883" width="88" height="60" />
+<Heading   name="Heading " x="510" y="867" width="335" height="73" />
+<Lorem Ipsum is simply dummy te copy 2  name="Lorem Ipsum is simply dummy te copy 2" x="508" y="977" width="668" height="33" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Buy_btn_bg  name="Buy_btn_bg" x="255" y="1114" width="1026" height="515" />
+<Buy_btn  name="Buy_btn" x="958" y="1509" width="278" height="92" />
+<buy_txt  name="buy_txt" x="294" y="1373" width="668" height="143" />
+<txt_bg  name="txt_bg" x="245" y="1116" width="1036" height="234" />
+<Icon  name="Icon" x="245" y="1122" width="235" height="215" />
+<round_arrow  name="round_arrow" x="1213" y="1205" width="52" height="52" />
+<75  name="75" x="1066" y="1162" width="80" height="60" />
+<Heading   name="Heading " x="510" y="1146" width="335" height="73" />
+<Lorem Ipsum is simply dummy te copy 4  name="Lorem Ipsum is simply dummy te copy 4" x="508" y="1256" width="668" height="33" />
+
+<End  name="End" x="0" y="0" width="0" height="0" />
+
+<Buy_btn_bg  name="Buy_btn_bg" x="255" y="1395" width="1026" height="515" />
+<Buy_btn  name="Buy_btn" x="958" y="1790" width="278" height="92" />
+<but_txt  name="but_txt" x="294" y="1654" width="668" height="143" />
+<txt_bg  name="txt_bg" x="245" y="1397" width="1036" height="234" />
+<Icon  name="Icon" x="245" y="1403" width="235" height="215" />
+<round_arrow  name="round_arrow" x="1213" y="1486" width="52" height="52" />
+<100  name="100" x="1068" y="1444" width="125" height="59" />
+<Heading   name="Heading " x="510" y="1427" width="335" height="73" />
+<Lorem Ipsum is simply dummy te copy 6  name="Lorem Ipsum is simply dummy te copy 6" x="508" y="1537" width="668" height="33" />
+<ObjectsList>
