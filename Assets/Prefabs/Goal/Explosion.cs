@@ -46,15 +46,16 @@ public class Explosion : MonoBehaviour
         //add explosion force to all colliders in that overlap sphere
         foreach (Collider hit in colliders)
         {
-            //get rigidbody from collider object
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)
             {
-                //add explosion force to this body with given parameters
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+                //get rigidbody from collider object
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    //add explosion force to this body with given parameters
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+                }
             }
         }
-
     }
 
     public void SpiralExplode(Color c)
@@ -85,6 +86,7 @@ public class Explosion : MonoBehaviour
 
         // Assign color
         piece.gameObject.GetComponent<Renderer>().material.SetColor("_Color", c);
+        Debug.Log("Assigning color to piece" + c.ToString());
 
 
         //set piece position and scale

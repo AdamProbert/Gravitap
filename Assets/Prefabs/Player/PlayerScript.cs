@@ -12,9 +12,15 @@ public class PlayerScript : MonoBehaviour
     private float velocityIncrease;
     private float sqrMaxVelocity;
     private float sqrMinVelocity;
+    public GameObject debris;
+    private AudioSource source;
+
+    // States
+    private bool isFalling = false;
+    private List<float> speedHistory = new List<float>();
     public bool alive = true;
     private bool isPlaying = false;
-    private List<float> speedHistory = new List<float>();
+
 
     void Start()
     {
@@ -23,7 +29,13 @@ public class PlayerScript : MonoBehaviour
         minVelocity = Parameters.playerMinVelocity;
         maxVelocity = Parameters.playerMaxVelocity;
         speed = Parameters.playerSpeed;
-        
+
+        // Audio
+        source = GetComponent<AudioSource>();
+
+        // Ignore collisions with debris
+        Physics.IgnoreLayerCollision(9, 8);
+
     }
 
     private void Update()
@@ -31,16 +43,16 @@ public class PlayerScript : MonoBehaviour
         float playerSpeedX = Mathf.Abs(rb.velocity.x);
         float playerSpeedZ = Mathf.Abs(rb.velocity.z);
 
-        Debug.Log("PLayer speed x: " + playerSpeedX + "  PlayerSpeedZ: " + playerSpeedZ);
-        if (playerSpeedX > Parameters.playerDeathSpeed && playerSpeedZ > Parameters.playerDeathSpeed)
+        if (!isPlaying && playerSpeedX > Parameters.playerDeathSpeed && playerSpeedZ > Parameters.playerDeathSpeed)
         {
             isPlaying = true;
-            Debug.Log("Player is playing");
         }
-        
+
 
         if (isPlaying)
         {
+
+            // Check player is moving
             if (playerSpeedX < Parameters.playerDeathSpeed && playerSpeedZ < Parameters.playerDeathSpeed)
             {
                 speedHistory.Add(playerSpeedX);
@@ -50,9 +62,10 @@ public class PlayerScript : MonoBehaviour
                 speedHistory.Clear();
             }
 
-            if(speedHistory.Count > 100)
+            if (speedHistory.Count > 100)
             {
-                alive = false;
+                Debug.Log("Player moved to slow");
+                KillPlayer();
             }
         }
     }
@@ -68,7 +81,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     void FixedUpdate()
-    { 
+    {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -82,23 +95,51 @@ public class PlayerScript : MonoBehaviour
             rb.velocity = v.normalized * maxVelocity;
         }
         // Need to set min velocity for player too.. keep him moving yo!
-        else if(v.sqrMagnitude > sqrMinVelocity)
+        else if (v.sqrMagnitude > sqrMinVelocity)
         {
             rb.velocity = v.normalized * minVelocity;
         }
 
         // Ensure player doesn't come off surface
-        if(transform.position.y > 0)
+        if (transform.position.y > 0)
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
+    void KillPlayer()
+    { 
+        Debug.Log("Player died");
+        alive = false;
+        GetComponent<Renderer>().enabled = false;
+
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "KillFloor")
         {
-            Debug.Log("Player died");
-            alive = false;
-            GetComponent<Renderer>().enabled = false;
+            KillPlayer();
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (
+            !isFalling &&
+            collision.transform.tag == "World" && 
+            !Physics.Raycast(transform.position, Vector3.down, 5)
+            )
+        {
+            Debug.Log("Player falling");
+            isFalling = true;
+            rb.AddForce(0, -2000, 0);
+            source.Play();
+        }    
+    }
+
+    //Detect when there is a collision
+    void OnCollisionStay(Collision collide)
+    {
+        //Output the name of the GameObject you collide with
+        //Debug.Log("I hit the GameObject : " + collide.gameObject.name);
     }
 }

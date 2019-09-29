@@ -17,5 +17,9 @@ public static class Parameters
 
     // Stars
     public static int maxStars = 5;
+    public static int killCount = 5;
+
+    // Map
+    public static float border = 10;
 
 }

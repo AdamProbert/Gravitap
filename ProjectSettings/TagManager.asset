@@ -10,6 +10,8 @@ TagManager:
   - FxTemporaire
   - BodyClickTrigger
   - KillFloor
+  - Debris
+  - Music
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Debris
+  - KillLayer
+  - Player
   - 
   - 
   - 

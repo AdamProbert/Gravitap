@@ -74,25 +74,27 @@
     <Compile Include="Assets\3rd party\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
     <Compile Include="Assets\3rd party\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
     <Compile Include="Assets\3rd party\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
-    <Compile Include="Assets\ButtonHandler.cs" />
-    <Compile Include="Assets\KillScript.cs" />
     <Compile Include="Assets\Menus\MainMenu.cs" />
+    <Compile Include="Assets\MobileHandler\MobileInputController.cs" />
+    <Compile Include="Assets\Music\MusicClass.cs" />
     <Compile Include="Assets\Parameters.cs" />
     <Compile Include="Assets\Prefabs\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Prefabs\Goal.cs" />
     <Compile Include="Assets\Prefabs\Goal\Explosion.cs" />
+    <Compile Include="Assets\Prefabs\Goal\Goal.cs" />
     <Compile Include="Assets\Prefabs\Goal\GoalManager.cs" />
-    <Compile Include="Assets\Prefabs\Gravity.cs" />
+    <Compile Include="Assets\Prefabs\Goal\GoalPiece.cs" />
     <Compile Include="Assets\Prefabs\Player\PlayerScript.cs" />
+    <Compile Include="Assets\Prefabs\Player\TargetIndicator.cs" />
     <Compile Include="Assets\Prefabs\Star\Attractor.cs" />
     <Compile Include="Assets\Prefabs\Star\BodyManager.cs" />
+    <Compile Include="Assets\Prefabs\Star\OldDeathCircle\KillScript.cs" />
     <Compile Include="Assets\Prefabs\UI\ScoreDisplay.cs" />
-    <Compile Include="Assets\TargetIndicator.cs" />
     <None Include="Assets\3rd party\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
     <None Include="Assets\3rd party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\3rd party\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
     <None Include="Assets\3rd party\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
+    <None Include="Assets\3rd party\TextMesh Pro\Resources\Shaders\TMP_SDF-kills.shader" />
     <None Include="Assets\3rd party\UI_ Buttons_pack_1\xml\Ingame.xml" />
     <None Include="Assets\3rd party\UI_ Buttons_pack_1\xml\Pause.xml" />
     <None Include="Assets\3rd party\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -686,6 +688,12 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{E34AB743-FFA2-4B10-4D62-44A1F8853D10}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

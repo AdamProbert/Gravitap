@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3401533337275321266}
   - component: {fileID: 3401533337275321277}
   - component: {fileID: 3401533337275321276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GoalPiece
-  m_TagString: Untagged
+  m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

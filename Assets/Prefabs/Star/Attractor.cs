@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour
 {
-
     public float GravConstant = 6.674f;
     public float radius = 10f;
     private Rigidbody rb;
@@ -19,6 +18,7 @@ public class Attractor : MonoBehaviour
     ParticleSystem ps;
     public GameObject clickCollider;
     GameObject clickColliderGO;
+    private AudioSource source;
 
     private void Start()
     {
@@ -29,6 +29,7 @@ public class Attractor : MonoBehaviour
         ps = GetComponentInChildren<ParticleSystem>();
         clickColliderGO = Instantiate(clickCollider, transform.position, transform.rotation);
         clickColliderGO.transform.parent = gameObject.transform;
+        source = GetComponent<AudioSource>();
 
     }
 
@@ -42,7 +43,7 @@ public class Attractor : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(0, 50 * Time.deltaTime, 0);
+        transform.Rotate(0, 150 * Time.deltaTime, 0);
     }
 
     void Attract()
@@ -93,10 +94,12 @@ public class Attractor : MonoBehaviour
             {
                 GetComponent<Collider>().isTrigger = false;
                 ps.Play();
-                GetComponent<Explosion>().SpiralExplode(Color.black);
+                source.Play();
+                GetComponent<Explosion>().SpiralExplode(new Color32(239, 151, 0, 1));
                 GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 transform.localScale = transform.localScale * 1.5f;
                 clickColliderGO.SetActive(false);
+                GetComponentInParent<BodyManager>().registerKill();
             }
             alive = false;
         }

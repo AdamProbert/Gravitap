@@ -127,11 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeSize: 0.2
-  cubesInRow: 8
+  cubesInRow: 5
   explosionCube: {fileID: 3401533337275321279, guid: f356a875e54310e4a8147f7140c48d72,
     type: 3}
   explosionForce: 100
-  explosionRadius: 5
+  explosionRadius: 1
   explosionUpward: 0.02
 --- !u!114 &1674553429295189189
 MonoBehaviour:
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07510fcfb154884c97a4e1bfaa2e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
 --- !u!82 &-7144318007655371940
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 02a14560c296b4b47b01aa18a36c0cad, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1bde794815592a04093a01e5eaf61dbf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -331,10 +332,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4230212589292742, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4461574346646038, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -377,6 +374,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4461574346646038, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230212589292742, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198602994958770764, guid: ec1383a81f8b26e41bd5795fba065567,
