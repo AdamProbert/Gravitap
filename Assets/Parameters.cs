@@ -10,10 +10,13 @@ public static class Parameters
     public static float playerVelocityIncrease = 0.1f;
     public static float playerSpeed = 50f;
     public static float playerDeathSpeed = 2f;
+    public static float minSpawnTime = 2f;
+    public static float maxSpawnTime = 4f;
 
     // Goals
-    public static float goalExplosionMinLife = 1f;
-    public static float goalExplosionMaxLife = 15f;
+    public static float goalExplosionMinLife = 3f;
+    public static float goalExplosionMaxLife = 20f;
+    public static float DebrisSize = 0.2f;
 
     // Stars
     public static int maxStars = 5;
@@ -21,5 +24,21 @@ public static class Parameters
 
     // Map
     public static float border = 10;
+
+    // Colours
+    public static Color32 orange = new Color32(239, 151, 0, 1);
+    public static Color32 blue = new Color32(85, 115, 204, 1);
+    public static Color32 purple = new Color32(110, 53, 155, 1);
+    public static Color32 green = new Color32(41, 188, 90, 1);
+    public static Color32 red = new Color32(204, 64, 0, 1);
+
+    // Goal colour lis
+    public static List<Color32> colorList = new List<Color32>()
+     {
+        blue,
+        purple,
+        green,
+        red
+     };
 
 }

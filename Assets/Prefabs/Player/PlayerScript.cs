@@ -12,18 +12,25 @@ public class PlayerScript : MonoBehaviour
     private float velocityIncrease;
     private float sqrMaxVelocity;
     private float sqrMinVelocity;
-    public GameObject debris;
     private AudioSource source;
 
     // States
     private bool isFalling = false;
-    private List<float> speedHistory = new List<float>();
-    public bool alive = true;
-    private bool isPlaying = false;
 
+    public bool alive = true;
+    public bool isPlaying = false; // Used for handling death states triggering before start
+    private List<Vector3> prevPositions = new List<Vector3>();
+
+    public void Spawned()
+    {
+        isPlaying = true;
+        transform.parent = null;
+        rb.velocity = (transform.TransformDirection(Vector3.back)* maxVelocity);
+    }
 
     void Start()
     {
+        prevPositions.Add(transform.position);
         rb = GetComponent<Rigidbody>();
         velocityIncrease = Parameters.playerVelocityIncrease;
         minVelocity = Parameters.playerMinVelocity;
@@ -32,39 +39,40 @@ public class PlayerScript : MonoBehaviour
 
         // Audio
         source = GetComponent<AudioSource>();
-
-        // Ignore collisions with debris
-        Physics.IgnoreLayerCollision(9, 8);
-
     }
 
     private void Update()
     {
+
         float playerSpeedX = Mathf.Abs(rb.velocity.x);
         float playerSpeedZ = Mathf.Abs(rb.velocity.z);
-
-        if (!isPlaying && playerSpeedX > Parameters.playerDeathSpeed && playerSpeedZ > Parameters.playerDeathSpeed)
-        {
-            isPlaying = true;
-        }
 
 
         if (isPlaying)
         {
 
+            int prevPositionsCount = prevPositions.Count;
+
             // Check player is moving
-            if (playerSpeedX < Parameters.playerDeathSpeed && playerSpeedZ < Parameters.playerDeathSpeed)
+            if (prevPositions[prevPositionsCount - 1] == transform.position)
             {
-                speedHistory.Add(playerSpeedX);
+                
+                if (prevPositionsCount > 1)
+                {
+                    Debug.Log("Player hasn't moved for " + prevPositions.Count + " frames");
+                }
+                prevPositions.Add(transform.position);
+
             }
             else
             {
-                speedHistory.Clear();
+                prevPositions.Clear();
+                prevPositions.Add(transform.position);
             }
 
-            if (speedHistory.Count > 100)
+            if (prevPositions.Count > 100)
             {
-                Debug.Log("Player moved to slow");
+                Debug.Log("Player stopped moving");
                 KillPlayer();
             }
         }
@@ -82,10 +90,10 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float movehorizontal = Input.GetAxis("Horizontal");
+        float movevertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        Vector3 movement = new Vector3(movehorizontal, 0.0f, movevertical);
 
         rb.AddForce(movement * speed);
 
@@ -134,12 +142,5 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce(0, -2000, 0);
             source.Play();
         }    
-    }
-
-    //Detect when there is a collision
-    void OnCollisionStay(Collision collide)
-    {
-        //Output the name of the GameObject you collide with
-        //Debug.Log("I hit the GameObject : " + collide.gameObject.name);
     }
 }

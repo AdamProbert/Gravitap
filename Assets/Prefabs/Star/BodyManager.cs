@@ -14,23 +14,28 @@ public class BodyManager : MonoBehaviour
     private int pitchIndex = 0;
     public TextMeshProUGUI killText;
     private int killCount = 0;
+    public PlayerScript player;
+    public LayerMask mask;
+    public Camera camera;
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
     }
-    private void Update()
+    private void LateUpdate()
     {
         CleanStarQueue();
 
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
+        //Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Input.GetMouseButtonDown(0) & player.isPlaying)
+        { 
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000f))
+            if (Physics.Raycast(ray, out hit, 1000f, mask))
             {
+                Debug.DrawRay(ray.origin, ray.direction*500f, Color.black, 10f);
+                Debug.Log("User clicked on " + hit.collider.gameObject.tag);
                 if (hit.collider.gameObject.tag == "World")
                 {
                     Vector3 spawnBody = new Vector3(hit.point.x, 0, hit.point.z);
@@ -40,10 +45,9 @@ public class BodyManager : MonoBehaviour
                     this.stars.Enqueue(newStar);
                 }
                 else if (hit.collider.gameObject.tag == "BodyClickTrigger")
-                {
-                    if (hit.collider.gameObject.GetComponentInParent<Attractor>().alive == true)
-                        playSound();
-                        Destroy(hit.collider.transform.parent.gameObject);
+                { 
+                    playSound();
+                    Destroy(hit.collider.transform.parent.gameObject);
                 }
             }
             
@@ -60,7 +64,7 @@ public class BodyManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 oldStar = this.stars.Dequeue();
-                if (oldStar != null && oldStar.GetComponent<Attractor>().alive == true)
+                if (oldStar != null)
                 {
                     stars.Enqueue(oldStar);
                 }

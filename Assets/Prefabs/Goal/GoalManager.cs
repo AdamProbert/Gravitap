@@ -13,11 +13,11 @@ public class GoalManager : MonoBehaviour
     public int points = 0;
     public TextMeshProUGUI pointText;
     private BodyManager bm;
+    public PlayerScript player;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnGoal();
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         border = Parameters.border;
     }
@@ -25,7 +25,16 @@ public class GoalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!currentGoal.GetComponent<Goal>().alive)
+        if(!currentGoal & player.isPlaying)
+        {
+            SpawnGoal();
+        }
+        else if(!currentGoal & !player.isPlaying)
+        {
+            // Do nothing
+        }
+
+        else if (!currentGoal.GetComponent<Goal>().alive & player.isPlaying)
         {
             bm.resetKills();
             points++;
@@ -75,7 +84,6 @@ public class GoalManager : MonoBehaviour
             spawnAttemptCount++;
         }
 
-        Debug.Log("Managed to spawn after " + spawnAttemptCount + "attempts");
         Vector3 spawnPosition = new Vector3(spawnX, 1, spawnZ);
         currentGoal = Instantiate(goalPrefab, spawnPosition, Quaternion.identity);
     }

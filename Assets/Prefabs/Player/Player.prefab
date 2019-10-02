@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 410309980}
   - component: {fileID: 410309982}
   - component: {fileID: 410309981}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1280457056}
   - component: {fileID: 3579538856695257297}
   - component: {fileID: 1829210381}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
-  debris: {fileID: 3401533337275321279, guid: f356a875e54310e4a8147f7140c48d72, type: 3}
 --- !u!54 &1280457056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,7 +348,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -434,7 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5495041922677858149}
   - component: {fileID: 4781419902635999134}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TargetIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,13 +12,13 @@ public class Attractor : MonoBehaviour
     private Vector3 position;
     public bool debug;
     public float clampForce;
-    public GameObject explosion;
-    public GameObject killZone;
     public bool alive = true;
     ParticleSystem ps;
     public GameObject clickCollider;
     GameObject clickColliderGO;
     private AudioSource source;
+    public GameObject deadStar;
+    public bool playerTouch = false; // Flag for if player has interacted with this stars gravity
 
     private void Start()
     {
@@ -29,7 +29,11 @@ public class Attractor : MonoBehaviour
         ps = GetComponentInChildren<ParticleSystem>();
         clickColliderGO = Instantiate(clickCollider, transform.position, transform.rotation);
         clickColliderGO.transform.parent = gameObject.transform;
+        clickColliderGO.transform.Translate(0, 1.3f, 0);
+        clickColliderGO.transform.Rotate(270, 0, 0);
         source = GetComponent<AudioSource>();
+        deadStar = Instantiate(deadStar, transform.position, transform.rotation);
+        deadStar.SetActive(false);
 
     }
 
@@ -67,6 +71,18 @@ public class Attractor : MonoBehaviour
                 {
                     Debug.DrawLine(position, playerrb.position, Color.green, 2.5f);
                 }
+
+                if (!playerTouch)
+                {
+                    GetComponent<ParticleSystem>().Play();
+                    playerTouch = true;
+                }
+            }
+
+            // Outside of gravity
+            else if (playerTouch)
+            {
+                playerTouch = false;
             }
         }
     }
@@ -81,8 +97,9 @@ public class Attractor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        { 
+        
+        if (alive && other.gameObject.tag == "Player")
+        {
             //Deactivate Pulsing Circle, set color to black
             // turn of gravity, increase size and enable collisions, and explode
             foreach (Transform child in transform)
@@ -90,18 +107,20 @@ public class Attractor : MonoBehaviour
                 if (child.name == "PulsingCircle")
                     child.gameObject.SetActive(false);
             }
-            if (alive)
-            {
-                GetComponent<Collider>().isTrigger = false;
-                ps.Play();
-                source.Play();
-                GetComponent<Explosion>().SpiralExplode(new Color32(239, 151, 0, 1));
-                GetComponent<Renderer>().material.SetColor("_Color", Color.black);
-                transform.localScale = transform.localScale * 1.5f;
-                clickColliderGO.SetActive(false);
-                GetComponentInParent<BodyManager>().registerKill();
-            }
+            GetComponent<Collider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            clickColliderGO.SetActive(false);
+            ps.Play();
+            source.Play();
+            GetComponent<Explosion>().Explode(Parameters.red);
+            //GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+            //transform.localScale = transform.localScale * 1.5f;
+            //clickColliderGO.SetActive(false);
+
+            deadStar.SetActive(true);
+            GetComponentInParent<BodyManager>().registerKill();
             alive = false;
+            Destroy(this.gameObject, 1f);
         }
     }
 }

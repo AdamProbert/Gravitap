@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6307334825983489780}
   - component: {fileID: 9130659544693253844}
   - component: {fileID: 1479724620}
+  - component: {fileID: 7868889206131371355}
   m_Layer: 0
   m_Name: BodyManager
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 7077326772435622816, guid: 3cf971a270ebdbd4ca50b3a94f13aa3d, type: 3}
+  killText: {fileID: 0}
 --- !u!82 &9130659544693253844
 AudioSource:
   m_ObjectHideFlags: 0
@@ -151,3 +153,15 @@ AudioDistortionFilter:
   m_GameObject: {fileID: 2959359352884059042}
   m_Enabled: 1
   m_DistortionLevel: 0.5
+--- !u!114 &7868889206131371355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959359352884059042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e5f9b4ea786014f803b324ff60215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

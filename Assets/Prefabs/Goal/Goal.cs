@@ -9,19 +9,10 @@ public class Goal : MonoBehaviour
     ParticleSystem ps;
     public bool alive = true;
 
-    List<Color> colorList = new List<Color>()
-     {
-         new Color32(85, 115, 204, 1),
-         new Color32(110, 53, 155, 1),
-         new Color32(41, 188, 90, 1),
-         new Color32(204, 64, 0, 1),
-     };
-
     private void Start()
     {
         // Set colour of goal to random colour from pallete
-        color = colorList[Random.Range(0, colorList.Count - 1)];
-        Debug.Log("selected color " + color.ToString());
+        color = Parameters.colorList[Random.Range(0, Parameters.colorList.Count - 1)];
         GetComponent<Renderer>().material.SetColor("_Color", color);
         source = GetComponent<AudioSource>();
         ps = transform.Find("GoalExplosion").GetComponent<ParticleSystem>();
@@ -43,7 +34,6 @@ public class Goal : MonoBehaviour
             source.Play();
             GetComponent<Renderer>().enabled = false;
             ps.Play();
-            Debug.Log("Exploding with color" + color.ToString());
             GetComponent<Explosion>().Explode(color);
             alive = false;
             Destroy(this.gameObject, 1f);
