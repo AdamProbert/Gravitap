@@ -5,23 +5,51 @@ using UnityEngine.SceneManagement;
 
 public class MobileInputController : MonoBehaviour
 {
-    void Start()
+    public PlayerScript player;
+    public Camera camera;
+    public LayerMask mask;
+    private BodyManager bm;
+    private ScoreManager sm;
+
+    private void Start()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        bm = GetComponentInChildren<BodyManager>();
+        sm = GetComponent<ScoreManager>();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (sceneIndex == 0)
+            SceneManager.LoadScene(0);
+        }
+
+        if( player)
+        {
+            if (Input.GetMouseButtonDown(0) & player.isPlaying)
             {
-                Application.Quit();
-            }
-            else
-            {
-                SceneManager.LoadScene(0);
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 1000f, mask))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 500f, Color.black, 10f);
+                    Debug.Log("User clicked on " + hit.collider.gameObject.tag);
+                    if (hit.collider.gameObject.tag == "World")
+                    {
+                        bm.SpawnStar(hit);
+                    }
+
+                    else if (hit.collider.gameObject.tag == "BodyClickTrigger")
+                    {
+                        sm.RemoveStar(hit.collider.transform.parent.gameObject);
+                        bm.RemoveStar(hit);
+                    }
+                }
             }
         }
     }

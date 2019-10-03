@@ -13,13 +13,32 @@ public class PlayerScript : MonoBehaviour
     private float sqrMaxVelocity;
     private float sqrMinVelocity;
     private AudioSource source;
+    private Vector3 shrinkSpeed = new Vector3(.5f, .5f, .5f);
+    private List<Vector3> prevPositions = new List<Vector3>();
+    public bool isPaused = false;
+
+    // Trail renderer
+    private TrailRenderer tr;
+    private Gradient originalTrailGradient;
+    GradientColorKey[] colour2 = new GradientColorKey[2]; // Trail colours with 2 lives
+    GradientAlphaKey[] alphaKey2 = new GradientAlphaKey[2];
+    GradientColorKey[] colour1 = new GradientColorKey[1]; // Trail colours with 1 life
+    GradientAlphaKey[] alphaKey1 = new GradientAlphaKey[1];
+    private Gradient gradient2 = new Gradient();
+    private Gradient gradient1 = new Gradient();
+
 
     // States
     private bool isFalling = false;
-
     public bool alive = true;
     public bool isPlaying = false; // Used for handling death states triggering before start
-    private List<Vector3> prevPositions = new List<Vector3>();
+    public int lives = Parameters.PlayerLives;
+    
+    public void Ready()
+    {
+        GetComponent<Renderer>().enabled = true;
+        transform.Find("TargetIndicator").gameObject.SetActive(true);
+    }
 
     public void Spawned()
     {
@@ -39,42 +58,96 @@ public class PlayerScript : MonoBehaviour
 
         // Audio
         source = GetComponent<AudioSource>();
+
+        // Trail
+        tr = GetComponent<TrailRenderer>();
+        originalTrailGradient = tr.colorGradient;
+
+        // 2 Lives remaining
+        colour2[0].color = Parameters.green;
+        colour2[0].time = 0.0f;
+        colour2[1].color = Parameters.red;
+        colour2[1].time = 0.5f;
+        alphaKey2[0].alpha = 1.0f;
+        alphaKey2[0].time = 1.0f;
+        alphaKey2[1].alpha = 1.0f;
+        alphaKey2[1].time = 1.0f;
+        gradient2.SetKeys(colour2, alphaKey2);
+
+        // 1 Life remaining
+        colour1[0].color = Parameters.red;
+        colour1[0].time = 0.0f;
+        alphaKey1[0].alpha = 1.0f;
+        alphaKey1[0].time = 0.8f;
+        gradient1.SetKeys(colour1, alphaKey1);
     }
 
     private void Update()
     {
-
-        float playerSpeedX = Mathf.Abs(rb.velocity.x);
-        float playerSpeedZ = Mathf.Abs(rb.velocity.z);
-
-
-        if (isPlaying)
+        if (alive)
         {
-
-            int prevPositionsCount = prevPositions.Count;
-
-            // Check player is moving
-            if (prevPositions[prevPositionsCount - 1] == transform.position)
+            if (isFalling)
             {
-                
-                if (prevPositionsCount > 1)
+                transform.localScale = transform.localScale - shrinkSpeed * Time.deltaTime;
+            }
+
+            if (isPlaying)
+            {
+
+                float playerSpeedX = Mathf.Abs(rb.velocity.x);
+                float playerSpeedZ = Mathf.Abs(rb.velocity.z);
+
+                int prevPositionsCount = prevPositions.Count;
+
+                // Check player is moving
+                if (prevPositions[prevPositionsCount - 1] == transform.position)
                 {
-                    Debug.Log("Player hasn't moved for " + prevPositions.Count + " frames");
+
+                    if (prevPositionsCount > 1)
+                    {
+                        Debug.Log("Player hasn't moved for " + prevPositions.Count + " frames");
+                    }
+                    prevPositions.Add(transform.position);
+
                 }
-                prevPositions.Add(transform.position);
+                else
+                {
+                    prevPositions.Clear();
+                    prevPositions.Add(transform.position);
+                }
 
+                if (prevPositions.Count > 100)
+                {
+                    Debug.Log("Player stopped moving");
+                    KillPlayer();
+                }
             }
-            else
-            {
-                prevPositions.Clear();
-                prevPositions.Add(transform.position);
-            }
+        }
+    }
 
-            if (prevPositions.Count > 100)
-            {
-                Debug.Log("Player stopped moving");
+    void LifeChanges()
+    {
+        switch (lives)
+        {
+            case 3:
+                GetComponent<Renderer>().material.SetColor("_Color", Parameters.blue);
+                tr.time = 5;
+                tr.colorGradient = originalTrailGradient;
+                break;
+            case 2:
+                GetComponent<Renderer>().material.SetColor("_Color", Parameters.green);
+                tr.time = 2;
+                tr.colorGradient = gradient2;
+
+                break;
+            case 1:
+                GetComponent<Renderer>().material.SetColor("_Color", Parameters.red);
+                tr.time = 1;
+                tr.colorGradient = gradient1;
+                break;
+            case 0:
                 KillPlayer();
-            }
+                break;
         }
     }
 
@@ -90,12 +163,12 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        float movehorizontal = Input.GetAxis("Horizontal");
-        float movevertical = Input.GetAxis("Vertical");
+        //float movehorizontal = Input.GetAxis("Horizontal");
+        //float movevertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(movehorizontal, 0.0f, movevertical);
+        //Vector3 movement = new Vector3(movehorizontal, 0.0f, movevertical);
 
-        rb.AddForce(movement * speed);
+        //rb.AddForce(movement * speed);
 
         Vector3 v = rb.velocity;
         if (v.sqrMagnitude > sqrMaxVelocity)
@@ -121,11 +194,37 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    public void TogglePause()
+    {
+        if(!isPaused && isPlaying && !isFalling)
+        {
+            isPaused = true;
+        }
+        else if (isPaused)
+        {
+            isPaused = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "KillFloor")
         {
             KillPlayer();
+        }
+        if (collision.gameObject.tag == "Goal")
+        {
+            lives = Parameters.PlayerLives;
+            LifeChanges();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Body")
+        {
+            lives -= 1;
+            LifeChanges();
         }
     }
 
@@ -134,13 +233,13 @@ public class PlayerScript : MonoBehaviour
         if (
             !isFalling &&
             collision.transform.tag == "World" && 
-            !Physics.Raycast(transform.position, Vector3.down, 5)
+            !Physics.Raycast(transform.position, Vector3.down*20f, 5)
             )
         {
             Debug.Log("Player falling");
             isFalling = true;
             rb.AddForce(0, -2000, 0);
             source.Play();
-        }    
+        }
     }
 }

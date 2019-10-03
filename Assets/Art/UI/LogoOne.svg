@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="59.254 132.871 399.382 192.304" width="399.382" height="192.304" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <radialGradient id="gradient-0" gradientUnits="userSpaceOnUse" cx="306.508" cy="177.602" r="131.68" gradientTransform="matrix(1.123652, -0.291194, 0.035402, 0.136607, -44.187964, 242.593699)" spreadMethod="repeat">
+      <stop offset="0" style="stop-color: rgba(85, 115, 204, 1)"/>
+      <stop offset="1" style="stop-color: rgba(43, 68, 144, 1)"/>
+    </radialGradient>
+    <style bx:fonts="Lobster" bx:collect="">@font-face { font-family: "Lobster"; font-style: normal; font-weight: 400; font-stretch: normal; font-unicode-range: U+0-10FFFF; font-variant: normal; font-feature-settings: normal; src: url(https://fonts.gstatic.com/s/lobster/v21/neILzCirqoswsqX9_oWsMqEzSJQ.ttf); }</style>
+  </defs>
+  <text transform="matrix(1.276044, 0, 0, 1.276044, -163.834582, 8.816082)" style="fill: url(#gradient-0); font-family: Lobster; font-size: 90px; letter-spacing: 3px; text-transform: capitalize; white-space: pre;"><tspan x="173.076" y="187.292" dx="1.759 -2.932 -3.518 -1.759 -12.314 -1.759 -4.105 -4.105" dy="0 0 1.173 0 36.944 0 -0.586">GravBall</tspan><tspan x="173.076" dy="1em">​</tspan><tspan x="173.076" dy="1em">​</tspan></text>
+</svg>

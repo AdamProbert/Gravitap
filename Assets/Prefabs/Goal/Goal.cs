@@ -32,11 +32,13 @@ public class Goal : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             source.Play();
+            GetComponent<Collider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
             ps.Play();
             GetComponent<Explosion>().Explode(color);
             alive = false;
-            Destroy(this.gameObject, 1f);
+            GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
+            Destroy(this.gameObject, 1.5f);
         }
     }
 }

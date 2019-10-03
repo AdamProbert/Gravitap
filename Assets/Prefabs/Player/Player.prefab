@@ -187,7 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af10bc02b7a6a642ad64b3834182d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   alive: 1
+  isPlaying: 0
 --- !u!54 &1280457056
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -116,7 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravConstant: 1
   radius: 10
-  debug: 1
   clampForce: 150
   alive: 1
   clickCollider: {fileID: 1932040762621662453, guid: 6155384fe8dab5042ac9fc00196ae339,
@@ -147,7 +146,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7077326772435622816}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.8
@@ -319,14 +318,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7077326772435622816}
   serializedVersion: 6
-  lengthInSec: 0.5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
-  prewarm: 0
+  looping: 1
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -341,7 +340,7 @@ ParticleSystem:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -350,7 +349,7 @@ ParticleSystem:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -5046,6 +5045,16 @@ PrefabInstance:
         type: 3}
       propertyPath: mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995560384482249125, guid: aaa7b5cc40b53a54882b92e16a81d6d4,
+        type: 3}
+      propertyPath: createNewMeshInAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995560384482249125, guid: aaa7b5cc40b53a54882b92e16a81d6d4,
+        type: 3}
+      propertyPath: fullCircle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5995560384482249127, guid: aaa7b5cc40b53a54882b92e16a81d6d4,
         type: 3}

@@ -9,114 +9,123 @@ public class BodyManager : MonoBehaviour
 
     public GameObject star;
     private Queue<GameObject> stars = new Queue<GameObject>();
+    private ScoreManager sm;
+    private GameManager gm;
+
+    // Sound
     private AudioSource source;
-    private float[] soundPitches = {0.8f, 0.9f, 1f, 1.1f, 1.2f};
-    private int pitchIndex = 0;
-    public TextMeshProUGUI killText;
-    private int killCount = 0;
-    public PlayerScript player;
-    public LayerMask mask;
-    public Camera camera;
+    private float startSoundPitch = 0.8f;
+    private float soundPitch;
+
+    // State
+    public bool affectingPlayer = false; // Any stars currently affecting player?
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        sm = GetComponentInParent<ScoreManager>();
+        soundPitch = startSoundPitch;
+        gm = GetComponentInParent<GameManager>();
     }
+
     private void LateUpdate()
     {
-        CleanStarQueue();
-
-        //Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-
-        if (Input.GetMouseButtonDown(0) & player.isPlaying)
-        { 
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000f, mask))
-            {
-                Debug.DrawRay(ray.origin, ray.direction*500f, Color.black, 10f);
-                Debug.Log("User clicked on " + hit.collider.gameObject.tag);
-                if (hit.collider.gameObject.tag == "World")
-                {
-                    Vector3 spawnBody = new Vector3(hit.point.x, 0, hit.point.z);
-                    GameObject newStar = Instantiate(star, spawnBody, Quaternion.identity);
-                    newStar.transform.parent = transform;
-                    playSound();
-                    this.stars.Enqueue(newStar);
-                }
-                else if (hit.collider.gameObject.tag == "BodyClickTrigger")
-                { 
-                    playSound();
-                    Destroy(hit.collider.transform.parent.gameObject);
-                }
-            }
-            
+        if (gm.GetComponent<GameManager>().playing)
+        {
+            CleanStarQueue();
         }
+    }
+
+    public void SpawnStar(RaycastHit hit)
+    {
+        Vector3 spawnBody = new Vector3(hit.point.x, 0, hit.point.z);
+        GameObject newStar = Instantiate(star, spawnBody, Quaternion.identity);
+        newStar.transform.parent = transform;
+        PlaySound();
+        this.stars.Enqueue(newStar);
+    }
+
+    public void RemoveStar(RaycastHit hit)
+    {
+        PlaySound(true);
+        hit.collider.transform.parent.gameObject.GetComponent<Attractor>().DestroySelf();
     }
 
     private void CleanStarQueue()
     {
+
+        // Flag for any star this frame affecting player
+        bool frameAffectingPlayer = false;
         GameObject oldStar = null;
         // Cycle through queue, remove nulls or dead. Enqueue valid objects
-        if (this.stars.Count > Parameters.maxStars)
+        int count = this.stars.Count;
+        for (int i = 0; i < count; i++)
         {
-            int count = this.stars.Count;
-            for (int i = 0; i < count; i++)
+            oldStar = this.stars.Dequeue();
+            if (oldStar != null)
             {
-                oldStar = this.stars.Dequeue();
-                if (oldStar != null)
+                if (oldStar.GetComponent<Attractor>().playerTouch)
                 {
-                    stars.Enqueue(oldStar);
+                    frameAffectingPlayer = true;
                 }
-            }          
-            
-        }
+
+                stars.Enqueue(oldStar);
+            }
+        }          
+        // After clean, if still to many. Remove last one
         if (this.stars.Count > Parameters.maxStars)
         {
             oldStar = this.stars.Dequeue();
             Destroy(oldStar);
         }
+
+        // If no active stars affecting player. Inform score manager to reset combo
+        if (!frameAffectingPlayer)
+        {
+            sm.PlayerLeftGravity();
+            affectingPlayer = false;
+            ResetPitch();
+        }
+        else
+        {
+            affectingPlayer = true;
+        }
+
     }
 
-    public int getKillCount()
+    // Called from a child Star when star dies
+    public void StarDeath()
     {
-        return killCount;
+        ResetPitch();
+        sm.HitStar();
     }
 
-    public void registerKill()
+    public void ResetPitch()
     {
-        killCount += 1;
-        updatedKillText();
-    }
+        soundPitch = startSoundPitch;
 
-    public void resetKills()
-    {
-        killCount = 0;
-        updatedKillText();
-    }
-
-    public void updatedKillText()
-    {
-        killText.text = new String('X', killCount);
-        killText.fontSize = 100;
-        StartCoroutine(ResetFontSize());
-    }
-
-    IEnumerator ResetFontSize()
-    {
-        yield return new WaitForSeconds(.5f);
-        killText.fontSize = 70;
     }
 
     // Play AudioSource sound at increasing pitches
-    private void playSound()
+    private void PlaySound(bool remove = false)
     {
-        source.pitch = soundPitches[pitchIndex];
-        source.Play();
-        pitchIndex++;
-        if(pitchIndex >= soundPitches.Length)
+        if (remove)
         {
-            pitchIndex = 0;
+            source.pitch = startSoundPitch;
+            source.Play();
+        }
+        else
+        {
+            source.pitch = soundPitch;
+            source.Play();
+            if (soundPitch > 1.1)
+            {
+                soundPitch += 0.01f;
+            }
+            else
+            {
+                soundPitch += 0.05f;
+            }
         }
     }
 }

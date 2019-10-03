@@ -9,3 +9,5 @@
 *.suo
 *.user
 *.userprefs
+*.psd
+**/*.psd

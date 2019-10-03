@@ -17,15 +17,13 @@ public class DebrisPooler : MonoBehaviour
 
     private void Start()
     {
+        Transform debrisHolder = transform.Find("DebrisBits");
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < amountToPool; i++)
         {
             GameObject obj = (GameObject)Instantiate(objectToPool);
             obj.SetActive(false);
-            obj.transform.parent = transform;
-            //obj.transform.localScale = new Vector3(Parameters.DebrisSize, Parameters.DebrisSize, Parameters.DebrisSize);
-            //obj.AddComponent<Rigidbody>();
-            //obj.GetComponent<Rigidbody>().mass = Parameters.DebrisSize;
+            obj.transform.parent = debrisHolder;
             pooledObjects.Add(obj);
         }
 

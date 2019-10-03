@@ -17,9 +17,10 @@ public class TargetIndicator : MonoBehaviour
     void FindTarget()
     {
         {
-            GameObject goal = GameObject.FindGameObjectWithTag("Goal");
-            if (goal)
-                targetPostition = goal.transform.position;
+            GameObject[] goals = GameObject.FindGameObjectsWithTag("Goal");
+            foreach(GameObject g in goals)
+            if (g.GetComponent<Goal>().alive)
+                targetPostition = g.transform.position;
         }
     }
 }

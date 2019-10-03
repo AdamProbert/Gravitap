@@ -12,6 +12,7 @@ TagManager:
   - KillFloor
   - Debris
   - Music
+  - DeadStar
   layers:
   - Default
   - TransparentFX

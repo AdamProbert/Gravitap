@@ -10,7 +10,6 @@ public class Attractor : MonoBehaviour
     private Rigidbody rb;
     private Rigidbody playerrb;
     private Vector3 position;
-    public bool debug;
     public float clampForce;
     public bool alive = true;
     ParticleSystem ps;
@@ -19,9 +18,11 @@ public class Attractor : MonoBehaviour
     private AudioSource source;
     public GameObject deadStar;
     public bool playerTouch = false; // Flag for if player has interacted with this stars gravity
+    private ScoreManager sm;
 
     private void Start()
-    {
+    {     
+        sm = GetComponentInParent<ScoreManager>();
         playerrb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         rb = GetComponent<Rigidbody>();
         rb.AddTorque(transform.up * 25);
@@ -32,9 +33,8 @@ public class Attractor : MonoBehaviour
         clickColliderGO.transform.Translate(0, 1.3f, 0);
         clickColliderGO.transform.Rotate(270, 0, 0);
         source = GetComponent<AudioSource>();
-        deadStar = Instantiate(deadStar, transform.position, transform.rotation);
-        deadStar.SetActive(false);
-
+        deadStar = Instantiate(deadStar, transform.position, transform.rotation, transform.parent);
+        deadStar.SetActive(false);   
     }
 
     private void FixedUpdate()
@@ -57,6 +57,7 @@ public class Attractor : MonoBehaviour
             Vector3 direction = position - playerrb.position;
             float distance = direction.magnitude;
 
+            // Inside gravity
             if (distance <= radius)
             {
                 //float forceMagnitude = GravConstant * (rb.mass * playerrb.mass) / Mathf.Pow(distance, 2);
@@ -64,18 +65,13 @@ public class Attractor : MonoBehaviour
                 Vector3 force = direction.normalized * forceMagnitude;
                 force.x = Mathf.Clamp(force.x, -clampForce, clampForce);
                 force.z = Mathf.Clamp(force.z, -clampForce, clampForce);
-
                 playerrb.AddForce(force);
-                //Debug.Log("Add force to player: " + force);
-                if (debug)
-                {
-                    Debug.DrawLine(position, playerrb.position, Color.green, 2.5f);
-                }
 
                 if (!playerTouch)
                 {
-                    GetComponent<ParticleSystem>().Play();
+                    ps.Play();
                     playerTouch = true;
+                    sm.TriggeredStar(this.gameObject);
                 }
             }
 
@@ -83,6 +79,7 @@ public class Attractor : MonoBehaviour
             else if (playerTouch)
             {
                 playerTouch = false;
+                ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             }
         }
     }
@@ -95,19 +92,29 @@ public class Attractor : MonoBehaviour
         #endif
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void DestroySelf()
+    {
+        Destroy(deadStar);
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
     {
         
         if (alive && other.gameObject.tag == "Player")
         {
+
+            // Allert body manager
+            GetComponentInParent<BodyManager>().StarDeath();
+
             //Deactivate Pulsing Circle, set color to black
             // turn of gravity, increase size and enable collisions, and explode
+            GetComponent<Collider>().enabled = false;
             foreach (Transform child in transform)
             {
                 if (child.name == "PulsingCircle")
                     child.gameObject.SetActive(false);
             }
-            GetComponent<Collider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
             clickColliderGO.SetActive(false);
             ps.Play();
@@ -118,7 +125,6 @@ public class Attractor : MonoBehaviour
             //clickColliderGO.SetActive(false);
 
             deadStar.SetActive(true);
-            GetComponentInParent<BodyManager>().registerKill();
             alive = false;
             Destroy(this.gameObject, 1f);
         }

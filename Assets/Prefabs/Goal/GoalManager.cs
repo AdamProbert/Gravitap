@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class GoalManager : MonoBehaviour
 {
@@ -10,49 +9,31 @@ public class GoalManager : MonoBehaviour
     private GameObject currentGoal;
     public GameObject map;
     private float border;
-    public int points = 0;
-    public TextMeshProUGUI pointText;
     private BodyManager bm;
     public PlayerScript player;
+    private ScoreManager sm;
 
     // Start is called before the first frame update
     void Start()
     {
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         border = Parameters.border;
+        sm = GetComponent<ScoreManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(!currentGoal & player.isPlaying)
-        {
-            SpawnGoal();
-        }
-        else if(!currentGoal & !player.isPlaying)
-        {
-            // Do nothing
-        }
 
-        else if (!currentGoal.GetComponent<Goal>().alive & player.isPlaying)
-        {
-            bm.resetKills();
-            points++;
-            pointText.text = points.ToString();
-            pointText.fontSize = 300;
-            StartCoroutine(ResetFontSize());
-            SpawnGoal();
-        }
-    }
-
-    IEnumerator ResetFontSize()
+    public void GoalDeath(GameObject goal)
     {
-        yield return new WaitForSeconds(.5f);
-        pointText.fontSize = 200;
+        if (player.isPlaying)
+        {
+            Debug.Log("Registered goal death with manager and player is playing");
+            SpawnGoal();
+            sm.HitGoal(goal);
+        }
     }
 
     // Spawns a new goal at random location on map
-    void SpawnGoal()
+    public void SpawnGoal()
     {
         float zValue = map.transform.localScale.z/2 - border;
         float xValue = map.transform.localScale.x/2 - border;
@@ -75,7 +56,7 @@ public class GoalManager : MonoBehaviour
             goodSpawn = true;
             foreach(Collider c in colliders)
             {
-                if(c.tag == "Goal" || c.tag == "Player" || c.tag == "Body")
+                if(c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar")
                 {
                     goodSpawn = false;
                     break;
@@ -86,5 +67,6 @@ public class GoalManager : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(spawnX, 1, spawnZ);
         currentGoal = Instantiate(goalPrefab, spawnPosition, Quaternion.identity);
+        currentGoal.transform.parent = transform;
     }
 }
