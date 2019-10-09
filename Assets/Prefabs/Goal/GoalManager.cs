@@ -12,6 +12,7 @@ public class GoalManager : MonoBehaviour
     private BodyManager bm;
     public PlayerScript player;
     private ScoreManager sm;
+    private int goalCount = 0;
 
     // Special goals
     public GameObject[] specialGoals;
@@ -32,6 +33,12 @@ public class GoalManager : MonoBehaviour
             Debug.Log("Registered goal death with manager and player is playing");
             SpawnGoal();
             sm.HitGoal(goal);
+            goalCount += 1;
+            
+            if(goalCount % Parameters.goalSpawnRate == 0)
+            {
+                SpawnSpecialGoal();
+            }
         }
     }
 
