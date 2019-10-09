@@ -12,6 +12,7 @@ public class GoalManager : MonoBehaviour
     private BodyManager bm;
     public PlayerScript player;
     private ScoreManager sm;
+    private int goalCount = 0;
 
     // Special goals
     public GameObject[] specialGoals;
@@ -30,14 +31,25 @@ public class GoalManager : MonoBehaviour
         if (player.isPlaying)
         {
             Debug.Log("Registered goal death with manager and player is playing");
-            SpawnGoal();
             sm.HitGoal(goal);
+            
+            // Only spawn new goal if normal goal destroyed
+            if(goal.GetComponent<NormalGoal>() != null)
+            {
+                goalCount += 1;
+                SpawnGoal();
+            }
+
+            if(goalCount % Parameters.goalSpawnRate == 0)
+            {
+                SpawnSpecialGoal();
+            }
         }
     }
 
     public void SpawnSpecialGoal()
     {
-        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length - 1)], GetSpawnPoint(), Quaternion.identity);
+        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length)], GetSpawnPoint(), Quaternion.identity);
         specGoal.transform.parent = transform;
     }
 

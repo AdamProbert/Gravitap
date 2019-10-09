@@ -18,6 +18,9 @@ public static class Parameters
     public static float goalExplosionMinLife = 3f;
     public static float goalExplosionMaxLife = 20f;
     public static float DebrisSize = 0.2f;
+    public static int goalSpawnRate = 4; // Every x normal goals a special will spawn
+    public static float starGoalDestructionRadius = 16f;
+    public static float deathGoalLifeTime = 5f;
 
     // Stars
     public static int maxStars = 5;
@@ -54,5 +57,6 @@ public static class Parameters
     public static int startPoints = 0;
     public static int goalValue = 1;
     public static int startMultiplier = 1;
+ 
 
 }

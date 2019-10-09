@@ -10,7 +10,6 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI multiplierText;
     private int currentPoints;
     private int currentMultiplier;
-    private int currentMultiplierMultiplier = 1;
     private List<GameObject> triggeredStars = new List<GameObject>();
     public GameObject goalScoreText;
 
@@ -37,16 +36,25 @@ public class ScoreManager : MonoBehaviour
     {
         Debug.Log("Doubling multiplier");
         currentMultiplier *= 2;
+        UpdateMultiplierText();
     }
 
     public void HitGoal(GameObject goal)
     {
-
-        int stars = triggeredStars.Count+1;
+        int stars = triggeredStars.Count + 1;
         int points = Parameters.goalValue * stars;
         currentPoints += points;
         UpdatePointText();
-        ShowScoreText(goal.transform, points);
+
+        if (goal.GetComponent<MultiplierGoal>() != null)
+        {
+            ShowFloatingText(goal.transform, "x2");
+        }
+        else
+        {
+
+            ShowFloatingText(goal.transform, points.ToString());
+        }
     }
 
     public void PlayerLeftGravity()
@@ -81,10 +89,10 @@ public class ScoreManager : MonoBehaviour
         UpdateMultiplierText();
     }
 
-    private void ShowScoreText(Transform transform, int points)
+    private void ShowFloatingText(Transform transform, string text)
     {
         GameObject scoreText = Instantiate(goalScoreText, transform.position, transform.rotation, transform);
-        scoreText.GetComponent<TextMesh>().text = points.ToString();
+        scoreText.GetComponent<TextMesh>().text = text;
         scoreText.transform.rotation = Quaternion.Euler(90, -40, 0);
     }
 

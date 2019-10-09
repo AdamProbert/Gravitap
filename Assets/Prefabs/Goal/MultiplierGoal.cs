@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplierGoal : SpecialGoal
+public class MultiplierGoal : Goal 
 {
 
     ScoreManager sm;
@@ -11,7 +11,7 @@ public class MultiplierGoal : SpecialGoal
     {
         base.Setup();
         base.SetColor(Parameters.green);
-        GetComponentInParent<ScoreManager>();
+        sm = transform.root.gameObject.GetComponent<ScoreManager>(); // Gets the root game object. E.g. the GameManager
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class MultiplierGoal : SpecialGoal
         if (collision.gameObject.tag == "Player")
         {
             sm.DoubleMutliplier();
-            base.GoalDeath();
+            base.GoalDeath(false);
         }
     }
 }

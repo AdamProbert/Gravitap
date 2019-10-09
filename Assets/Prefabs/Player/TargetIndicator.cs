@@ -18,9 +18,15 @@ public class TargetIndicator : MonoBehaviour
     {
         {
             GameObject[] goals = GameObject.FindGameObjectsWithTag("Goal");
+            Debug.Log("goals: " + goals);
             foreach(GameObject g in goals)
-            if (g.GetComponent<Goal>().alive)
-                targetPostition = g.transform.position;
+            {
+                Debug.Log("Goal:" + g);
+                
+                if (g.GetComponent<NormalGoal>() != null && g.GetComponent<Goal>().alive)
+                    targetPostition = g.transform.position;
+            }
+            
         }
     }
 }

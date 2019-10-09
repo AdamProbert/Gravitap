@@ -48,7 +48,7 @@ public class BodyManager : MonoBehaviour
     public void RemoveStar(RaycastHit hit)
     {
         PlaySound(true);
-        hit.collider.transform.parent.gameObject.GetComponent<Attractor>().DestroySelf();
+        hit.collider.transform.parent.gameObject.GetComponent<Attractor>().RemoveSelf();
     }
 
     private void CleanStarQueue()
@@ -87,10 +87,18 @@ public class BodyManager : MonoBehaviour
             ResetPitch();
         }
         else
-        {
+        {                                                                                                               
             affectingPlayer = true;
         }
 
+    }
+
+    public void KillAllBodies()
+    {
+        foreach(GameObject star in stars)
+        {
+            star.GetComponent<Attractor>().DestroySelf();
+        }
     }
 
     // Called from a child Star when star dies

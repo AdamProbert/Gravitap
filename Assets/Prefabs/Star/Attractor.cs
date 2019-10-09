@@ -94,10 +94,37 @@ public class Attractor : MonoBehaviour
         #endif
     }
 
-    public void DestroySelf()
+    public void RemoveSelf()
     {
         Destroy(deadStar);
         Destroy(this.gameObject);
+    }
+
+    public void DestroySelf()
+    {
+        // Allert body manager
+        GetComponentInParent<BodyManager>().StarDeath();
+
+        //Deactivate Pulsing Circle, set color to black
+        // turn of gravity, increase size and enable collisions, and explode
+        GetComponent<Collider>().enabled = false;
+        foreach (Transform child in transform)
+        {
+            if (child.name == "PulsingCircle")
+                child.gameObject.SetActive(false);
+        }
+        GetComponent<Renderer>().enabled = false;
+        clickColliderGO.SetActive(false);
+        ps.Play();
+        source.Play();
+        GetComponent<Explosion>().Explode(Parameters.red);
+        //GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+        //transform.localScale = transform.localScale * 1.5f;
+        //clickColliderGO.SetActive(false);
+
+        deadStar.SetActive(true);
+        alive = false;
+        Destroy(this.gameObject, 1f);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -105,30 +132,7 @@ public class Attractor : MonoBehaviour
         
         if (alive && other.gameObject.tag == "Player")
         {
-
-            // Allert body manager
-            GetComponentInParent<BodyManager>().StarDeath();
-
-            //Deactivate Pulsing Circle, set color to black
-            // turn of gravity, increase size and enable collisions, and explode
-            GetComponent<Collider>().enabled = false;
-            foreach (Transform child in transform)
-            {
-                if (child.name == "PulsingCircle")
-                    child.gameObject.SetActive(false);
-            }
-            GetComponent<Renderer>().enabled = false;
-            clickColliderGO.SetActive(false);
-            ps.Play();
-            source.Play();
-            GetComponent<Explosion>().Explode(Parameters.red);
-            //GetComponent<Renderer>().material.SetColor("_Color", Color.black);
-            //transform.localScale = transform.localScale * 1.5f;
-            //clickColliderGO.SetActive(false);
-
-            deadStar.SetActive(true);
-            alive = false;
-            Destroy(this.gameObject, 1f);
+            DestroySelf();
         }
     }
 }
