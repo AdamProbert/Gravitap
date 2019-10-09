@@ -32,11 +32,11 @@ public class GoalManager : MonoBehaviour
         {
             Debug.Log("Registered goal death with manager and player is playing");
             sm.HitGoal(goal);
-            goalCount += 1;
             
             // Only spawn new goal if normal goal destroyed
             if(goal.GetComponent<NormalGoal>() != null)
             {
+                goalCount += 1;
                 SpawnGoal();
             }
 
@@ -49,7 +49,7 @@ public class GoalManager : MonoBehaviour
 
     public void SpawnSpecialGoal()
     {
-        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length - 1)], GetSpawnPoint(), Quaternion.identity);
+        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length)], GetSpawnPoint(), Quaternion.identity);
         specGoal.transform.parent = transform;
     }
 

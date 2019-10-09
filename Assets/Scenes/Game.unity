@@ -277,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 684889961799418374, guid: c048d6852d1d4fe4c8db45e5bd6197f5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 684889961799418374, guid: c048d6852d1d4fe4c8db45e5bd6197f5,
         type: 3}
@@ -532,7 +532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1028859546
 Rigidbody:
@@ -2088,7 +2088,7 @@ Transform:
   - {fileID: 740459060}
   - {fileID: 4821894570476730927}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &3854063534627503337
 RectTransform:
@@ -3172,7 +3172,7 @@ PrefabInstance:
     - target: {fileID: 6873624404544324652, guid: 058ddea696064fe4bac8ceb5f62e7877,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6873624404544324652, guid: 058ddea696064fe4bac8ceb5f62e7877,
         type: 3}
@@ -3457,6 +3457,7 @@ MonoBehaviour:
   map: {fileID: 199516118}
   player: {fileID: 2611763320566267227}
   specialGoals:
+  - {fileID: 8337111601109725418, guid: 6c34618d5c1bae043b02b64d518ac4c1, type: 3}
   - {fileID: 8337111601109725418, guid: eeff6c06e64352d4591d55d8ab41f091, type: 3}
 --- !u!225 &7314888343701879050
 CanvasGroup:

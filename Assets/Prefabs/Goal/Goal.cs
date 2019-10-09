@@ -13,6 +13,11 @@ public class Goal : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
+    public AudioSource GetSource()
+    {
+        return source;
+    }
+
     public void SetColor(Color newcolor)
     {
         color = Parameters.colorList[Random.Range(0, Parameters.colorList.Count - 1)];

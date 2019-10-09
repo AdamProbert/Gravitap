@@ -22,7 +22,8 @@ public class TargetIndicator : MonoBehaviour
             foreach(GameObject g in goals)
             {
                 Debug.Log("Goal:" + g);
-                if (g.GetComponent<Goal>().alive)
+                
+                if (g.GetComponent<NormalGoal>() != null && g.GetComponent<Goal>().alive)
                     targetPostition = g.transform.position;
             }
             
