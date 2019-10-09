@@ -13,6 +13,9 @@ public class GoalManager : MonoBehaviour
     public PlayerScript player;
     private ScoreManager sm;
 
+    // Special goals
+    public GameObject[] specialGoals;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +35,23 @@ public class GoalManager : MonoBehaviour
         }
     }
 
+    public void SpawnSpecialGoal()
+    {
+        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length - 1)], GetSpawnPoint(), Quaternion.identity);
+        specGoal.transform.parent = transform;
+    }
+
     // Spawns a new goal at random location on map
     public void SpawnGoal()
     {
-        float zValue = map.transform.localScale.z/2 - border;
-        float xValue = map.transform.localScale.x/2 - border;
+        currentGoal = Instantiate(goalPrefab, GetSpawnPoint(), Quaternion.identity);
+        currentGoal.transform.parent = transform;
+    }
+
+    private Vector3 GetSpawnPoint()
+    {
+        float zValue = map.transform.localScale.z / 2 - border;
+        float xValue = map.transform.localScale.x / 2 - border;
 
         float spawnZ = Random.Range(-zValue, zValue);
         float spawnX = Random.Range(-xValue, xValue);
@@ -44,7 +59,7 @@ public class GoalManager : MonoBehaviour
         int spawnAttemptCount = 0;
         while (!goodSpawn)
         {
-            if(spawnAttemptCount >= 3000)
+            if (spawnAttemptCount >= 3000)
             {
                 GameObject.Find("GameManager").GetComponent<GameManager>().CantPlaceGoal();
                 break;
@@ -54,9 +69,9 @@ public class GoalManager : MonoBehaviour
 
             Collider[] colliders = Physics.OverlapSphere(new Vector3(spawnX, 0, spawnZ), goalPrefab.transform.localScale.x);
             goodSpawn = true;
-            foreach(Collider c in colliders)
+            foreach (Collider c in colliders)
             {
-                if(c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar")
+                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar")
                 {
                     goodSpawn = false;
                     break;
@@ -66,7 +81,8 @@ public class GoalManager : MonoBehaviour
         }
 
         Vector3 spawnPosition = new Vector3(spawnX, 1, spawnZ);
-        currentGoal = Instantiate(goalPrefab, spawnPosition, Quaternion.identity);
-        currentGoal.transform.parent = transform;
+
+        return spawnPosition;
     }
+
 }

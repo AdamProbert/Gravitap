@@ -9,6 +9,7 @@ public class Attractor : MonoBehaviour
     public float radius = 10f;
     private Rigidbody rb;
     private Rigidbody playerrb;
+    private PlayerScript playerScript;
     private Vector3 position;
     public float clampForce;
     public bool alive = true;
@@ -24,6 +25,7 @@ public class Attractor : MonoBehaviour
     {     
         sm = GetComponentInParent<ScoreManager>();
         playerrb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
         rb.AddTorque(transform.up * 25);
         position = new Vector3(rb.position.x, 0, rb.position.z);
@@ -58,7 +60,7 @@ public class Attractor : MonoBehaviour
             float distance = direction.magnitude;
 
             // Inside gravity
-            if (distance <= radius)
+            if (distance <= radius && !playerScript.isFalling)
             {
                 //float forceMagnitude = GravConstant * (rb.mass * playerrb.mass) / Mathf.Pow(distance, 2);
                 float forceMagnitude = GravConstant * (rb.mass * playerrb.mass);

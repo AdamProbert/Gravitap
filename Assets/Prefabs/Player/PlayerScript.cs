@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
 
 
     // States
-    private bool isFalling = false;
+    public bool isFalling = false;
     public bool alive = true;
     public bool isPlaying = false; // Used for handling death states triggering before start
     public int lives = Parameters.PlayerLives;

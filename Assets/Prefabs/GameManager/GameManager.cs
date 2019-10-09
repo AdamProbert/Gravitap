@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Animator menuAnim;
     public Animator hudAnim;
     public Text highscore;
+    public bool showingMenu = true;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void EndGame()
+    public void EndGame()
     {
         Debug.Log("Ending game, saving score.");
         int points = GetComponent<ScoreManager>().GetCurrentScore();
@@ -67,11 +68,13 @@ public class GameManager : MonoBehaviour
     void ShowMenu()
     {
         menuAnim.SetBool("isHidden", false);
+        showingMenu = true;
     }
 
     void HideMenu()
     {
         menuAnim.SetBool("isHidden", true);
+        showingMenu = false;
     }
 
     private IEnumerator StartRoutine()

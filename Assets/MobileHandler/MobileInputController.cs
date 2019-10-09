@@ -22,14 +22,26 @@ public class MobileInputController : MonoBehaviour
         Application.Quit();
     }
 
+    public void BackPressed()
+    {
+        if (GetComponent<GameManager>().showingMenu)
+        {
+            QuitGame();
+        }
+        else
+        {
+            GetComponent<GameManager>().EndGame();
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            BackPressed();
         }
 
-        if( player)
+        if(player)
         {
             if (Input.GetMouseButtonDown(0) & player.isPlaying)
             {

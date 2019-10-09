@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI multiplierText;
     private int currentPoints;
     private int currentMultiplier;
+    private int currentMultiplierMultiplier = 1;
     private List<GameObject> triggeredStars = new List<GameObject>();
     public GameObject goalScoreText;
 
@@ -30,6 +31,12 @@ public class ScoreManager : MonoBehaviour
     public int GetCurrentScore()
     {
         return currentPoints;
+    }
+
+    public void DoubleMutliplier()
+    {
+        Debug.Log("Doubling multiplier");
+        currentMultiplier *= 2;
     }
 
     public void HitGoal(GameObject goal)

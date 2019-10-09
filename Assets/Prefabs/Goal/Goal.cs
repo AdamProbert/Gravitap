@@ -6,7 +6,6 @@ public class Goal : MonoBehaviour
 {
     Color color;
     AudioSource source;
-    ParticleSystem ps;
     public bool alive = true;
 
     private void Start()
@@ -15,7 +14,6 @@ public class Goal : MonoBehaviour
         color = Parameters.colorList[Random.Range(0, Parameters.colorList.Count - 1)];
         GetComponent<Renderer>().material.SetColor("_Color", color);
         source = GetComponent<AudioSource>();
-        ps = transform.Find("GoalExplosion").GetComponent<ParticleSystem>();
 
     }
 
@@ -34,7 +32,6 @@ public class Goal : MonoBehaviour
             source.Play();
             GetComponent<Collider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
-            ps.Play();
             GetComponent<Explosion>().Explode(color);
             alive = false;
             GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
