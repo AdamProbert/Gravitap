@@ -11,3 +11,5 @@
 *.userprefs
 *.psd
 **/*.psd
+.DS_Store
+.vs
