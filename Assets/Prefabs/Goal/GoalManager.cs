@@ -31,10 +31,15 @@ public class GoalManager : MonoBehaviour
         if (player.isPlaying)
         {
             Debug.Log("Registered goal death with manager and player is playing");
-            SpawnGoal();
             sm.HitGoal(goal);
             goalCount += 1;
             
+            // Only spawn new goal if normal goal destroyed
+            if(goal.GetComponent<NormalGoal>() != null)
+            {
+                SpawnGoal();
+            }
+
             if(goalCount % Parameters.goalSpawnRate == 0)
             {
                 SpawnSpecialGoal();
