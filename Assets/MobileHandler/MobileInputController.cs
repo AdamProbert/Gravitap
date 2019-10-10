@@ -10,11 +10,14 @@ public class MobileInputController : MonoBehaviour
     public LayerMask mask;
     private BodyManager bm;
     private ScoreManager sm;
+    public AudioClip buttonPress;
+    private AudioSource audio;
 
     private void Start()
     {
         bm = GetComponentInChildren<BodyManager>();
         sm = GetComponent<ScoreManager>();
+        audio = GetComponent<AudioSource>();
     }
 
     public void QuitGame()
@@ -64,5 +67,10 @@ public class MobileInputController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PlayButtonSound()
+    {
+        audio.PlayOneShot(buttonPress);
     }
 }
