@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     void ShowMenu()
     {
+        Debug.Log("Showing Menu");
         menuAnim.SetBool("isHidden", false);
         showingMenu = true;
     }
@@ -82,6 +83,19 @@ public class GameManager : MonoBehaviour
         menuAnim.SetBool("isHidden", true);
         showingMenu = false;
     }
+
+    void ShowPauseMenu()
+    {
+        pauseMenuAnim.SetBool("isHidden", false);
+        showinPausegMenu = true;
+    }
+
+    void HidePauseMenu()
+    {
+        pauseMenuAnim.SetBool("isHidden", true);
+        showingPauseMenu = false;
+    }
+
 
     private IEnumerator StartRoutine()
     {
