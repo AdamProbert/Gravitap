@@ -6,34 +6,31 @@ using UnityEngine.SceneManagement;
 public class MobileInputController : MonoBehaviour
 {
     public PlayerScript player;
-    public Camera camera;
+    public Camera mainCamera;
     public LayerMask mask;
     private BodyManager bm;
     private ScoreManager sm;
     public AudioClip buttonPress;
-    private AudioSource audio;
+    private AudioSource audiosource;
+    private GameManager gm;
 
     private void Start()
     {
         bm = GetComponentInChildren<BodyManager>();
         sm = GetComponent<ScoreManager>();
-        audio = GetComponent<AudioSource>();
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
+        gm = GetComponent<GameManager>();
+        audiosource = GetComponent<AudioSource>();
     }
 
     public void BackPressed()
     {
-        if (GetComponent<GameManager>().showingMenu)
+        if (gm.showingMenu)
         {
-            QuitGame();
+            gm.QuitGame();
         }
         else
         {
-            GetComponent<GameManager>().EndGame();
+            gm.EndGame();
         }
     }
 
@@ -48,7 +45,7 @@ public class MobileInputController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) & player.isPlaying)
             {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 1000f, mask))
                 {
@@ -71,6 +68,6 @@ public class MobileInputController : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        audio.PlayOneShot(buttonPress);
+        audiosource.PlayOneShot(buttonPress);
     }
 }

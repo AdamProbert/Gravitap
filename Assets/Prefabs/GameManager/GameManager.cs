@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    // Close the application
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     void ShowMenu()
     {
         menuAnim.SetBool("isHidden", false);
