@@ -44,6 +44,13 @@ public class StarDeathGoal : Goal
         }
     }
 
+    private void OnDrawGizmos()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.Handles.color = Color.yellow;
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, Parameters.starGoalDestructionRadius);
+    #endif
+    }
 
     private void DestoryNeighborStars()
     {

@@ -34,7 +34,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5230505222166721940}
+  - {fileID: 4685730939416407358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
---- !u!1001 &1991434012310813802
+--- !u!1001 &1311547024918766784
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -305,21 +305,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5995560384482249125, guid: 64021196ef605bb4baa63c8b79159dbb,
-        type: 3}
-      propertyPath: innerRadius
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 5995560384482249127, guid: 64021196ef605bb4baa63c8b79159dbb,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5995560384482249125, guid: 64021196ef605bb4baa63c8b79159dbb,
+        type: 3}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995560384482249125, guid: 64021196ef605bb4baa63c8b79159dbb,
+        type: 3}
+      propertyPath: circleWidth
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64021196ef605bb4baa63c8b79159dbb, type: 3}
---- !u!4 &5230505222166721940 stripped
+--- !u!4 &4685730939416407358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5995560384482249214, guid: 64021196ef605bb4baa63c8b79159dbb,
     type: 3}
-  m_PrefabInstance: {fileID: 1991434012310813802}
+  m_PrefabInstance: {fileID: 1311547024918766784}
   m_PrefabAsset: {fileID: 0}

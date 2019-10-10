@@ -20,7 +20,7 @@ public static class Parameters
     public static float DebrisSize = 0.2f;
     public static int goalSpawnRate = 2; // Every x normal goals a special will spawn
     public static float starGoalDestructionRadius = 16f;
-    public static float deathGoalLifeTime = 5f;
+    public static float deathGoalLifeTime = 10f;
 
     // Stars
     public static int maxStars = 5;
