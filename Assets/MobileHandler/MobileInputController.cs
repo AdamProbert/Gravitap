@@ -44,7 +44,7 @@ public class MobileInputController : MonoBehaviour
 
         if(player && !gm.showingPauseMenu)
         {
-            if (Input.GetMouseButtonDown(0) && player.isPlaying && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonDown(0) && player.isPlaying && !IsPointerOverUIObject())
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -65,6 +65,16 @@ public class MobileInputController : MonoBehaviour
                 }
             }
         }
+    }
+
+    //When Touching UI
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 
     public void PlayButtonSound()
