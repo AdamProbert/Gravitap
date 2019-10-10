@@ -3067,6 +3067,7 @@ GameObject:
   - component: {fileID: 1607861069348665872}
   - component: {fileID: 1657724207111543150}
   - component: {fileID: 5247448875417442033}
+  - component: {fileID: 6657370690361293582}
   m_Layer: 0
   m_Name: PointText
   m_TagString: Untagged
@@ -3074,6 +3075,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &6657370690361293582
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657370690361293581}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa582b3f98283404e803a0837f64b88b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6667017960214535985
 MonoBehaviour:
   m_ObjectHideFlags: 0
