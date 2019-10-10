@@ -84,7 +84,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (alive)
+        if (alive && !isPaused)
         {
             if (isFalling)
             {

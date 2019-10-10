@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MobileInputController : MonoBehaviour
@@ -41,9 +42,9 @@ public class MobileInputController : MonoBehaviour
             BackPressed();
         }
 
-        if(player)
+        if(player && !gm.showingPauseMenu)
         {
-            if (Input.GetMouseButtonDown(0) & player.isPlaying)
+            if (Input.GetMouseButtonDown(0) && player.isPlaying && !EventSystem.current.IsPointerOverGameObject()))
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;

@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
     private BodyManager bm;
     public bool playing = false;
     public Animator menuAnim;
+    public Animator pauseMenuAnim;
     public Animator hudAnim;
     public Text highscore;
     public bool showingMenu = true;
+    public bool showingPauseMenu = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +74,21 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void PausePressed()
+    {
+        Time.timeScale = 0;
+        ShowPauseMenu();
+        playerScript.isPaused = true;
+    }
+
+    public void ResumePressed()
+    {
+        Time.timeScale = 1;
+        HidePauseMenu();
+        playerScript.isPaused = false;
+
+    }
+
     void ShowMenu()
     {
         Debug.Log("Showing Menu");
@@ -86,13 +104,13 @@ public class GameManager : MonoBehaviour
 
     void ShowPauseMenu()
     {
-        pauseMenuAnim.SetBool("isHidden", false);
-        showinPausegMenu = true;
+        pauseMenuAnim.Play("ShowPauseMenu");
+        showingPauseMenu = true;
     }
 
     void HidePauseMenu()
     {
-        pauseMenuAnim.SetBool("isHidden", true);
+        pauseMenuAnim.Play("HidePauseMenu");
         showingPauseMenu = false;
     }
 
