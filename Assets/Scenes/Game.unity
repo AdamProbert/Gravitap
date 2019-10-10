@@ -3457,8 +3457,9 @@ MonoBehaviour:
   map: {fileID: 199516118}
   player: {fileID: 2611763320566267227}
   specialGoals:
-  - {fileID: 8337111601109725418, guid: 6c34618d5c1bae043b02b64d518ac4c1, type: 3}
   - {fileID: 8337111601109725418, guid: eeff6c06e64352d4591d55d8ab41f091, type: 3}
+  - {fileID: 8337111601109725418, guid: eeff6c06e64352d4591d55d8ab41f091, type: 3}
+  - {fileID: 8337111601109725418, guid: 6c34618d5c1bae043b02b64d518ac4c1, type: 3}
 --- !u!225 &7314888343701879050
 CanvasGroup:
   m_ObjectHideFlags: 0

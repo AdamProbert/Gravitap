@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     // Score = triggeredStars.count *1
     // If player leaves gravity of all stars multiplier is reset
     // If Player hit's star, multiplier is reset.
+    // If player removes star by touch multiplier -1
 
 
     // Start is called before the first frame update
@@ -42,7 +43,7 @@ public class ScoreManager : MonoBehaviour
     public void HitGoal(GameObject goal)
     {
         int stars = triggeredStars.Count + 1;
-        int points = Parameters.goalValue * stars;
+        int points = Parameters.goalValue * currentMultiplier;
         currentPoints += points;
         UpdatePointText();
 
@@ -76,10 +77,11 @@ public class ScoreManager : MonoBehaviour
 
     public void RemoveStar(GameObject star)
     {
-        //if (triggeredStars.Contains(star))
-        //{
-        //    triggeredStars.Clear();
-        //}
+        if(currentMultiplier > 1)
+        {
+            currentMultiplier -= 1;
+            UpdateMultiplierText();
+        }
     }
 
     public void HitStar()

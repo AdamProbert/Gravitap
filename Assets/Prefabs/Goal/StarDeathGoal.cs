@@ -5,6 +5,7 @@ using UnityEngine;
 public class StarDeathGoal : Goal
 {
     BodyManager bm;
+    private bool shouldBoom = true;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class StarDeathGoal : Goal
         if (collision.gameObject.tag == "Player")
         {
             transform.GetChild(0).gameObject.SetActive(false);
+            shouldBoom = false;
             base.GoalDeath(false);
         }
     }
@@ -34,9 +36,12 @@ public class StarDeathGoal : Goal
     private IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(Parameters.deathGoalLifeTime);
-        DestoryNeighborStars();
-        transform.GetChild(0).gameObject.SetActive(false);
-        base.GoalDeath(false);
+        if (shouldBoom)
+        {
+            DestoryNeighborStars();
+            transform.GetChild(0).gameObject.SetActive(false);
+            base.GoalDeath(false);
+        }
     }
 
 
