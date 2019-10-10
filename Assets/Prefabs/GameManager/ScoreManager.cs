@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI pointText;
     public TextMeshProUGUI multiplierText;
+    private Animator anim;
     private int currentPoints;
     private int currentMultiplier;
     private List<GameObject> triggeredStars = new List<GameObject>();
@@ -25,6 +26,7 @@ public class ScoreManager : MonoBehaviour
     {
         currentPoints = Parameters.startPoints;
         currentMultiplier = Parameters.startMultiplier;
+        anim = pointText.GetComponent<Animator>();
     }
 
     public int GetCurrentScore()
@@ -98,22 +100,13 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdatePointText()
     {
+        anim.SetTrigger("updateScore");
         pointText.text = "" + currentPoints;
-        pointText.fontSize = Parameters.largeScoreSize;
-        StartCoroutine(ResetFontSize(pointText, Parameters.normalScoreSize));
     }
 
     private void UpdateMultiplierText()
     {
         multiplierText.text = "x" + currentMultiplier;
-        //multiplierText.fontSize = Parameters.largeMultiplierSize;
-        //StartCoroutine(ResetFontSize(multiplierText, Parameters.normalMultiplierSize));
-    }
-
-    IEnumerator ResetFontSize(TextMeshProUGUI text, int fontSize)
-    {
-        yield return new WaitForSeconds(Parameters.textResetTime);
-        text.fontSize = fontSize;
     }
 }
 
