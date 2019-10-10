@@ -20,7 +20,7 @@ public class Goal : MonoBehaviour
 
     public void SetColor(Color newcolor)
     {
-        color = Parameters.colorList[Random.Range(0, Parameters.colorList.Count - 1)];
+        color = newcolor;
         GetComponent<Renderer>().material.SetColor("_Color", newcolor);
     }
 
@@ -36,7 +36,10 @@ public class Goal : MonoBehaviour
         GetComponent<Renderer>().enabled = false;
         GetComponent<Explosion>().Explode(color);
         alive = false;
-        GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
+        if (spawnNew)
+        {
+            GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
+        }
         Destroy(this.gameObject, 1.5f);
     }
 }
