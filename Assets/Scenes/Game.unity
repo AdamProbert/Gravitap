@@ -2400,7 +2400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2611763320566267227}
-  camera: {fileID: 595860459}
+  mainCamera: {fileID: 595860459}
   mask:
     serializedVersion: 2
     m_Bits: 11265
