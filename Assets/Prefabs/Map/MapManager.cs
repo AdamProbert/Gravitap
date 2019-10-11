@@ -41,9 +41,8 @@ public class MapManager : MonoBehaviour
         {
             currentMapIndex += 1;
             if (currentMapIndex <= mapCount-1)
-            {   
+            {
                 SpawnTeleport();
-                
             }
         }
     }
@@ -64,22 +63,16 @@ public class MapManager : MonoBehaviour
     {
         player.GetComponent<PlayerScript>().isTeleporting = true;
         goalCountTrigger += Parameters.mapChangeGoalCount;
-        Destroy(teleport);
         CurrentMap = transform.GetChild(currentMapIndex).gameObject;
-        TrailRenderer ptr = player.GetComponent<TrailRenderer>();
-        ptr.enabled = false;
-        Vector3 mapSpawn = CurrentMap.transform.Find("SpawnArea").gameObject.transform.position;
-        RaycastHit hit;
-        Debug.DrawRay(mapSpawn, Vector3.down * 50f, Parameters.blue, 30f);
-        if (Physics.Raycast(mapSpawn, Vector3.down, out hit, 50f, LayerMask.GetMask("World")))
-        {
-            Debug.Log("Player transport hit: " + hit.transform.gameObject.name);
-        }
 
-        Debug.Log("Transporting player to: " + mapSpawn);
-        player.transform.position = mapSpawn;
-        ptr.enabled = true;
-        player.GetComponent<PlayerScript>().isTeleporting = false;
+        // Move teleport
+        teleport.GetComponent<Collider>().enabled = false;
+        teleport.transform.position = CurrentMap.GetComponentInChildren<SpawnArea>().transform.position;
+        Destroy(teleport, 3f);
+        
+        // Move player
+        Vector3 mapSpawn = CurrentMap.transform.Find("SpawnArea").gameObject.transform.position;
+        player.GetComponent<PlayerScript>().Teleport(mapSpawn);
 
     }
 }

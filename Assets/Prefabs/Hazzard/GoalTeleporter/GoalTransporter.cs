@@ -5,7 +5,7 @@ using UnityEngine;
 public class GoalTransporter : BaseHazzard
 {
     public override int spawnFrequency { get { return 1; } }
-    public override int minScore { get { return 10; } }
+    public override int minScore { get { return 30; } }
 
     private GoalManager gm;
     public GameObject ps;

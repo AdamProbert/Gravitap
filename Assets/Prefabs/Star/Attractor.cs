@@ -132,7 +132,6 @@ public class Attractor : MonoBehaviour
         
         if (alive && other.gameObject.tag == "Player")
         {
-            Debug.Log("Star hit player");
             DestroySelf();
         }
     }

@@ -44,7 +44,6 @@ public class GoalManager : MonoBehaviour
     {
         if (player.isPlaying)
         {
-            Debug.Log("Registered goal death with manager and player is playing");
             sm.HitGoal(goal);
             
             // Only spawn new goal if normal goal destroyed
@@ -101,26 +100,22 @@ public class GoalManager : MonoBehaviour
 
             // Must be above map
             int layerMask = LayerMask.GetMask("World");
-            Debug.Log("Checking if spawn above ground");
             RaycastHit hit;
             Debug.DrawRay(new Vector3(spawnX, spawnY, spawnZ), Vector3.down * 50f, Color.red, 10f);
             if(Physics.Raycast(new Vector3(spawnX, spawnY, spawnZ), Vector3.down, out hit, 50f, layerMask))
             {
-                Debug.Log("Hit:" + hit.transform.gameObject.name);
             }
             else
             {
-                Debug.Log("Didn't hit anything");
                 goodSpawn = false;
                 spawnAttemptCount++;
                 continue;
             }
 
 
-            Debug.Log("Checking collisions");
             foreach (Collider c in colliders)
             {
-                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard")
+                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard" || c.tag == "Teleport")
                 {
                     goodSpawn = false;
                     break;
@@ -130,7 +125,7 @@ public class GoalManager : MonoBehaviour
         }
 
         Vector3 spawnPosition = new Vector3(spawnX, spawnY + goalPrefab.GetComponent<Renderer>().bounds.size.y / 2, spawnZ);
-        Debug.Log("Took " + spawnAttemptCount + " attempts to spawn");
+        Debug.Log("GoalManager: Took " + spawnAttemptCount + " attempts to spawn");
         return spawnPosition;
     }
 

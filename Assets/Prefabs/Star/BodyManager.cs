@@ -53,10 +53,13 @@ public class BodyManager : MonoBehaviour
     // Halve the alpha of the final star in the queue
     private void LastStarIdentifier()
     {
-        if(stars.Count == 5)
+        if(stars.Count > 0)
         {
             GameObject lastStar = stars.Peek();
-            lastStar.GetComponent<Renderer>().material.color = Parameters.orange;          
+            if (stars.Count == 5)
+                lastStar.GetComponent<Renderer>().material.color = Parameters.orange;
+            else
+                lastStar.GetComponent<Renderer>().material.color = Parameters.red;
         }
     }
 

@@ -72,15 +72,8 @@ public class HazzardHandler : MonoBehaviour
 
         if(sublist.Count > 0)
         {
-            Debug.Log("Hazzarlist count: " + sublist.Count);
-            Debug.Log("Hazzarlist : " + sublist);
-            foreach(BaseHazzard h in sublist)
-            {
-                Debug.Log("Hazzard in list: " + h.name);
-            }
             return sublist[Random.Range(0, sublist.Count)];
         }
-
         else
         {
             return null;
@@ -125,26 +118,22 @@ public class HazzardHandler : MonoBehaviour
 
             // Must be above map
             int layerMask = LayerMask.GetMask("World");
-            Debug.Log("Checking if spawn above ground");
             RaycastHit hit;
             Debug.DrawRay(new Vector3(spawnX, spawnY, spawnZ), Vector3.down * 50f, Color.red, 10f);
             if (Physics.Raycast(new Vector3(spawnX, spawnY, spawnZ), Vector3.down, out hit, 50f, layerMask))
             {
-                Debug.Log("Hit:" + hit.transform.gameObject.name);
             }
             else
             {
-                Debug.Log("Didn't hit anything");
                 goodSpawn = false;
                 spawnAttemptCount++;
                 continue;
             }
 
 
-            Debug.Log("Checking collisions");
             foreach (Collider c in colliders)
             {
-                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard")
+                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard" || c.tag == "Teleport")
                 {
                     goodSpawn = false;
                     break;
@@ -153,7 +142,6 @@ public class HazzardHandler : MonoBehaviour
             spawnAttemptCount++;
         }
 
-        Debug.Log("bounds: " + h.GetComponent<Renderer>().bounds.size.y);
         Vector3 spawnPosition = new Vector3(spawnX, spawnY + h.GetComponent<Renderer>().bounds.size.y/2, spawnZ);
         Debug.Log("Took " + spawnAttemptCount + " attempts to spawn");
         return spawnPosition;

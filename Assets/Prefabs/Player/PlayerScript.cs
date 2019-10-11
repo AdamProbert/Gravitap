@@ -129,6 +129,16 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void Teleport(Vector3 location)
+    {
+        Debug.Log("Player: Transporting player to: " + location);
+        isTeleporting = true;
+        // Move player
+        tr.time = -1;
+        transform.position = location;
+        isTeleporting = false;
+    }
+
     void CalculateMaxY()
     {
         if (!isTeleporting)
@@ -205,6 +215,9 @@ public class PlayerScript : MonoBehaviour
             {
                 rb.velocity = v.normalized * minVelocity;
             }
+
+            // Make sure trail is dope
+            LifeChanges();
         }
     }
 
@@ -242,7 +255,6 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Goal")
         {
             lives = Parameters.PlayerLives;
-            LifeChanges();
         }
     }
 
@@ -251,9 +263,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Body")
         {
             lives -= 1;
-            LifeChanges();
         }
-
     }
 
     private void OnCollisionExit(Collision collision)
@@ -263,7 +273,6 @@ public class PlayerScript : MonoBehaviour
         if (collision.transform.tag == "World" && !isFalling && !isTeleporting)
         {
             CalculateMaxY();
-            Debug.Log("Player: New maxy: " + maxY);
         }
     }
 }
