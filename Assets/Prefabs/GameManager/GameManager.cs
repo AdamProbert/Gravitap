@@ -69,7 +69,9 @@ public class GameManager : MonoBehaviour
         if (!endingGame)
         {
             endingGame = true;
-            StartCoroutine(EndRoutine());
+            int points = sm.GetCurrentScore();
+            sh.SetHighScore(points);
+            SceneManager.LoadScene(0);
         }
         
     }
@@ -118,16 +120,6 @@ public class GameManager : MonoBehaviour
     {
         pauseMenuAnim.Play("HidePauseMenu");
         showingPauseMenu = false;
-    }
-
-    private IEnumerator EndRoutine()
-    {
-        Debug.Log("Start end routine");
-        int points = sm.GetCurrentScore();
-        Debug.Log("Saving score of " + points);
-        sh.SetHighScore(points);
-        yield return new WaitForSeconds(.5f);
-        SceneManager.LoadScene(0);
     }
 
     private IEnumerator StartRoutine()
