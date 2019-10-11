@@ -39,7 +39,7 @@ public class StarDeathGoal : Goal
         if (shouldBoom)
         {
             DestoryNeighborStars();
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false); // Turn off rings
             base.GoalDeath();
         }
     }

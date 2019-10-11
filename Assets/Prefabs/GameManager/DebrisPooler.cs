@@ -8,6 +8,7 @@ public class DebrisPooler : MonoBehaviour
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
+    public bool playerSaysYehaw = true;
 
     void Awake()
     {
@@ -31,14 +32,16 @@ public class DebrisPooler : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        if (playerSaysYehaw)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            for (int i = 0; i < pooledObjects.Count; i++)
             {
-                return pooledObjects[i];
+                if (!pooledObjects[i].activeInHierarchy)
+                {
+                    return pooledObjects[i];
+                }
             }
         }
         return null;
     }
-
 }

@@ -12,7 +12,7 @@ public class GoalManager : MonoBehaviour
     private BodyManager bm;
     public PlayerScript player;
     private ScoreManager sm;
-    private int goalCount = 0;
+    public int goalCount = 0;
 
     // Special goals
     public GameObject[] specialGoals;
@@ -42,6 +42,7 @@ public class GoalManager : MonoBehaviour
 
             if(goalCount % Parameters.goalSpawnRate == 0)
             {
+                goalCount += 1;
                 SpawnSpecialGoal();
             }
         }

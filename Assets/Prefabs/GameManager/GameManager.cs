@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     public Animator hudAnim;
     public Text highscore;
     public bool showingMenu = true;
-    public bool showingPauseMenu = false;
+    public bool showingOptionsMenu = false;
     private StorageHandler sh;
     private ScoreManager sm;
+    private GoalManager gm;
     private bool endingGame = false;
+    private bool firstGoalSpawned;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager start called");
         sh = GetComponent<StorageHandler>();
         sm = GetComponent<ScoreManager>();
+        gm = GetComponent<GoalManager>();
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         playerScript = player.GetComponent<PlayerScript>();
         ShowMenu();
@@ -35,16 +38,18 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("Running routine");
+        playing = true;
         StartCoroutine(StartRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playing && playerScript.isPlaying)
+        // Spawn first goal
+        if (!firstGoalSpawned && playerScript.isPlaying)
         {
             GetComponent<GoalManager>().SpawnGoal();
-            playing = true;
+            firstGoalSpawned = true;
         }
             
         DetectDeath();
@@ -68,6 +73,7 @@ public class GameManager : MonoBehaviour
     {
         if (!endingGame)
         {
+            playing = false;
             endingGame = true;
             int points = sm.GetCurrentScore();
             sh.SetHighScore(points);
@@ -82,44 +88,65 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PausePressed()
+    public void OptionsPressed()
     {
-        Time.timeScale = 0;
-        ShowPauseMenu();
-        playerScript.isPaused = true;
-    }
-
-    public void ResumePressed()
-    {
-        Time.timeScale = 1;
-        HidePauseMenu();
-        playerScript.isPaused = false;
-
+        // Open options
+        if (!showingOptionsMenu)
+        {
+            if (!playing)
+            {
+                HideMenu();
+                ShowPauseMenu();
+            }
+            // In game
+            else
+            {
+                Time.timeScale = 0;
+                ShowPauseMenu();
+                playerScript.isPaused = true;
+            }
+        }
+        // Close options
+        else
+        {
+            if (!playing)
+            {
+                HidePauseMenu();
+                ShowMenu();
+            }
+            // In game
+            else
+            {
+                Time.timeScale = 1;
+                HidePauseMenu();
+                playerScript.isPaused = false;
+            }
+        }
     }
 
     void ShowMenu()
     {
         Debug.Log("Showing Menu");
-        menuAnim.SetBool("isHidden", false);
+        menuAnim.Play("MenuIn");
         showingMenu = true;
     }
 
     void HideMenu()
     {
-        menuAnim.SetBool("isHidden", true);
+        menuAnim.Play("MenuOut");
         showingMenu = false;
     }
 
     void ShowPauseMenu()
     {
         pauseMenuAnim.Play("ShowPauseMenu");
-        showingPauseMenu = true;
+        showingOptionsMenu = true;
     }
 
     void HidePauseMenu()
     {
         pauseMenuAnim.Play("HidePauseMenu");
-        showingPauseMenu = false;
+        showingOptionsMenu = false;
     }
 
     private IEnumerator StartRoutine()

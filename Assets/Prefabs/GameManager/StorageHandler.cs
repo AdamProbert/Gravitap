@@ -5,14 +5,30 @@ using UnityEngine.UI;
 
 public class StorageHandler : MonoBehaviour
 {
+    public Slider volumeSlider;
+    public Slider soundEffectsSlider;
+    public Toggle explosions;
 
     public void Awake()
     {
         if (!PlayerPrefs.HasKey("highscore"))
         {
             PlayerPrefs.SetInt("highscore", 0);
-            PlayerPrefs.Save();
         }
+
+        if (!PlayerPrefs.HasKey("volume"))
+        {
+            PlayerPrefs.SetFloat("volume", 1);
+        }
+
+        if (!PlayerPrefs.HasKey("explosions"))
+        {
+            PlayerPrefs.SetInt("explosions", 1);
+        }
+
+        PlayerPrefs.Save();
+
+        SetPlayerPrefs();
     }
 
     public void SetHighScore(int score)
@@ -27,5 +43,11 @@ public class StorageHandler : MonoBehaviour
     public int GetHighScore()
     {
         return PlayerPrefs.GetInt("highscore");
+    }
+
+    private void SetPlayerPrefs()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat("volume");
+        explosions.isOn = PlayerPrefs.GetInt("explosions") == 1? true : false;
     }
 }

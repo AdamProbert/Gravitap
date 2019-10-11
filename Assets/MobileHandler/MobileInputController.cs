@@ -14,6 +14,7 @@ public class MobileInputController : MonoBehaviour
     public AudioClip buttonPress;
     private AudioSource audiosource;
     private GameManager gm;
+    public AudioSource starsSound;
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class MobileInputController : MonoBehaviour
             BackPressed();
         }
 
-        if(player && !gm.showingPauseMenu)
+        if(player && !gm.showingOptionsMenu)
         {
             if (Input.GetMouseButtonDown(0) && player.isPlaying && !IsPointerOverUIObject())
             {
@@ -80,5 +81,17 @@ public class MobileInputController : MonoBehaviour
     public void PlayButtonSound()
     {
         audiosource.PlayOneShot(buttonPress);
+    }
+
+    public void VolumeChange(float volume)
+    {
+        PlayerPrefs.SetFloat("volume", volume);
+        AudioListener.volume = volume;
+    }
+
+    public void ToggleExplosions(bool toggle)
+    {
+        PlayerPrefs.SetInt("explosions", toggle ? 1 : 0);
+        GetComponent<DebrisPooler>().playerSaysYehaw = toggle;
     }
 }

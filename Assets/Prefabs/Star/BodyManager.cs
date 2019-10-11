@@ -31,6 +31,7 @@ public class BodyManager : MonoBehaviour
         if (gm.GetComponent<GameManager>().playing)
         {
             CleanStarQueue();
+            LastStarIdentifier();
         }
     }
 
@@ -49,9 +50,18 @@ public class BodyManager : MonoBehaviour
         hit.collider.transform.parent.gameObject.GetComponent<Attractor>().RemoveSelf();
     }
 
+    // Halve the alpha of the final star in the queue
+    private void LastStarIdentifier()
+    {
+        if(stars.Count == 5)
+        {
+            GameObject lastStar = stars.Peek();
+            lastStar.GetComponent<Renderer>().material.color = Parameters.orange;          
+        }
+    }
+
     private void CleanStarQueue()
     {
-
         // Flag for any star this frame affecting player
         bool frameAffectingPlayer = false;
         GameObject oldStar = null;
