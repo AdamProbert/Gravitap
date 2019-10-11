@@ -60,7 +60,7 @@ public static class Parameters
     public static int startMultiplier = 1;
 
     // Hazzards
-    public static int initialHazzardScore = 15; // originally 10
+    public static int initialHazzardScore = 5; // originally 10
     public static int hazzardScoreIncrement = 15; // originally 10
     public static float starDestructionRadius = 16f;
     public static float starDestructionLifeTime = 8f;

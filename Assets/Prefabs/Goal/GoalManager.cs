@@ -78,11 +78,12 @@ public class GoalManager : MonoBehaviour
 
     public Vector3 GetSpawnPoint()
     {
-        GameObject mapSpawn = map.transform.GetChild(1).gameObject;
+        GameObject mapSpawn = map.transform.Find("SpawnArea").gameObject;
         float zValue = mapSpawn.GetComponent<SpawnArea>().size.z/2;
         float xValue = mapSpawn.GetComponent<SpawnArea>().size.x/2;
         float spawnZ = Random.Range(mapSpawn.transform.position.z - zValue, mapSpawn.transform.position.z + zValue);
         float spawnX = Random.Range(mapSpawn.transform.position.x - xValue, mapSpawn.transform.position.x + xValue);
+        float spawnY = mapSpawn.transform.position.y;
         bool goodSpawn = false;
         int spawnAttemptCount = 0;
         while (!goodSpawn)
@@ -95,15 +96,15 @@ public class GoalManager : MonoBehaviour
             spawnZ = Random.Range(mapSpawn.transform.position.z - zValue, mapSpawn.transform.position.z + zValue);
             spawnX = Random.Range(mapSpawn.transform.position.x - xValue, mapSpawn.transform.position.x + xValue);
 
-            Collider[] colliders = Physics.OverlapSphere(new Vector3(spawnX, mapSpawn.transform.position.y, spawnZ), goalPrefab.transform.localScale.x);
+            Collider[] colliders = Physics.OverlapSphere(new Vector3(spawnX, spawnY, spawnZ), goalPrefab.transform.localScale.x);
             goodSpawn = true;
 
             // Must be above map
             int layerMask = LayerMask.GetMask("World");
             Debug.Log("Checking if spawn above ground");
             RaycastHit hit;
-            Debug.DrawRay(new Vector3(spawnX, mapSpawn.transform.position.y, spawnZ), Vector3.down * 50f, Color.red, 10f);
-            if(Physics.Raycast(new Vector3(spawnX, mapSpawn.transform.position.y, spawnZ), Vector3.down, out hit, 50f, layerMask))
+            Debug.DrawRay(new Vector3(spawnX, spawnY, spawnZ), Vector3.down * 50f, Color.red, 10f);
+            if(Physics.Raycast(new Vector3(spawnX, spawnY, spawnZ), Vector3.down, out hit, 50f, layerMask))
             {
                 Debug.Log("Hit:" + hit.transform.gameObject.name);
             }
@@ -128,7 +129,7 @@ public class GoalManager : MonoBehaviour
             spawnAttemptCount++;
         }
 
-        Vector3 spawnPosition = new Vector3(spawnX, mapSpawn.transform.position.y, spawnZ);
+        Vector3 spawnPosition = new Vector3(spawnX, spawnY + goalPrefab.GetComponent<Renderer>().bounds.size.y / 2, spawnZ);
         Debug.Log("Took " + spawnAttemptCount + " attempts to spawn");
         return spawnPosition;
     }

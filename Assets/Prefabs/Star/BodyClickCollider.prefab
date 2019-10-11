@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1663095486593535964}
   - component: {fileID: -4687337309790625569}
   - component: {fileID: 5951202516989461093}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BodyClickCollider
   m_TagString: BodyClickTrigger
   m_Icon: {fileID: 0}

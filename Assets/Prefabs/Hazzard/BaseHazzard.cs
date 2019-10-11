@@ -4,21 +4,13 @@ using UnityEngine;
 
 public abstract class BaseHazzard : MonoBehaviour
 {
-    AudioSource source;
     public bool alive = true;
-    private int minScore;
-    public int spawnFrequency;
-
-    public void Setup(int myMinScore, int mySpawnFrequency)
+    public abstract int minScore { get; }
+    public abstract int spawnFrequency { get; }
+    
+    public int GetSpawnFrequency()
     {
-        minScore = myMinScore;
-        spawnFrequency = mySpawnFrequency;
-        source = GetComponent<AudioSource>();
-    }
-
-    public AudioSource GetSource()
-    {
-        return source;
+        return spawnFrequency;
     }
 
     public bool IsInScoreRange(int score)
@@ -37,7 +29,7 @@ public abstract class BaseHazzard : MonoBehaviour
 
     public void HazzardDeath()
     {
-        source.Play();
+        GetComponent<AudioSource>().Play();
         GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;
         GetComponent<Explosion>().Explode(Parameters.black);

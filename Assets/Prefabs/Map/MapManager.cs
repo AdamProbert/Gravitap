@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     public GameObject player; // From editor
     public GameObject leveltp;
     GameObject teleport;
-    private int mapCount = 2; // MUST KEEP THIS UP TO DATE WITH NUMBER OF MAPS
+    private int mapCount = 3; // MUST KEEP THIS UP TO DATE WITH NUMBER OF MAPS
 
 
     public GameObject CurrentMap
@@ -62,12 +62,24 @@ public class MapManager : MonoBehaviour
 
     public void TransportPlayer()
     {
+        player.GetComponent<PlayerScript>().isTeleporting = true;
         goalCountTrigger += Parameters.mapChangeGoalCount;
         Destroy(teleport);
         CurrentMap = transform.GetChild(currentMapIndex).gameObject;
         TrailRenderer ptr = player.GetComponent<TrailRenderer>();
         ptr.enabled = false;
-        player.transform.position = CurrentMap.transform.Find("SpawnArea").position;
-        ptr.enabled = true;   
+        Vector3 mapSpawn = CurrentMap.transform.Find("SpawnArea").gameObject.transform.position;
+        RaycastHit hit;
+        Debug.DrawRay(mapSpawn, Vector3.down * 50f, Parameters.blue, 30f);
+        if (Physics.Raycast(mapSpawn, Vector3.down, out hit, 50f, LayerMask.GetMask("World")))
+        {
+            Debug.Log("Player transport hit: " + hit.transform.gameObject.name);
+        }
+
+        Debug.Log("Transporting player to: " + mapSpawn);
+        player.transform.position = mapSpawn;
+        ptr.enabled = true;
+        player.GetComponent<PlayerScript>().isTeleporting = false;
+
     }
 }

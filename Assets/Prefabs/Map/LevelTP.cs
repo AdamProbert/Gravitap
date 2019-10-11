@@ -11,7 +11,7 @@ public class LevelTP : MonoBehaviour
         {
             transform.GetComponentInParent<MapManager>().TransportPlayer();
         }
-        else if(other.tag == "Body")
+        else if(other.tag == "Body" || other.tag == "DeadStar" || other.tag == "Hazzard")
         {
             Destroy(other.gameObject);
         }

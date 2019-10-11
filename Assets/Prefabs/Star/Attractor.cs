@@ -28,7 +28,7 @@ public class Attractor : MonoBehaviour
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
         rb.AddTorque(transform.up * 25);
-        position = new Vector3(rb.position.x, 0, rb.position.z);
+        position = new Vector3(rb.position.x, rb.position.y-GetComponent<Renderer>().bounds.size.y/2, rb.position.z);
         ps = GetComponentInChildren<ParticleSystem>();
         clickColliderGO = Instantiate(clickCollider, transform.position, transform.rotation);
         clickColliderGO.transform.parent = gameObject.transform;
@@ -132,6 +132,7 @@ public class Attractor : MonoBehaviour
         
         if (alive && other.gameObject.tag == "Player")
         {
+            Debug.Log("Star hit player");
             DestroySelf();
         }
     }

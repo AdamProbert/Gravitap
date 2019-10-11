@@ -5,12 +5,11 @@ using UnityEngine;
 public class StarDeathExplosion : BaseHazzard
 {
     private bool shouldBoom = true;
-    private int mySpawnFrequency = 4;
-    private int myMinScore = 10;
+    public override int spawnFrequency { get { return 10; } }
+    public override int minScore { get { return 10;} }
 
     private void Start()
     {
-        base.Setup(myMinScore, mySpawnFrequency);
         StartCoroutine(SelfDestruct());
     }
 

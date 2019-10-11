@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GoalTransporter : BaseHazzard
 {
-    private int mySpawnFrequency = 1;
-    private int myMinScore = 30;
+    public override int spawnFrequency { get { return 1; } }
+    public override int minScore { get { return 10; } }
+
     private GoalManager gm;
     public GameObject ps;
     private float nextTransportTime;
@@ -16,12 +17,11 @@ public class GoalTransporter : BaseHazzard
         psDuration = ps.GetComponent<ParticleSystem>().main.duration;
         nextTransportTime = Time.time + Parameters.transportGoalDelay;
         gm = transform.root.GetComponent<GoalManager>();
-        base.Setup(myMinScore, mySpawnFrequency);
     }
 
     void Update()
     {
-        base.Rotate(180, 90, 180);
+        base.Rotate(180, 180, 180);
         if(nextTransportTime <= Time.time)
         {
             StartCoroutine(TransportGoal());
@@ -33,13 +33,16 @@ public class GoalTransporter : BaseHazzard
     {
         // Play Particle system on transporter and remote goal location
         // Then move the goal to new "allowed" position
-        GameObject cg = gm.GetCurrentGoal();
-        GameObject ps1 = Instantiate(ps, transform.position, Quaternion.identity);
-        GameObject ps2 = Instantiate(ps, cg.transform.position, Quaternion.identity);
-        Destroy(ps1, psDuration);
-        Destroy(ps2, psDuration);
-        yield return new WaitForSeconds(psDuration);
-        cg.transform.position = gm.GetSpawnPoint();
+        if (base.alive)
+        {
+            GameObject cg = gm.GetCurrentGoal();
+            GameObject ps1 = Instantiate(ps, transform.position, Quaternion.identity);
+            GameObject ps2 = Instantiate(ps, cg.transform.position, Quaternion.identity);
+            Destroy(ps1, psDuration);
+            Destroy(ps2, psDuration);
+            yield return new WaitForSeconds(psDuration);
+            cg.transform.position = gm.GetSpawnPoint();
+        }
     }
 
     private void OnTriggerEnter(Collider collision)

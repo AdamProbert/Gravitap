@@ -37,7 +37,7 @@ public class BodyManager : MonoBehaviour
 
     public void SpawnStar(RaycastHit hit)
     {
-        Vector3 spawnBody = new Vector3(hit.point.x, 0, hit.point.z);
+        Vector3 spawnBody = new Vector3(hit.point.x, hit.point.y+(star.GetComponent<Renderer>().bounds.size.y/2), hit.point.z);
         GameObject newStar = Instantiate(star, spawnBody, Quaternion.identity);
         newStar.transform.parent = transform;
         PlaySound();
