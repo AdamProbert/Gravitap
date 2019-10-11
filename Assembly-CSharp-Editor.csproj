@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_2_8;UNITY_2019_2;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_EVENT_QUEUE;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_AR;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;UNITY_ASTC_ONLY_DECOMPRESS;ANDROID_USE_SWAPPY;ENABLE_ONSCREEN_KEYBOARD;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_2_8;UNITY_2019_2;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_EVENT_QUEUE;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_AR;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;UNITY_ASTC_ONLY_DECOMPRESS;ANDROID_USE_SWAPPY;ENABLE_ONSCREEN_KEYBOARD;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -63,6 +63,75 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\3rd party\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\Extensions\EditorGUILayoutExt.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\Extensions\SerializedPropertyExtension.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\ManifestGenerator\AndroidManifestElementEditWindow.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\PropertyDrawers\AdPlacementDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\PropertyDrawers\EnumFlagsDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\PropertyDrawers\KeyValuePairDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\PropertyDrawers\NotificationActionButtonDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\PropertyDrawers\RenameDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\SerializableDictionary\DictionaryDrawer_AdPlacement_AdId.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\SerializableDictionary\SerializableDictionaryDrawerDefinition.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\SerializableDictionary\SerializableDictionaryPropertyDrawer.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\Utils\FileIO.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\Common\Utils\GlobalDefineManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_About.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_AndroidLibBuilder.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_AndroidManifestBuilder.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_BuildManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_BuiltinObjectCreator.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_Constants.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_Constants_Version.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_Editor_Tab_Build.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_Editor_Tab_Tools.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_Editor_TabSelection.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_EditorGUI.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_EditorUtil.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_ExternalPluginManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_GUIStyleManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_MenuManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_PluginManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_ProjectSettings.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_ScriptingSymbols.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_Ads.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_GameServices.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_IAP.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_ModuleSelection.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_NativeAPIs.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_Notifications.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_Privacy.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_Sharing.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditor_Utilities.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsEditorHelper.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\EM_SettingsWindow.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\CompositeModuleManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Advertising.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_GameServices.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Gif.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_InAppPurchasing.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_NativeAPIs.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Notifications.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Privacy.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Sharing.cs" />
+    <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Utilities.cs" />
+    <Compile Include="Assets\EasyMobile\Scripts\Modules\GIF\Editor\RecorderEditor.cs" />
+    <Compile Include="Assets\EasyMobile\Scripts\Modules\GIF\Moments\Scripts\Editor\MinDrawer.cs" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.124.0.txt" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Template_Constants.txt" />
+    <None Include="Assets\EasyMobile\Editor\EasyMobileSettings.txt" />
+    <None Include="Assets\EasyMobile\Editor\EasyMobileDependencies.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Template_GooglePlayTangle.txt" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_CameraGallery.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Template_AppleTangle.txt" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Notifications.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\AndroidLibTemplate\AndroidManifest.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Sharing.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Main.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Contacts.xml" />
+    <None Include="Assets\EasyMobile\Editor\Templates\Template_TapJoyAndroidManifest.xml" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -107,12 +176,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -308,6 +371,18 @@
     </Reference>
     <Reference Include="JMOAssets_CartoonFXFreeWelcome">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver_v1.2.124.0">
+      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.124.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver_v1.2.124.0">
+      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.124.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.124.0">
+      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.124.0.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>F:/GravityFolder/Gravity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
