@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6500837827230918720}
   - component: {fileID: 8020538255997026789}
   - component: {fileID: 5099002617689207742}
+  - component: {fileID: 2004204239}
   m_Layer: 5
   m_Name: HighScoreText
   m_TagString: Untagged
@@ -77,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'HighScore
+  m_Text: 'HIGHSCORE
 
     0'
 --- !u!114 &5099002617689207742
@@ -95,3 +96,15 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_EffectDistance: {x: 0, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &2004204239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630077708807059205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8252fad44edf2b409ddf792920debd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

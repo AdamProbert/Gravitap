@@ -29,7 +29,7 @@ public class StarDeathGoal : Goal
         {
             transform.GetChild(0).gameObject.SetActive(false);
             shouldBoom = false;
-            base.GoalDeath(false);
+            base.GoalDeath();
         }
     }
 
@@ -40,7 +40,7 @@ public class StarDeathGoal : Goal
         {
             DestoryNeighborStars();
             transform.GetChild(0).gameObject.SetActive(false);
-            base.GoalDeath(false);
+            base.GoalDeath();
         }
     }
 

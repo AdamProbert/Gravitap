@@ -26,7 +26,7 @@ public class MultiplierGoal : Goal
         if (collision.gameObject.tag == "Player")
         {
             sm.DoubleMutliplier();
-            base.GoalDeath(false);
+            base.GoalDeath();
         }
     }
 }

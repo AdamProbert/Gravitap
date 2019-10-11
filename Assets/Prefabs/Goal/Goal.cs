@@ -29,17 +29,14 @@ public class Goal : MonoBehaviour
         transform.Rotate(x * Time.deltaTime, y * Time.deltaTime, z * Time.deltaTime);
     }
 
-    public void GoalDeath(bool spawnNew = true)
+    public void GoalDeath()
     {
         source.Play();
         GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;
         GetComponent<Explosion>().Explode(color);
         alive = false;
-        if (spawnNew)
-        {
-            GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
-        }
+        GetComponentInParent<GoalManager>().GoalDeath(this.gameObject);
         Destroy(this.gameObject, 1.5f);
     }
 }

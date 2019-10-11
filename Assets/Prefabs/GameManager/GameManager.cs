@@ -17,14 +17,18 @@ public class GameManager : MonoBehaviour
     public Text highscore;
     public bool showingMenu = true;
     public bool showingPauseMenu = false;
-
+    private StorageHandler sh;
+    private ScoreManager sm;
+    private bool endingGame = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("GameManager start called");
+        sh = GetComponent<StorageHandler>();
+        sm = GetComponent<ScoreManager>();
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         playerScript = player.GetComponent<PlayerScript>();
-        highscore.text = "HIGHSCORE\n" + GetComponent<StorageHandler>().GetHighScore().ToString();
         ShowMenu();
     }
 
@@ -62,10 +66,12 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("Ending game, saving score.");
-        int points = GetComponent<ScoreManager>().GetCurrentScore();
-        GetComponent<StorageHandler>().SetHighScore(points);
-        SceneManager.LoadScene(0);
+        if (!endingGame)
+        {
+            endingGame = true;
+            StartCoroutine(EndRoutine());
+        }
+        
     }
 
     // Close the application
@@ -114,6 +120,15 @@ public class GameManager : MonoBehaviour
         showingPauseMenu = false;
     }
 
+    private IEnumerator EndRoutine()
+    {
+        Debug.Log("Start end routine");
+        int points = sm.GetCurrentScore();
+        Debug.Log("Saving score of " + points);
+        sh.SetHighScore(points);
+        yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene(0);
+    }
 
     private IEnumerator StartRoutine()
     {
