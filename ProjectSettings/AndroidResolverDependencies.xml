@@ -2,6 +2,7 @@
   <packages>
     <package>com.android.support:appcompat-v7:24.0.+</package>
     <package>com.android.support:support-v4:26.1.+</package>
+    <package>com.google.games:gpgs-plugin-support:0.9.64</package>
     <package>com.sglib.easymobile:easy-mobile:1.+</package>
   </packages>
   <files>
@@ -18,6 +19,16 @@
     <file>Assets/Plugins/Android/com.android.support.support-media-compat-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-v4-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-vector-drawable-26.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-16.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-api-phone-16.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-base-16.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-16.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-16.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-drive-16.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-games-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-nearby-16.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-16.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.9.64.aar</file>
     <file>Assets/Plugins/Android/com.sglib.easymobile.easy-mobile-1.3.0.aar</file>
   </files>
   <settings>
