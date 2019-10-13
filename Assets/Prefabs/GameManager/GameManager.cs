@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         DetectDeath();
     }
     
+    public void CantPlaceHazzard()
+    {
+        Debug.Log("Cant place hazzard, quiting");
+        EndGame();
+    }
     public void CantPlaceGoal()
     {
         Debug.Log("Cant place goal, quiting");

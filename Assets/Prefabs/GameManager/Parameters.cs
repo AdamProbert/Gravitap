@@ -19,8 +19,7 @@ public static class Parameters
     public static float goalExplosionMaxLife = 20f;
     public static float DebrisSize = 0.2f;
     public static int goalSpawnRate = 4; // Every x normal goals a special will spawn
-    public static float starGoalDestructionRadius = 16f;
-    public static float deathGoalLifeTime = 10f;
+
 
     // Stars
     public static int maxStars = 5;
@@ -34,6 +33,7 @@ public static class Parameters
     public static Color32 purple = new Color32(110, 53, 155, 1);
     public static Color32 green = new Color32(41, 188, 90, 1);
     public static Color32 red = new Color32(204, 64, 0, 1);
+    public static Color32 black = Color.black;
 
     // Goal colour lis
     public static List<Color32> colorList = new List<Color32>()
@@ -57,6 +57,11 @@ public static class Parameters
     public static int startPoints = 0;
     public static int goalValue = 1;
     public static int startMultiplier = 1;
- 
 
+    // Hazzards
+    public static int initialHazzardScore = 10; // originally 10
+    public static int hazzardScoreIncrement = 10; // originally 10
+    public static float starDestructionRadius = 16f;
+    public static float starDestructionLifeTime = 8f;
+    public static int starDestructionSpawnRate = 4;
 }

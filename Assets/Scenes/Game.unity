@@ -4941,10 +4941,6 @@ MonoBehaviour:
   map: {fileID: 199516118}
   player: {fileID: 2611763320566267227}
   goalCount: 0
-  specialGoals:
-  - {fileID: 8337111601109725418, guid: 6c34618d5c1bae043b02b64d518ac4c1, type: 3}
-  - {fileID: 8337111601109725418, guid: eeff6c06e64352d4591d55d8ab41f091, type: 3}
-  - {fileID: 8337111601109725418, guid: eeff6c06e64352d4591d55d8ab41f091, type: 3}
 --- !u!225 &7314888343701879050
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5556,6 +5552,7 @@ GameObject:
   - component: {fileID: 7216349967644518239}
   - component: {fileID: 4821894568789130771}
   - component: {fileID: 4821894569415986224}
+  - component: {fileID: 7879482523902522394}
   - component: {fileID: 7879482523902522393}
   m_Layer: 0
   m_Name: GameManager
@@ -5660,6 +5657,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7879482523902522394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879482523902522392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be46e29ca0b3d824da8280bc782cba76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 199516118}
+  hazzards: []
 --- !u!222 &7980265571133495190
 CanvasRenderer:
   m_ObjectHideFlags: 0

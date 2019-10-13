@@ -14,9 +14,6 @@ public class GoalManager : MonoBehaviour
     private ScoreManager sm;
     public int goalCount = 0;
 
-    // Special goals
-    public GameObject[] specialGoals;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,19 +36,7 @@ public class GoalManager : MonoBehaviour
                 goalCount += 1;
                 SpawnGoal();
             }
-
-            if(goalCount % Parameters.goalSpawnRate == 0)
-            {
-                goalCount += 1;
-                SpawnSpecialGoal();
-            }
         }
-    }
-
-    public void SpawnSpecialGoal()
-    {
-        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length)], GetSpawnPoint(), Quaternion.identity);
-        specGoal.transform.parent = transform;
     }
 
     // Spawns a new goal at random location on map
@@ -84,7 +69,7 @@ public class GoalManager : MonoBehaviour
             goodSpawn = true;
             foreach (Collider c in colliders)
             {
-                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar")
+                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard")
                 {
                     goodSpawn = false;
                     break;

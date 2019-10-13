@@ -9,30 +9,42 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI pointText;
     public TextMeshProUGUI multiplierText;
     private Animator anim;
-    private int currentPoints;
     private int currentMultiplier;
+    public int m_currentPoints;
     private List<GameObject> triggeredStars = new List<GameObject>();
     public GameObject goalScoreText;
 
-    // Logic overview.
-    // Player increases multiplier by 1 for every new star they come into contact with
-    // Score = triggeredStars.count *1
-    // If player leaves gravity of all stars multiplier is reset
-    // If Player hit's star, multiplier is reset.
-    // If player removes star by touch multiplier -1
+    // Use property for points. Allows callbacks on change with the delegate function below.
+    // Hella cool
+    public int CurrentPoints
+    {
+        get { return m_currentPoints; }
+        set
+        {
+            if (m_currentPoints == value) return;
+            m_currentPoints = value;
+            if (OnScoreChange != null)
+            {
+                Debug.Log("Ne score set");
+                OnScoreChange(m_currentPoints);
+            }              
+        }
+    }
 
-
+    public delegate void OnScoreChangeDelegate(int newScore);
+    public event OnScoreChangeDelegate OnScoreChange;
+    
     // Start is called before the first frame update
     void Start()
     {
-        currentPoints = Parameters.startPoints;
+        CurrentPoints = Parameters.startPoints;
         currentMultiplier = Parameters.startMultiplier;
         anim = pointText.GetComponent<Animator>();
     }
 
     public int GetCurrentScore()
     {
-        return currentPoints;
+        return CurrentPoints;
     }
 
     public void DoubleMutliplier()
@@ -47,7 +59,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Player hit goal");
         int stars = triggeredStars.Count + 1;
         int points = Parameters.goalValue * currentMultiplier;
-        currentPoints += points;
+        CurrentPoints += points;
         UpdatePointText();
 
         if (goal.GetComponent<MultiplierGoal>() != null)
@@ -105,7 +117,7 @@ public class ScoreManager : MonoBehaviour
     private void UpdatePointText()
     {
         anim.SetTrigger("updateScore");
-        pointText.text = "" + currentPoints;
+        pointText.text = "" + CurrentPoints;
     }
 
     private void UpdateMultiplierText()
