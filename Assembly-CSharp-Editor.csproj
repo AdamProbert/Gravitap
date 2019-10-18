@@ -62,6 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSDocsUI.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSPostBuild.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSProjectSettings.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSStrings.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSUpgrader.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\GPGSUtil.cs" />
+    <Compile Include="Assets\3rd party\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
     <Compile Include="Assets\3rd party\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
     <Compile Include="Assets\EasyMobile\Editor\Common\Extensions\EditorGUILayoutExt.cs" />
     <Compile Include="Assets\EasyMobile\Editor\Common\Extensions\SerializedPropertyExtension.cs" />
@@ -119,21 +127,13 @@
     <Compile Include="Assets\EasyMobile\Editor\ModuleManagers\ModuleManager_Utilities.cs" />
     <Compile Include="Assets\EasyMobile\Scripts\Modules\GIF\Editor\RecorderEditor.cs" />
     <Compile Include="Assets\EasyMobile\Scripts\Modules\GIF\Moments\Scripts\Editor\MinDrawer.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSPostBuild.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSProjectSettings.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSStrings.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
-    <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
-    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.124.0.txt" />
+    <None Include="Assets\3rd party\PlayServicesResolver\Editor\play-services-resolver_v1.2.124.0.txt" />
     <None Include="Assets\EasyMobile\Editor\Templates\Template_Constants.txt" />
-    <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
-    <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
-    <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
-    <None Include="Assets\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
-    <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.9.64.txt" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\template-GameInfo.txt" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\template-AndroidManifest.txt" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.9.64.txt" />
     <None Include="Assets\EasyMobile\Editor\EasyMobileSettings.txt" />
     <None Include="Assets\EasyMobile\Editor\EasyMobileDependencies.xml" />
     <None Include="Assets\EasyMobile\Editor\Templates\Template_GooglePlayTangle.txt" />
@@ -141,7 +141,7 @@
     <None Include="Assets\EasyMobile\Editor\Templates\Template_AppleTangle.txt" />
     <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Notifications.xml" />
     <None Include="Assets\EasyMobile\Editor\Templates\AndroidLibTemplate\AndroidManifest.xml" />
-    <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
+    <None Include="Assets\3rd party\GooglePlayGames\Editor\template-Constants.txt" />
     <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Sharing.xml" />
     <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Main.xml" />
     <None Include="Assets\EasyMobile\Editor\Templates\Manifests\Manifest_Contacts.xml" />
@@ -158,8 +158,17 @@
     <Reference Include="Cinemachine">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Recorder.Editor">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
@@ -185,23 +194,14 @@
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProGrids">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProGrids.Editor">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>F:/GravityFolder/Gravity/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -398,17 +398,17 @@
     <Reference Include="JMOAssets_CartoonFXFreeWelcome">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
     <Reference Include="Google.IOSResolver_v1.2.124.0">
-      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.124.0.dll</HintPath>
+      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.124.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.124.0">
-      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.124.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.JarResolver_v1.2.124.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.124.0">
-      <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.124.0.dll</HintPath>
+      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.124.0.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>F:/GravityFolder/Gravity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

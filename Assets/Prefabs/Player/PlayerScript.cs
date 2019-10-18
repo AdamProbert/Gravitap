@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     public void Ready()
     {
         GetComponent<Renderer>().enabled = true;
+        tr.enabled = true;
         transform.Find("TargetIndicator").gameObject.SetActive(true);
     }
 
@@ -233,7 +234,7 @@ public class PlayerScript : MonoBehaviour
         if (
             !isFalling &&
             collision.transform.tag == "World" && 
-            !Physics.Raycast(transform.position, Vector3.down*20f, 5)
+            !Physics.Raycast(transform.position, Vector3.down*10f, 8)
             )
         {
             Debug.Log("Player falling");

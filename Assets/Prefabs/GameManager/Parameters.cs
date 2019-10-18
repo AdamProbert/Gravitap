@@ -26,6 +26,7 @@ public static class Parameters
 
     // Map
     public static float border = 10;
+    public static int mapChangeGoalCount = 3;
 
     // Colours
     public static Color32 orange = new Color32(239, 151, 0, 1);
@@ -63,5 +64,7 @@ public static class Parameters
     public static int hazzardScoreIncrement = 10; // originally 10
     public static float starDestructionRadius = 16f;
     public static float starDestructionLifeTime = 8f;
-    public static int starDestructionSpawnRate = 4;
+    public static float transportGoalDelay = 5f;
+    
+
 }

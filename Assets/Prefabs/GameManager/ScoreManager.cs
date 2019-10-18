@@ -9,8 +9,8 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI pointText;
     public TextMeshProUGUI multiplierText;
     private Animator anim;
-    private int currentMultiplier;
-    public int m_currentPoints;
+    private int m_currentMultiplier;
+    private int m_currentPoints;
     private List<GameObject> triggeredStars = new List<GameObject>();
     public GameObject goalScoreText;
 
@@ -23,22 +23,30 @@ public class ScoreManager : MonoBehaviour
         {
             if (m_currentPoints == value) return;
             m_currentPoints = value;
-            if (OnScoreChange != null)
-            {
-                Debug.Log("Ne score set");
-                OnScoreChange(m_currentPoints);
-            }              
+            OnScoreChange?.Invoke(m_currentPoints);
         }
     }
-
     public delegate void OnScoreChangeDelegate(int newScore);
     public event OnScoreChangeDelegate OnScoreChange;
-    
+
+    public int CurrentMultiplier
+    {
+        get { return m_currentMultiplier; }
+        set
+        {
+            if (m_currentMultiplier == value) return;
+            m_currentMultiplier = value;
+            OnMultiplierChange?.Invoke(m_currentMultiplier);
+        }
+    }
+    public delegate void OnMultiplierChangeDelegate(int newScore);
+    public event OnMultiplierChangeDelegate OnMultiplierChange;
+
     // Start is called before the first frame update
     void Start()
     {
         CurrentPoints = Parameters.startPoints;
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentMultiplier = Parameters.startMultiplier;
         anim = pointText.GetComponent<Animator>();
     }
 
@@ -50,7 +58,7 @@ public class ScoreManager : MonoBehaviour
     public void DoubleMutliplier()
     {
         Debug.Log("Doubling multiplier");
-        currentMultiplier *= 2;
+        CurrentMultiplier *= 2;
         UpdateMultiplierText();
     }
 
@@ -58,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     {
         Debug.Log("Player hit goal");
         int stars = triggeredStars.Count + 1;
-        int points = Parameters.goalValue * currentMultiplier;
+        int points = Parameters.goalValue * CurrentMultiplier;
         CurrentPoints += points;
         UpdatePointText();
 
@@ -76,7 +84,7 @@ public class ScoreManager : MonoBehaviour
     public void PlayerLeftGravity()
     {
         triggeredStars.Clear();
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentMultiplier = Parameters.startMultiplier;
         UpdateMultiplierText();
     }
 
@@ -85,16 +93,16 @@ public class ScoreManager : MonoBehaviour
         if (!triggeredStars.Contains(star))
         {
             triggeredStars.Add(star);
-            currentMultiplier += 1;
+            CurrentMultiplier += 1;
             UpdateMultiplierText();
         }            
     }
 
     public void RemoveStar(GameObject star)
     {
-        if(currentMultiplier > 1)
+        if(CurrentMultiplier > 1)
         {
-            currentMultiplier -= 1;
+            CurrentMultiplier -= 1;
             UpdateMultiplierText();
         }
     }
@@ -102,7 +110,7 @@ public class ScoreManager : MonoBehaviour
     public void HitStar()
     {
         triggeredStars.Clear();
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentMultiplier = Parameters.startMultiplier;
         UpdateMultiplierText();
     }
 
@@ -122,7 +130,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateMultiplierText()
     {
-        multiplierText.text = "x" + currentMultiplier;
+        multiplierText.text = "x" + CurrentMultiplier;
     }
 }
 

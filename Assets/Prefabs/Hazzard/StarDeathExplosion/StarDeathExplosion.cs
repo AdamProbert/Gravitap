@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StarDeathExplosion : BaseHazzard
 {
-    BodyManager bm;
     private bool shouldBoom = true;
     private int mySpawnFrequency = 4;
     private int myMinScore = 10;
@@ -12,7 +11,6 @@ public class StarDeathExplosion : BaseHazzard
     private void Start()
     {
         base.Setup(myMinScore, mySpawnFrequency);
-        bm = transform.root.gameObject.GetComponentInChildren<BodyManager>(); // Gets the root game object. E.g. the GameManager
         StartCoroutine(SelfDestruct());
     }
 
