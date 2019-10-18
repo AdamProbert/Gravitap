@@ -9,6 +9,10 @@ public class MapManager : MonoBehaviour
     private int goalCountTrigger;
     private int currentMapIndex = 0;
     public GameObject player; // From editor
+    public GameObject leveltp;
+    GameObject teleport;
+    private int mapCount = 2; // MUST KEEP THIS UP TO DATE WITH NUMBER OF MAPS
+
 
     public GameObject CurrentMap
     {
@@ -26,35 +30,44 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CurrentMap = transform.GetChild(currentMapIndex).gameObject;
         gm.GetComponent<GoalManager>().OnGoalCountChange += GoalCountChangeHandler;
         goalCountTrigger = Parameters.mapChangeGoalCount;
     }
 
     void GoalCountChangeHandler(int goalCount)
     {
-        if (goalCount > goalCountTrigger)
+        if (goalCount >= goalCountTrigger && !teleport)
         {
             currentMapIndex += 1;
-            if (currentMapIndex <= transform.childCount-1)
-            {
-                TransportPlayer();
+            if (currentMapIndex <= mapCount-1)
+            {   
+                SpawnTeleport();
+                
             }
         }
     }
 
-    void TransportPlayer()
+    // Spawn teleport at centre point and surface of map
+    void SpawnTeleport()
+    {
+        Vector3 location = CurrentMap.GetComponentInChildren<SpawnArea>().transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(location, Vector3.down, out hit, 10f, LayerMask.GetMask("World")))
+        {
+            location.y -= hit.distance;
+            teleport = Instantiate(leveltp, location, Quaternion.identity, transform);
+        }
+    }
+
+    public void TransportPlayer()
     {
         goalCountTrigger += Parameters.mapChangeGoalCount;
+        Destroy(teleport);
         CurrentMap = transform.GetChild(currentMapIndex).gameObject;
         TrailRenderer ptr = player.GetComponent<TrailRenderer>();
         ptr.enabled = false;
         player.transform.position = CurrentMap.transform.Find("SpawnArea").position;
-        ptr.enabled = true;
+        ptr.enabled = true;   
     }
 }
-
-
-
-//USE THIS MOTHERFUCKER: 
-//http://www.procore3d.com/forum/topic/1695-scripting-for-teleport-from-collision-target/
-// Also need to destoy all previous hazzards

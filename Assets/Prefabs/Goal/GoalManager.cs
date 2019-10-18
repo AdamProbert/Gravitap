@@ -73,6 +73,7 @@ public class GoalManager : MonoBehaviour
         Debug.Log("GoalManager: Map changed, spawning new goal");
         map = newMap;
         Destroy(currentGoal);
+        SpawnGoal();
     }
 
     public Vector3 GetSpawnPoint()

@@ -398,14 +398,14 @@
     <Reference Include="JMOAssets_CartoonFXFreeWelcome">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
     </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
-    </Reference>
     <Reference Include="Google.IOSResolver_v1.2.124.0">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.124.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.124.0">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.JarResolver_v1.2.124.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.124.0">
       <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.124.0.dll</HintPath>
