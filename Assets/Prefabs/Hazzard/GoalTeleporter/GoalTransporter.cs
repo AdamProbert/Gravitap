@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoalTransporter : BaseHazzard
 {
-    private int mySpawnFrequency = 1; // Should lower to 3ish
+    private int mySpawnFrequency = 1;
     private int myMinScore = 30;
     private GoalManager gm;
     public GameObject ps;
