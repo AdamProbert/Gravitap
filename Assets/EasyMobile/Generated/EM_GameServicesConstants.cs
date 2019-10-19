@@ -8,7 +8,7 @@ namespace EasyMobile
 {
 	public static class EM_GameServicesConstants
 	{
-		public const string Leaderboard_highscore = "highscore";
+		public const string Leaderboard_TopScore = "TopScore";
 
 	}
 }

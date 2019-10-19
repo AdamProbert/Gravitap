@@ -25,7 +25,7 @@ public class GameServicesHandler : MonoBehaviour
             // Load the local user's score from the specified leaderboard
             // EM_GameServicesConstants.Sample_Leaderboard is the generated name constant
             // of a leaderboard named "Sample Leaderboard"
-            GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_highscore, OnLocalUserScoreLoaded);
+            GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_TopScore, OnLocalUserScoreLoaded);
             Debug.Log("Game services initialised");
         }
         else
@@ -60,7 +60,7 @@ public class GameServicesHandler : MonoBehaviour
         // EM_GameServicesConstants.Sample_Leaderboard is the generated name constant
         // of a leaderboard named "Sample Leaderboard"
         if (GameServices.IsInitialized())
-            GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_highscore);
+            GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_TopScore);
     }
 
  

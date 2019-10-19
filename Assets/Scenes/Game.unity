@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7879482523902522394}
+      - m_Target: {fileID: 0}
         m_MethodName: ShowLeaderBoardUI
         m_Mode: 1
         m_Arguments:
@@ -3294,8 +3294,6 @@ MonoBehaviour:
   menuAnim: {fileID: 7395817708916628463}
   pauseMenuAnim: {fileID: 1164094838}
   hudAnim: {fileID: 4821894569620720113}
-  highscore: {fileID: 8020538255997026789, guid: 1d233f8024abab342b68927db6f0534d,
-    type: 3}
   showingMenu: 1
   showingOptionsMenu: 0
 --- !u!114 &128904380924461479
@@ -5557,7 +5555,6 @@ GameObject:
   - component: {fileID: 4821894568789130774}
   - component: {fileID: 7216349967644518239}
   - component: {fileID: 4821894568789130771}
-  - component: {fileID: 7879482523902522394}
   - component: {fileID: 4821894569415986224}
   - component: {fileID: 7879482523902522393}
   m_Layer: 0
@@ -5663,19 +5660,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7879482523902522394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7879482523902522392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1db10f9bc0da53499001af9629f04f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UserScore: {fileID: 0}
 --- !u!222 &7980265571133495190
 CanvasRenderer:
   m_ObjectHideFlags: 0

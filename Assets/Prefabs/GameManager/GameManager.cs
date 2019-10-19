@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private StorageHandler sh;
     private ScoreManager sm;
     private GoalManager gm;
-    private GameServicesHandler gs;
+    //private GameServicesHandler gs;
     private bool endingGame = false;
     private bool firstGoalSpawned;
 
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         sh = GetComponent<StorageHandler>();
         sm = GetComponent<ScoreManager>();
         gm = GetComponent<GoalManager>();
-        gs = GetComponent<GameServicesHandler>();
+        //gs = GetComponent<GameServicesHandler>();
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         playerScript = player.GetComponent<PlayerScript>();
         ShowMenu();
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
             endingGame = true;
             int points = sm.GetCurrentScore();
             sh.SetHighScore(points);
-            gs.SetHighScore(points);
+            //gs.SetHighScore(points);
             SceneManager.LoadScene(0);
         }
         
