@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HazzardHandler : MonoBehaviour
 {
     public GameObject map;
-    private float border;
     private List<GameObject> currentHazzards;
     public BaseHazzard[] hazzards;
     private ScoreManager sm;
@@ -19,7 +18,6 @@ public class HazzardHandler : MonoBehaviour
     void Start()
     {
         currentHazzards = new List<GameObject>();
-        border = Parameters.border;
         sm = GetComponent<ScoreManager>();
         sm.OnScoreChange += ScoreChangeHandler;
         mm = GameObject.Find("MapManager").GetComponent<MapManager>();

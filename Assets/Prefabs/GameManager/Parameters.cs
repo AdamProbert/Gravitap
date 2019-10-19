@@ -25,8 +25,7 @@ public static class Parameters
     public static int maxStars = 5;
 
     // Map
-    public static float border = 10;
-    public static int mapChangeGoalCount = 2; // 10 works well
+    public static int mapChangeGoalCount = 10; // 10 works well
 
     // Colours
     public static Color32 orange = new Color32(239, 151, 0, 1);

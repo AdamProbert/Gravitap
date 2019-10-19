@@ -8,7 +8,6 @@ public class GoalManager : MonoBehaviour
     public GameObject goalPrefab;
     private GameObject currentGoal;
     public GameObject map;
-    private float border;
     private BodyManager bm;
     public MapManager mm; // From editor
     public PlayerScript player;
@@ -34,7 +33,6 @@ public class GoalManager : MonoBehaviour
     void Start()
     {
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
-        border = Parameters.border;
         sm = GetComponent<ScoreManager>();
         mm.OnMapChange += OnMapChangeHandler;
     }
