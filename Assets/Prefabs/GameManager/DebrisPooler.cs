@@ -42,6 +42,7 @@ public class DebrisPooler : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Debris pooler: Aint got no debris left");
         return null;
     }
 }

@@ -123,7 +123,7 @@ public class PlayerScript : MonoBehaviour
                 if (prevPositions.Count > 100)
                 {
                     Debug.Log("Player stopped moving");
-                    KillPlayer();
+                    StartCoroutine(KillPlayer(0f));
                 }
             }
         }
@@ -172,7 +172,7 @@ public class PlayerScript : MonoBehaviour
                 tr.colorGradient = gradient1;
                 break;
             case 0:
-                KillPlayer();
+                StartCoroutine(KillPlayer(0));
                 break;
         }
     }
@@ -199,11 +199,12 @@ public class PlayerScript : MonoBehaviour
         if (isPlaying)
         {
             // Ensure player doesn't come off surface
-            //if (transform.position.y > maxY)
-            //{
-            //    Debug.Log("Player: Planting player");
-            //    transform.position = new Vector3(transform.position.x, maxY, transform.position.z);
-            //}
+            if (transform.position.y > maxY)
+            {
+                Debug.Log("Player: Planting player");
+                transform.position = new Vector3(transform.position.x, maxY, transform.position.z);
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            }
 
             Vector3 v = rb.velocity;
             if (v.sqrMagnitude > sqrMaxVelocity)
@@ -222,9 +223,9 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    private IEnumerator KillPlayer()
+    private IEnumerator KillPlayer(float time)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(time);
         Debug.Log("Player died");
         alive = false;
         GetComponent<Renderer>().enabled = false;
@@ -250,7 +251,7 @@ public class PlayerScript : MonoBehaviour
             isFalling = true;
             rb.AddForce(0, -2000, 0);
             source.Play();
-            StartCoroutine(KillPlayer());
+            StartCoroutine(KillPlayer(1.5f));
         }
         if (collision.gameObject.tag == "Goal")
         {
