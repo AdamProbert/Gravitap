@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8337111601109725418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 362088502883184867}
   m_Father: {fileID: 0}
@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 8, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: -0.017327309, z: 0}
 --- !u!54 &4659413512626146242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -293,40 +293,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 191956, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 147550, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19894494, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19894494, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 19894494, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19816268, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19816268, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 3
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19816268, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 19816268, guid: c1e3d7f3957152a4288d7bce193c1cbd, type: 3}
-      propertyPath: InitialModule.startSize.scalar
+      propertyPath: ShapeModule.radius.value
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
