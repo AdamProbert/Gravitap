@@ -25,6 +25,8 @@ public class DebrisPooler : MonoBehaviour
             GameObject obj = (GameObject)Instantiate(objectToPool);
             obj.SetActive(false);
             obj.transform.parent = debrisHolder;
+            obj.GetComponent<Rigidbody>().solverIterations = 1;
+            obj.GetComponent<Rigidbody>().solverVelocityIterations = 1;
             pooledObjects.Add(obj);
         }
 
@@ -42,7 +44,6 @@ public class DebrisPooler : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Debris pooler: Aint got no debris left");
         return null;
     }
 }

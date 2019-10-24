@@ -67,7 +67,6 @@ public class GoalManager : MonoBehaviour
 
     void OnMapChangeHandler(GameObject newMap)
     {
-        Debug.Log("GoalManager: Map changed, spawning new goal");
         map = newMap;
         Destroy(currentGoal);
         SpawnGoal();
@@ -123,7 +122,6 @@ public class GoalManager : MonoBehaviour
         }
 
         Vector3 spawnPosition = new Vector3(spawnX, spawnY + goalPrefab.GetComponent<Renderer>().bounds.size.y / 2, spawnZ);
-        Debug.Log("GoalManager: Took " + spawnAttemptCount + " attempts to spawn");
         return spawnPosition;
     }
 

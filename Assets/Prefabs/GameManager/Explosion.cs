@@ -26,7 +26,6 @@ public class Explosion : MonoBehaviour
 
     public void Explode(Color c)
     {
-        Debug.Log("Exploding");
         DebrisPooler debrispool = DebrisPooler.instance;
         float debrisSize = Parameters.DebrisSize;
         //loop 3 times to create 5x5x5 pieces in x,y,z coordinates

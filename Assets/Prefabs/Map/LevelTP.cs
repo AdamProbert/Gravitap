@@ -6,7 +6,6 @@ public class LevelTP : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("On trigger enter called on teleport");
         if (other.tag == "Player")
         {
             transform.GetComponentInParent<MapManager>().TransportPlayer();

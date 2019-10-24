@@ -52,7 +52,6 @@ public class MobileInputController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 1000f, mask))
                 {
                     Debug.DrawRay(ray.origin, ray.direction * 500f, Color.black, 10f);
-                    Debug.Log("User clicked on " + hit.collider.gameObject.tag);
                     if (hit.collider.gameObject.tag == "World")
                     {
                         bm.SpawnStar(hit);

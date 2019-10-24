@@ -35,6 +35,11 @@ public class PlayerScript : MonoBehaviour
     public bool isPlaying = false; // Used for handling death states triggering before start
     public bool isTeleporting = false;
     public int lives = Parameters.PlayerLives;
+
+    // Check on map Raycast
+    private Ray mapRay;
+    private RaycastHit mapHit;
+    private string killLayer = "KillFloor";
     
     public void Ready()
     {
@@ -58,7 +63,6 @@ public class PlayerScript : MonoBehaviour
         minVelocity = Parameters.playerMinVelocity;
         maxVelocity = Parameters.playerMaxVelocity;
         speed = Parameters.playerSpeed;
-        CalculateMaxY();
 
         // Audio
         source = GetComponent<AudioSource>();
@@ -90,6 +94,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (alive && !isPaused && !isTeleporting)
         {
+            CheckOffMap();
             if (isFalling)
             {
                 transform.localScale = transform.localScale - shrinkSpeed * Time.deltaTime;
@@ -131,24 +136,12 @@ public class PlayerScript : MonoBehaviour
 
     public void Teleport(Vector3 location)
     {
-        Debug.Log("Player: Transporting player to: " + location);
         isTeleporting = true;
         // Move player
         tr.time = -1;
+        location.y = transform.position.y; // Retain player y axis
         transform.position = location;
         isTeleporting = false;
-    }
-
-    void CalculateMaxY()
-    {
-        if (!isTeleporting)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 50f, LayerMask.GetMask("World")))
-            {
-                maxY = hit.point.y + (GetComponent<Renderer>().bounds.size.y);
-            }
-        }
     }
 
     void LifeChanges()
@@ -198,14 +191,6 @@ public class PlayerScript : MonoBehaviour
 
         if (isPlaying)
         {
-            // Ensure player doesn't come off surface
-            if (transform.position.y > maxY)
-            {
-                Debug.Log("Player: Planting player");
-                transform.position = new Vector3(transform.position.x, maxY, transform.position.z);
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            }
-
             Vector3 v = rb.velocity;
             if (v.sqrMagnitude > sqrMaxVelocity)
             {
@@ -243,14 +228,24 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void CheckOffMap(){
+          mapRay = new Ray(transform.position, -transform.up);
+          if (Physics.Raycast(mapRay, out mapHit, 10f))
+          {
+              if(mapHit.transform.tag == killLayer)
+              {
+                  isFalling = true;
+                  rb.constraints = RigidbodyConstraints.None;
+              }
+          }
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "KillFloor")
         {
-            Debug.Log("Player falling");
-            isFalling = true;
-            rb.AddForce(0, -2000, 0);
             source.Play();
+            rb.AddForce(0, -500, 0);
             StartCoroutine(KillPlayer(1.5f));
         }
         if (collision.gameObject.tag == "Goal")
@@ -264,16 +259,6 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Body")
         {
             lives -= 1;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-
-        //If we're changing world, need to reset maxy for current map
-        if (collision.transform.tag == "World" && !isFalling && !isTeleporting)
-        {
-            CalculateMaxY();
         }
     }
 }

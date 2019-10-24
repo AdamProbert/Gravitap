@@ -141,7 +141,6 @@ public class HazzardHandler : MonoBehaviour
         }
 
         Vector3 spawnPosition = new Vector3(spawnX, spawnY + h.GetComponent<Renderer>().bounds.size.y/2, spawnZ);
-        Debug.Log("Took " + spawnAttemptCount + " attempts to spawn");
         return spawnPosition;
     }
 

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set target fps to 30 to stop weird lag spike glitches.
+        Application.targetFrameRate = 30;
         Debug.Log("GameManager start called");
         sh = GetComponent<StorageHandler>();
         sm = GetComponent<ScoreManager>();

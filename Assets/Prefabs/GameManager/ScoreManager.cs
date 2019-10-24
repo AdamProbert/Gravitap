@@ -57,14 +57,12 @@ public class ScoreManager : MonoBehaviour
 
     public void DoubleMutliplier()
     {
-        Debug.Log("Doubling multiplier");
         CurrentMultiplier *= 2;
         UpdateMultiplierText();
     }
 
     public void HitGoal(GameObject goal)
     {
-        Debug.Log("Player hit goal");
         int stars = triggeredStars.Count + 1;
         int points = Parameters.goalValue * CurrentMultiplier;
         CurrentPoints += points;
@@ -116,7 +114,6 @@ public class ScoreManager : MonoBehaviour
 
     private void ShowFloatingText(Transform transform, string text)
     {
-        Debug.Log("Showing floating text: " +text);
         GameObject scoreText = Instantiate(goalScoreText, transform.position, transform.rotation, transform);
         scoreText.GetComponent<TextMesh>().text = text;
         scoreText.transform.rotation = Quaternion.Euler(90, -40, 0);
