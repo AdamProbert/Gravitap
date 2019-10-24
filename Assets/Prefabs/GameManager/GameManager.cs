@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set target fps to 30 to stop weird lag spike glitches.
+        Application.targetFrameRate = 30;
         Debug.Log("GameManager start called");
         sh = GetComponent<StorageHandler>();
         sm = GetComponent<ScoreManager>();
@@ -56,6 +58,11 @@ public class GameManager : MonoBehaviour
         DetectDeath();
     }
     
+    public void CantPlaceHazzard()
+    {
+        Debug.Log("Cant place hazzard, quiting");
+        EndGame();
+    }
     public void CantPlaceGoal()
     {
         Debug.Log("Cant place goal, quiting");

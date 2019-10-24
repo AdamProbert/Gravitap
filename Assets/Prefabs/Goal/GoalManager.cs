@@ -8,21 +8,33 @@ public class GoalManager : MonoBehaviour
     public GameObject goalPrefab;
     private GameObject currentGoal;
     public GameObject map;
-    private float border;
     private BodyManager bm;
+    public MapManager mm; // From editor
     public PlayerScript player;
     private ScoreManager sm;
-    public int goalCount = 0;
+    private int m_goalCount = 0;
 
-    // Special goals
-    public GameObject[] specialGoals;
+
+    public int CurrentGoalCount
+    {
+        get { return m_goalCount; }
+        set
+        {
+            if (m_goalCount == value) return;
+            m_goalCount = value;
+            OnGoalCountChange?.Invoke(m_goalCount);
+        }
+    }
+    public delegate void OnGoalCountChangeDeligate(int newGoalCount);
+    public event OnGoalCountChangeDeligate OnGoalCountChange;
+
 
     // Start is called before the first frame update
     void Start()
     {
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
-        border = Parameters.border;
         sm = GetComponent<ScoreManager>();
+        mm.OnMapChange += OnMapChangeHandler;
     }
 
 
@@ -30,28 +42,15 @@ public class GoalManager : MonoBehaviour
     {
         if (player.isPlaying)
         {
-            Debug.Log("Registered goal death with manager and player is playing");
             sm.HitGoal(goal);
             
             // Only spawn new goal if normal goal destroyed
             if(goal.GetComponent<NormalGoal>() != null)
             {
-                goalCount += 1;
+                CurrentGoalCount += 1;
                 SpawnGoal();
             }
-
-            if(goalCount % Parameters.goalSpawnRate == 0)
-            {
-                goalCount += 1;
-                SpawnSpecialGoal();
-            }
         }
-    }
-
-    public void SpawnSpecialGoal()
-    {
-        GameObject specGoal = Instantiate(specialGoals[Random.Range(0, specialGoals.Length)], GetSpawnPoint(), Quaternion.identity);
-        specGoal.transform.parent = transform;
     }
 
     // Spawns a new goal at random location on map
@@ -61,13 +60,26 @@ public class GoalManager : MonoBehaviour
         currentGoal.transform.parent = transform;
     }
 
-    private Vector3 GetSpawnPoint()
+    public GameObject GetCurrentGoal()
     {
-        float zValue = map.transform.localScale.z / 2 - border;
-        float xValue = map.transform.localScale.x / 2 - border;
+        return currentGoal;
+    }
 
-        float spawnZ = Random.Range(-zValue, zValue);
-        float spawnX = Random.Range(-xValue, xValue);
+    void OnMapChangeHandler(GameObject newMap)
+    {
+        map = newMap;
+        Destroy(currentGoal);
+        SpawnGoal();
+    }
+
+    public Vector3 GetSpawnPoint()
+    {
+        GameObject mapSpawn = map.transform.Find("SpawnArea").gameObject;
+        float zValue = mapSpawn.GetComponent<SpawnArea>().size.z/2;
+        float xValue = mapSpawn.GetComponent<SpawnArea>().size.x/2;
+        float spawnZ = Random.Range(mapSpawn.transform.position.z - zValue, mapSpawn.transform.position.z + zValue);
+        float spawnX = Random.Range(mapSpawn.transform.position.x - xValue, mapSpawn.transform.position.x + xValue);
+        float spawnY = mapSpawn.transform.position.y;
         bool goodSpawn = false;
         int spawnAttemptCount = 0;
         while (!goodSpawn)
@@ -77,14 +89,30 @@ public class GoalManager : MonoBehaviour
                 GameObject.Find("GameManager").GetComponent<GameManager>().CantPlaceGoal();
                 break;
             }
-            spawnZ = Random.Range(-zValue, zValue);
-            spawnX = Random.Range(-xValue, xValue);
+            spawnZ = Random.Range(mapSpawn.transform.position.z - zValue, mapSpawn.transform.position.z + zValue);
+            spawnX = Random.Range(mapSpawn.transform.position.x - xValue, mapSpawn.transform.position.x + xValue);
 
-            Collider[] colliders = Physics.OverlapSphere(new Vector3(spawnX, 0, spawnZ), goalPrefab.transform.localScale.x);
+            Collider[] colliders = Physics.OverlapSphere(new Vector3(spawnX, spawnY, spawnZ), goalPrefab.transform.localScale.x);
             goodSpawn = true;
+
+            // Must be above map
+            int layerMask = LayerMask.GetMask("World");
+            RaycastHit hit;
+            Debug.DrawRay(new Vector3(spawnX, spawnY, spawnZ), Vector3.down * 50f, Color.red, 10f);
+            if(Physics.Raycast(new Vector3(spawnX, spawnY, spawnZ), Vector3.down, out hit, 50f, layerMask))
+            {
+            }
+            else
+            {
+                goodSpawn = false;
+                spawnAttemptCount++;
+                continue;
+            }
+
+
             foreach (Collider c in colliders)
             {
-                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar")
+                if (c.tag == "Goal" || c.tag == "Player" || c.tag == "Body" || c.tag == "DeadStar" || c.tag == "Hazzard" || c.tag == "Teleport")
                 {
                     goodSpawn = false;
                     break;
@@ -93,8 +121,7 @@ public class GoalManager : MonoBehaviour
             spawnAttemptCount++;
         }
 
-        Vector3 spawnPosition = new Vector3(spawnX, 1, spawnZ);
-
+        Vector3 spawnPosition = new Vector3(spawnX, spawnY + goalPrefab.GetComponent<Renderer>().bounds.size.y / 2, spawnZ);
         return spawnPosition;
     }
 

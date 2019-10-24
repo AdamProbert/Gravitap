@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     private Vector3 shrinkSpeed = new Vector3(.5f, .5f, .5f);
     private List<Vector3> prevPositions = new List<Vector3>();
     public bool isPaused = false;
+    private float maxY; // Keep player stuck to floor
 
     // Trail renderer
     private TrailRenderer tr;
@@ -32,11 +33,18 @@ public class PlayerScript : MonoBehaviour
     public bool isFalling = false;
     public bool alive = true;
     public bool isPlaying = false; // Used for handling death states triggering before start
+    public bool isTeleporting = false;
     public int lives = Parameters.PlayerLives;
+
+    // Check on map Raycast
+    private Ray mapRay;
+    private RaycastHit mapHit;
+    private string killLayer = "KillFloor";
     
     public void Ready()
     {
         GetComponent<Renderer>().enabled = true;
+        tr.enabled = true;
         transform.Find("TargetIndicator").gameObject.SetActive(true);
     }
 
@@ -84,8 +92,9 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (alive && !isPaused)
+        if (alive && !isPaused && !isTeleporting)
         {
+            CheckOffMap();
             if (isFalling)
             {
                 transform.localScale = transform.localScale - shrinkSpeed * Time.deltaTime;
@@ -119,10 +128,20 @@ public class PlayerScript : MonoBehaviour
                 if (prevPositions.Count > 100)
                 {
                     Debug.Log("Player stopped moving");
-                    KillPlayer();
+                    StartCoroutine(KillPlayer(0f));
                 }
             }
         }
+    }
+
+    public void Teleport(Vector3 location)
+    {
+        isTeleporting = true;
+        // Move player
+        tr.time = -1;
+        location.y = transform.position.y; // Retain player y axis
+        transform.position = location;
+        isTeleporting = false;
     }
 
     void LifeChanges()
@@ -146,7 +165,7 @@ public class PlayerScript : MonoBehaviour
                 tr.colorGradient = gradient1;
                 break;
             case 0:
-                KillPlayer();
+                StartCoroutine(KillPlayer(0));
                 break;
         }
     }
@@ -170,28 +189,31 @@ public class PlayerScript : MonoBehaviour
 
         //rb.AddForce(movement * speed);
 
-        Vector3 v = rb.velocity;
-        if (v.sqrMagnitude > sqrMaxVelocity)
+        if (isPlaying)
         {
-            rb.velocity = v.normalized * maxVelocity;
-        }
-        // Need to set min velocity for player too.. keep him moving yo!
-        else if (v.sqrMagnitude > sqrMinVelocity)
-        {
-            rb.velocity = v.normalized * minVelocity;
-        }
+            Vector3 v = rb.velocity;
+            if (v.sqrMagnitude > sqrMaxVelocity)
+            {
+                rb.velocity = v.normalized * maxVelocity;
+            }
+            // Need to set min velocity for player too.. keep him moving yo!
+            else if (v.sqrMagnitude > sqrMinVelocity)
+            {
+                rb.velocity = v.normalized * minVelocity;
+            }
 
-        // Ensure player doesn't come off surface
-        if (transform.position.y > 0)
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            // Make sure trail is dope
+            LifeChanges();
+        }
     }
 
-    void KillPlayer()
-    { 
+
+    private IEnumerator KillPlayer(float time)
+    {
+        yield return new WaitForSeconds(time);
         Debug.Log("Player died");
         alive = false;
         GetComponent<Renderer>().enabled = false;
-
     }
 
     public void TogglePause()
@@ -206,16 +228,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void CheckOffMap(){
+          mapRay = new Ray(transform.position, -transform.up);
+          if (Physics.Raycast(mapRay, out mapHit, 10f))
+          {
+              if(mapHit.transform.tag == killLayer)
+              {
+                  isFalling = true;
+                  rb.constraints = RigidbodyConstraints.None;
+              }
+          }
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "KillFloor")
+        if(collision.gameObject.tag == "KillFloor")
         {
-            KillPlayer();
+            source.Play();
+            rb.AddForce(0, -500, 0);
+            StartCoroutine(KillPlayer(1.5f));
         }
         if (collision.gameObject.tag == "Goal")
         {
             lives = Parameters.PlayerLives;
-            LifeChanges();
         }
     }
 
@@ -224,22 +259,6 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Body")
         {
             lives -= 1;
-            LifeChanges();
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (
-            !isFalling &&
-            collision.transform.tag == "World" && 
-            !Physics.Raycast(transform.position, Vector3.down*20f, 5)
-            )
-        {
-            Debug.Log("Player falling");
-            isFalling = true;
-            rb.AddForce(0, -2000, 0);
-            source.Play();
         }
     }
 }

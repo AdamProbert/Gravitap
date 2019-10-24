@@ -21,10 +21,8 @@ public class KillScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered on death circle");
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Confirmed player");
             GetComponent<Explosion>().Explode(Color.black);
             Destroy(other.gameObject);
         }
@@ -34,6 +32,5 @@ public class KillScript : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
         col.enabled = true;
-        Debug.Log("Collider enabled");
     }
 }

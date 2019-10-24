@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7077326772435622818}
   - component: {fileID: 7077326772435622846}
   - component: {fileID: 7426217989932276361}
+  - component: {fileID: 8268591184621172821}
   - component: {fileID: 3926946832899737845}
-  - component: {fileID: 8702029229650078211}
   - component: {fileID: 6579713502281661409}
   - component: {fileID: 3832469738250781769}
   - component: {fileID: 2003137360721472175}
@@ -122,6 +122,20 @@ MonoBehaviour:
     type: 3}
   deadStar: {fileID: 519212751524229259, guid: 3faa02a023314724a9f454764b35e092, type: 3}
   playerTouch: 0
+--- !u!64 &8268591184621172821
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077326772435622816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300098, guid: 2ba8c2547dbdc44219b641308dbb17eb, type: 3}
 --- !u!114 &3926946832899737845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,19 +152,6 @@ MonoBehaviour:
   explosionForce: 100
   explosionRadius: 1
   explosionUpward: 0.02
---- !u!135 &8702029229650078211
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7077326772435622816}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.8
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!82 &6579713502281661409
 AudioSource:
   m_ObjectHideFlags: 0

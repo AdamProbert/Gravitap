@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NormalGoal : Goal
 {
+    private string playerTag = "Player";
     private void Start()
     {
         base.Setup();
@@ -13,13 +14,13 @@ public class NormalGoal : Goal
     void Update()
     {
 
-        base.Rotate(50, 50, 20);
+        base.Rotate(100, 100, 40);
 
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == playerTag)
         {
             base.GoalDeath();
         }

@@ -9,45 +9,63 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI pointText;
     public TextMeshProUGUI multiplierText;
     private Animator anim;
-    private int currentPoints;
-    private int currentMultiplier;
+    private int m_currentMultiplier;
+    private int m_currentPoints;
     private List<GameObject> triggeredStars = new List<GameObject>();
     public GameObject goalScoreText;
 
-    // Logic overview.
-    // Player increases multiplier by 1 for every new star they come into contact with
-    // Score = triggeredStars.count *1
-    // If player leaves gravity of all stars multiplier is reset
-    // If Player hit's star, multiplier is reset.
-    // If player removes star by touch multiplier -1
+    // Use property for points. Allows callbacks on change with the delegate function below.
+    // Hella cool
+    public int CurrentPoints
+    {
+        get { return m_currentPoints; }
+        set
+        {
+            if (m_currentPoints == value) return;
+            m_currentPoints = value;
+            OnScoreChange?.Invoke(m_currentPoints);
+        }
+    }
+    public delegate void OnScoreChangeDelegate(int newScore);
+    public event OnScoreChangeDelegate OnScoreChange;
 
+    public int CurrentMultiplier
+    {
+        get { return m_currentMultiplier; }
+        set
+        {
+            if (m_currentMultiplier == value) return;
+            m_currentMultiplier = value;
+            OnMultiplierChange?.Invoke(m_currentMultiplier);
+        }
+    }
+    public delegate void OnMultiplierChangeDelegate(int newScore);
+    public event OnMultiplierChangeDelegate OnMultiplierChange;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPoints = Parameters.startPoints;
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentPoints = Parameters.startPoints;
+        CurrentMultiplier = Parameters.startMultiplier;
         anim = pointText.GetComponent<Animator>();
     }
 
     public int GetCurrentScore()
     {
-        return currentPoints;
+        return CurrentPoints;
     }
 
     public void DoubleMutliplier()
     {
-        Debug.Log("Doubling multiplier");
-        currentMultiplier *= 2;
+        CurrentMultiplier *= 2;
         UpdateMultiplierText();
     }
 
     public void HitGoal(GameObject goal)
     {
-        Debug.Log("Player hit goal");
         int stars = triggeredStars.Count + 1;
-        int points = Parameters.goalValue * currentMultiplier;
-        currentPoints += points;
+        int points = Parameters.goalValue * CurrentMultiplier;
+        CurrentPoints += points;
         UpdatePointText();
 
         if (goal.GetComponent<MultiplierGoal>() != null)
@@ -64,7 +82,7 @@ public class ScoreManager : MonoBehaviour
     public void PlayerLeftGravity()
     {
         triggeredStars.Clear();
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentMultiplier = Parameters.startMultiplier;
         UpdateMultiplierText();
     }
 
@@ -73,16 +91,16 @@ public class ScoreManager : MonoBehaviour
         if (!triggeredStars.Contains(star))
         {
             triggeredStars.Add(star);
-            currentMultiplier += 1;
+            CurrentMultiplier += 1;
             UpdateMultiplierText();
         }            
     }
 
     public void RemoveStar(GameObject star)
     {
-        if(currentMultiplier > 1)
+        if(CurrentMultiplier > 1)
         {
-            currentMultiplier -= 1;
+            CurrentMultiplier -= 1;
             UpdateMultiplierText();
         }
     }
@@ -90,13 +108,12 @@ public class ScoreManager : MonoBehaviour
     public void HitStar()
     {
         triggeredStars.Clear();
-        currentMultiplier = Parameters.startMultiplier;
+        CurrentMultiplier = Parameters.startMultiplier;
         UpdateMultiplierText();
     }
 
     private void ShowFloatingText(Transform transform, string text)
     {
-        Debug.Log("Showing floating text: " +text);
         GameObject scoreText = Instantiate(goalScoreText, transform.position, transform.rotation, transform);
         scoreText.GetComponent<TextMesh>().text = text;
         scoreText.transform.rotation = Quaternion.Euler(90, -40, 0);
@@ -105,12 +122,12 @@ public class ScoreManager : MonoBehaviour
     private void UpdatePointText()
     {
         anim.SetTrigger("updateScore");
-        pointText.text = "" + currentPoints;
+        pointText.text = "" + CurrentPoints;
     }
 
     private void UpdateMultiplierText()
     {
-        multiplierText.text = "x" + currentMultiplier;
+        multiplierText.text = "x" + CurrentMultiplier;
     }
 }
 

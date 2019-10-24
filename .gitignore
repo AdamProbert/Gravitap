@@ -11,6 +11,8 @@
 *.userprefs
 *.psd
 **/*.psd
+*.psd.meta
+**/*.psd.meta
 .DS_Store
 .vs
 iOSBuilds/

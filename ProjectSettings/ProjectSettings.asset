@@ -5,7 +5,7 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 18
   productGUID: 1a23ef38327a23e46901fc2f77d4e02d
-  AndroidProfiler: 0
+  AndroidProfiler: 1
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
   defaultScreenOrientation: 0
@@ -60,7 +60,7 @@ PlayerSettings:
   allowedAutorotateToLandscapeRight: 1
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
-  use32BitDisplayBuffer: 1
+  use32BitDisplayBuffer: 0
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
@@ -120,7 +120,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.7
+  bundleVersion: 1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier: {}
   buildNumber: {}
-  AndroidBundleVersionCode: 7
+  AndroidBundleVersionCode: 10
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -663,7 +663,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: FloatingText;UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO
     4: EASY_MOBILE;EASY_MOBILE_PRO;NO_GPGS
-    7: UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO;EM_GPGS
+    7: UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO
     13: UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO
     14: EASY_MOBILE;EASY_MOBILE_PRO
     19: UNITY_POST_PROCESSING_STACK_V2;EASY_MOBILE;EASY_MOBILE_PRO

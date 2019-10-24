@@ -21,6 +21,9 @@ public class DisableFrustrumCulling : MonoBehaviour
 
     void OnDisable()
     {
-        cam.ResetCullingMatrix();
+        if (cam)
+        {
+            cam.ResetCullingMatrix();
+        }
     }
 }
