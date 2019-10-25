@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarDeathExplosion : BaseHazzard
 {
     private bool shouldBoom = true;
-    public override int spawnFrequency { get { return 5; } }
+    public override int spawnFrequency { get { return 3; } }
     public override int minScore { get { return 10;} }
 
     private void Start()

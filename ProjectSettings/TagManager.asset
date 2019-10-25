@@ -15,6 +15,7 @@ TagManager:
   - DeadStar
   - Hazzard
   - Teleport
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Debris
   - Body
   - BodyClickCollider
-  - 
+  - Projectile
   - 
   - 
   - 

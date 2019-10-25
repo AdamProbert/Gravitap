@@ -64,6 +64,7 @@ public static class Parameters
     public static float starDestructionRadius = 16f;
     public static float starDestructionLifeTime = 8f;
     public static float transportGoalDelay = 5f;
+    public static float projectileSpeed = 1000f;
     
 
 }
