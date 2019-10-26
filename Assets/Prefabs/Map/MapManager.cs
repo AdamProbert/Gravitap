@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     public GameObject player; // From editor
     public GameObject leveltp;
     GameObject teleport;
-    private int mapCount = 3; // MUST KEEP THIS UP TO DATE WITH NUMBER OF MAPS
+    public int mapCount = 4; // MUST KEEP THIS UP TO DATE WITH NUMBER OF MAPS
 
 
     public GameObject CurrentMap

@@ -16,6 +16,8 @@ public class MobileInputController : MonoBehaviour
     private GameManager gm;
     public AudioSource starsSound;
 
+    public bool isPaused = false;
+
     private void Start()
     {
         bm = GetComponentInChildren<BodyManager>();
@@ -43,7 +45,7 @@ public class MobileInputController : MonoBehaviour
             BackPressed();
         }
 
-        if(player && !gm.showingOptionsMenu)
+        if(player && !isPaused)
         {
             if (Input.GetMouseButtonDown(0) && player.isPlaying && !IsPointerOverUIObject())
             {
@@ -92,5 +94,18 @@ public class MobileInputController : MonoBehaviour
     {
         PlayerPrefs.SetInt("explosions", toggle ? 1 : 0);
         GetComponent<DebrisPooler>().playerSaysYehaw = toggle;
+    }
+    public void ToggleHints(bool toggle)
+    {
+        PlayerPrefs.SetInt("tutorial", toggle ? 1 : 0);
+        if(toggle)
+        {
+            GetComponent<HintHandler>().enableTutorial();
+        }
+        else
+        {
+            GetComponent<HintHandler>().disableTutorial();   
+        }
+        
     }
 }

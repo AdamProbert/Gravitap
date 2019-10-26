@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     private float sqrMaxVelocity;
     private float sqrMinVelocity;
     private AudioSource source;
-    private Vector3 shrinkSpeed = new Vector3(.5f, .5f, .5f);
+    private Vector3 shrinkSpeed = new Vector3(.3f, .3f, .3f);
     private List<Vector3> prevPositions = new List<Vector3>();
     public bool isPaused = false;
     private float maxY; // Keep player stuck to floor
@@ -93,14 +93,16 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         if (alive && !isPaused && !isTeleporting)
-        {
-            CheckOffMap();
-            if (isFalling)
+        {   
+            if(!isFalling){
+                CheckOffMap();    
+            }
+            if (isFalling && transform.localScale.x > 0.1)
             {
                 transform.localScale = transform.localScale - shrinkSpeed * Time.deltaTime;
             }
 
-            if (isPlaying)
+            if (isPlaying && !isFalling)
             {
 
                 float playerSpeedX = Mathf.Abs(rb.velocity.x);
@@ -130,7 +132,10 @@ public class PlayerScript : MonoBehaviour
                     Debug.Log("Player stopped moving");
                     StartCoroutine(KillPlayer(0f));
                 }
+                // Make sure trail is dope
+                LifeChanges();
             }
+
         }
     }
 
@@ -202,8 +207,6 @@ public class PlayerScript : MonoBehaviour
                 rb.velocity = v.normalized * minVelocity;
             }
 
-            // Make sure trail is dope
-            LifeChanges();
         }
     }
 
@@ -229,11 +232,13 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void CheckOffMap(){
+        Debug.DrawRay(transform.position, -transform.up*10f, Color.red, 50f);
           mapRay = new Ray(transform.position, -transform.up);
           if (Physics.Raycast(mapRay, out mapHit, 10f))
           {
               if(mapHit.transform.tag == killLayer)
               {
+                  Debug.Log("Player is falling");
                   isFalling = true;
                   rb.constraints = RigidbodyConstraints.None;
               }
@@ -259,6 +264,13 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Body")
         {
             lives -= 1;
+        }
+
+        if(collision.gameObject.tag == "Projectile")
+        {
+          Vector3 dir = collision.contacts[0].point - transform.position;  
+          dir = -dir.normalized;
+          rb.AddForce(dir*Parameters.projectileSpeed);
         }
     }
 }
