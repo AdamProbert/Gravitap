@@ -110,9 +110,8 @@ public class GameManager : MonoBehaviour
             // In game
             else
             {
-                Time.timeScale = 0;
+                pause();
                 ShowPauseMenu();
-                playerScript.isPaused = true;
             }
         }
         // Close options
@@ -126,11 +125,22 @@ public class GameManager : MonoBehaviour
             // In game
             else
             {
-                Time.timeScale = 1;
+                unPause();
                 HidePauseMenu();
-                playerScript.isPaused = false;
+                
             }
         }
+    }
+
+    public void pause()
+    {
+        Time.timeScale = 0;
+        playerScript.isPaused = true;
+    }
+    public void unPause()
+    {
+        Time.timeScale = 1;
+        playerScript.isPaused = false;
     }
 
     void ShowMenu()

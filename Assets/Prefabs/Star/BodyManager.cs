@@ -44,6 +44,11 @@ public class BodyManager : MonoBehaviour
         this.stars.Enqueue(newStar);
     }
 
+    public int GetStarCount()
+    {
+        return stars.Count;
+    }
+
     public void RemoveStar(RaycastHit hit)
     {
         PlaySound(true);

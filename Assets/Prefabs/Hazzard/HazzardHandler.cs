@@ -51,6 +51,11 @@ public class HazzardHandler : MonoBehaviour
         }
     }
 
+    public int getHazzardCount()
+    {
+        return currentHazzards.Count;
+    }
+
     // Loop through the hazzards, creating a sublist of those applicible to the current core.
     // Then add them multipe times based on hazzards spawn frequency
     // Finally select one at randoom
