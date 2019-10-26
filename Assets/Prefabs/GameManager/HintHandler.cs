@@ -21,6 +21,7 @@ public class HintHandler : MonoBehaviour
 
     public TextMeshProUGUI hintText;
 
+    private bool hintsEnabled;
 
 
     public string[] messages;
@@ -31,12 +32,28 @@ public class HintHandler : MonoBehaviour
     {
         gameManager = GetComponent<GameManager>();
         hazzardHandler = GetComponent<HazzardHandler>();
+        if(PlayerPrefs.GetInt("tutorial") == 0)
+        {
+            disableTutorial();
+        }
+        else
+        {
+            enableTutorial();
+        }
+
+    }
+
+    public void enableTutorial(){
+        hintsEnabled = true;
+    }
+    public void disableTutorial(){
+        hintsEnabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!hintShowing && messageIndex <= messages.Length)
+        if(!hintShowing && hintsEnabled)
         {
             switch (messageIndex)
             {
@@ -67,6 +84,11 @@ public class HintHandler : MonoBehaviour
                         messageIndex += 1;
                     }
                     break;
+
+                default:
+                    PlayerPrefs.SetInt("tutorial", 0);
+                    this.enabled = false;
+                    break;
             }
         }
     }
@@ -77,7 +99,20 @@ public class HintHandler : MonoBehaviour
         hintText.text = messages[messageIndex];
         gameManager.pause();
         hintAnim.Play("ShowHint");
-        yield return waitForInput();
+        float startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup-startTime < 1) {
+            yield return null;
+        }
+        bool done = false;
+        while(!done) // essentially a "while true", but with a bool to break out naturally
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                done = true; // breaks the loop
+            }
+            yield return null; 
+        } 
+
         hideHint();
     }
 
@@ -87,18 +122,5 @@ public class HintHandler : MonoBehaviour
         hintAnim.Play("HideHint");
         gameManager.unPause();
 
-    }
-
-    private IEnumerator waitForInput()
-    {
-        bool done = false;
-        while(!done) // essentially a "while true", but with a bool to break out naturally
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                done = true; // breaks the loop
-            }
-            yield return null; // wait until next frame, then continue execution from here (loop continues)
-        } 
     }
 }

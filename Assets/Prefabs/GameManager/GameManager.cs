@@ -136,11 +136,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         playerScript.isPaused = true;
+        GetComponent<MobileInputController>().isPaused = true;
     }
     public void unPause()
     {
         Time.timeScale = 1;
         playerScript.isPaused = false;
+        GetComponent<MobileInputController>().isPaused = false;
+
     }
 
     void ShowMenu()

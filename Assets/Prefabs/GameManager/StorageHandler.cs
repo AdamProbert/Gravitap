@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class StorageHandler : MonoBehaviour
 {
     public Slider volumeSlider;
-    public Slider soundEffectsSlider;
     public Toggle explosions;
+    public Toggle tutorial;
 
     public void Awake()
     {
@@ -24,6 +24,11 @@ public class StorageHandler : MonoBehaviour
         if (!PlayerPrefs.HasKey("explosions"))
         {
             PlayerPrefs.SetInt("explosions", 1);
+        }
+
+        if (!PlayerPrefs.HasKey("tutorial"))
+        {
+            PlayerPrefs.SetInt("tutorial", 1);
         }
 
         PlayerPrefs.Save();
@@ -49,5 +54,6 @@ public class StorageHandler : MonoBehaviour
     {
         volumeSlider.value = PlayerPrefs.GetFloat("volume");
         explosions.isOn = PlayerPrefs.GetInt("explosions") == 1? true : false;
+        tutorial.isOn = PlayerPrefs.GetInt("tutorial") == 1? true : false;
     }
 }
