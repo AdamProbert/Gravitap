@@ -209,10 +209,10 @@ MonoBehaviour:
     mAutoInit: 1
     mAutoInitDelay: 0
     mAndroidMaxLoginRequests: 0
-    mGpgsDebugLogEnabled: 0
+    mGpgsDebugLogEnabled: 1
     mGpgsPopupGravity: 0
     mLeaderboards:
-    - _name: TopScore
+    - _name: HighScore
       _iosId: 
       _androidId: CgkI17fEsu4GEAIQAQ
     mAchievements: []

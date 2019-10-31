@@ -300,17 +300,17 @@
  <Reference Include="JMOAssets_CartoonFXFreeWelcome">
  <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
  </Reference>
- <Reference Include="Google.IOSResolver_v1.2.124.0">
- <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.124.0.dll</HintPath>
+ <Reference Include="Google.IOSResolver_v1.2.130.0">
+ <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.130.0.dll</HintPath>
  </Reference>
- <Reference Include="Google.JarResolver_v1.2.124.0">
- <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.JarResolver_v1.2.124.0.dll</HintPath>
+ <Reference Include="Google.JarResolver_v1.2.130.0">
+ <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.130.0.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
- <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
- <Reference Include="Google.VersionHandlerImpl_v1.2.124.0">
- <HintPath>F:/GravityFolder/Gravity/Assets/3rd party/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.124.0.dll</HintPath>
+ <Reference Include="Google.VersionHandlerImpl_v1.2.130.0">
+ <HintPath>F:/GravityFolder/Gravity/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.130.0.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/GravityFolder/Gravity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

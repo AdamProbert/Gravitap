@@ -7,31 +7,36 @@ using UnityEngine.UI;
 
 public class GameServicesHandler : MonoBehaviour
 {
-    private int HighScore = -1;
+    private int gsHighScore = -1;
+
+    public int HighScore
+    {
+        get { return gsHighScore; }
+        set
+        {
+            if (gsHighScore == value) return;
+            gsHighScore = value;
+            OnHighScoreChange?.Invoke(gsHighScore);
+        }
+    }
+    public delegate void OnHighScoreChangeDeligate(int gsHighScore);
+    public event OnHighScoreChangeDeligate OnHighScoreChange;
 
     // Checks if EM has been initialized and initialize it if not.
     // This must be done once before other EM APIs can be used.
     void Awake()
     {
         if (!RuntimeManager.IsInitialized())
+        {
             RuntimeManager.Init();
-
+            Debug.Log("Initialising runtime manger");
+        }
     }
 
-    private void Start()
+    void Start()
     {
-        if (GameServices.IsInitialized())
-        {
-            // Load the local user's score from the specified leaderboard
-            // EM_GameServicesConstants.Sample_Leaderboard is the generated name constant
-            // of a leaderboard named "Sample Leaderboard"
-            GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_TopScore, OnLocalUserScoreLoaded);
-            Debug.Log("Game services initialised");
-        }
-        else
-        {
-            Debug.Log("Game Services could not initialise");
-        }
+        // Wait for services to initialise, then load users score
+        GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_HighScore, OnLocalUserScoreLoaded);
     }
 
     public void SetHighScore(int score)
@@ -41,16 +46,19 @@ public class GameServicesHandler : MonoBehaviour
 
     public int GetHighScore()
     {
-        return HighScore;
+        return gsHighScore;
     }
 
     public void ShowLeaderBoardUI()
     {
-
         // Check for initialization before showing leaderboard UI
         if (GameServices.IsInitialized())
         {
             GameServices.ShowLeaderboardUI();
+        }
+        else
+        {
+            Debug.Log("Game services not initialised");
         }
     }
 
@@ -60,7 +68,7 @@ public class GameServicesHandler : MonoBehaviour
         // EM_GameServicesConstants.Sample_Leaderboard is the generated name constant
         // of a leaderboard named "Sample Leaderboard"
         if (GameServices.IsInitialized())
-            GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_TopScore);
+            GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_HighScore);
     }
 
  
@@ -69,7 +77,7 @@ public class GameServicesHandler : MonoBehaviour
     {
         if (score != null)
         {
-            HighScore = (int)score.value;
+            gsHighScore = (int)score.value;
             Debug.Log("Your score is: " + score.value);
         }
         else

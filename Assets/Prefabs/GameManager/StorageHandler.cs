@@ -9,6 +9,28 @@ public class StorageHandler : MonoBehaviour
     public Toggle explosions;
     public Toggle tutorial;
 
+    public GameServicesHandler gsh;
+
+    private int shHighScore = -1;
+    public int HighScore
+    {
+        get { return shHighScore; }
+        set
+        {
+            if (shHighScore == value) return;
+            shHighScore = value;
+            SHOnHighScoreChange?.Invoke(shHighScore);
+        }
+    }
+    public delegate void OnHighScoreChangeDeligate(int shHighScore);
+    public event OnHighScoreChangeDeligate SHOnHighScoreChange;
+
+    void Start()
+    {
+        gsh.OnHighScoreChange += GSHighScoreChangeHandler;
+        HighScore = PlayerPrefs.GetInt("highscore"); // First set highscore to playerprefs score
+
+    }
     public void Awake()
     {
         if (!PlayerPrefs.HasKey("highscore"))
@@ -36,20 +58,30 @@ public class StorageHandler : MonoBehaviour
         SetPlayerPrefs();
     }
 
+    void GSHighScoreChangeHandler(int newScore)
+    {
+        Debug.Log("StorageHandler: GSHHighScoreChangeHanlder called with: " + newScore);
+        PlayerPrefs.SetInt("highscore", newScore);
+        PlayerPrefs.Save();
+        HighScore = newScore;
+    }
+
     public void SetHighScore(int score)
     {
+        
+        if(score > HighScore){
+            HighScore = score;
+        }
         if (score > PlayerPrefs.GetInt("highscore"))
         {
             PlayerPrefs.SetInt("highscore", score);
             PlayerPrefs.Save();
-
+        }
+        if(score > gsh.GetHighScore())
+        {
+            gsh.SetHighScore(score);
         }
     }
-
-    public int GetHighScore()
-    {
-        return PlayerPrefs.GetInt("highscore");
-    }   
 
     private void SetPlayerPrefs()
     {
