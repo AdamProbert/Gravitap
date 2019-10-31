@@ -33,20 +33,36 @@ public class GameServicesHandler : MonoBehaviour
         }
     }
 
-    void Start()
+    void OnEnable()
     {
-        // Wait for services to initialise, then load users score
+        GameServices.UserLoginSucceeded += OnUserLoginSucceeded;
+    }
+
+    void OnUserLoginSucceeded()
+    {
+        Debug.Log("User logged in successfully.");
         GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_HighScore, OnLocalUserScoreLoaded);
     }
 
-    public void SetHighScore(int score)
+     
+    // Score loaded callback
+    void OnLocalUserScoreLoaded(string leaderboardName, IScore score)
     {
-        SubmitHighScore(score);
+        if (score != null)
+        {
+            HighScore = (int)score.value;
+            Debug.Log("Your score is: " + score.value);
+        }
+        else
+        {
+            Debug.Log("You don't have any score reported to leaderboard " + leaderboardName);
+        }
     }
 
-    public int GetHighScore()
-    {
-        return gsHighScore;
+    public void SetHighScore(int score)
+    {   
+        SubmitHighScore(score);
+        HighScore = score;
     }
 
     public void ShowLeaderBoardUI()
@@ -69,20 +85,5 @@ public class GameServicesHandler : MonoBehaviour
         // of a leaderboard named "Sample Leaderboard"
         if (GameServices.IsInitialized())
             GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_HighScore);
-    }
-
- 
-    // Score loaded callback
-    void OnLocalUserScoreLoaded(string leaderboardName, IScore score)
-    {
-        if (score != null)
-        {
-            gsHighScore = (int)score.value;
-            Debug.Log("Your score is: " + score.value);
-        }
-        else
-        {
-            Debug.Log("You don't have any score reported to leaderboard " + leaderboardName);
-        }
     }
 }

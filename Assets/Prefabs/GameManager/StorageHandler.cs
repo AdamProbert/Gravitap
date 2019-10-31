@@ -77,7 +77,7 @@ public class StorageHandler : MonoBehaviour
             PlayerPrefs.SetInt("highscore", score);
             PlayerPrefs.Save();
         }
-        if(score > gsh.GetHighScore())
+        if(score > gsh.HighScore)
         {
             gsh.SetHighScore(score);
         }
