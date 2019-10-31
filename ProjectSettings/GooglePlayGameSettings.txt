@@ -1,9 +1,9 @@
 lastUpgrade=00964
 proj.pluginVersion=0.9.64
-proj.AppId=231742736630
-and.BundleId=com.GravitasGames.Gravball
+proj.AppId=235792309207
+and.BundleId=com.GravitasGames.Gravitap
 proj.classDir=Assets%2fEasyMobile%2fGenerated
 proj.ConstantsClassName=EM_GPGSIds
-and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e231742736630%3c%2fstring%3e%0d%0a++%3c%21--+package_name+--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.GravitasGames.Gravball%3c%2fstring%3e%0d%0a++%3c%21--+leaderboard+Top+Score+--%3e%0d%0a++%3cstring+name%3d%22leaderboard_top_score%22+translatable%3d%22false%22%3eCgkI9pHGp98GEAIQAQ%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e235792309207%3c%2fstring%3e%0d%0a++%3c%21--+package_name+--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.GravitasGames.Gravitap%3c%2fstring%3e%0d%0a++%3c%21--+leaderboard+Highscore+--%3e%0d%0a++%3cstring+name%3d%22leaderboard_highscore%22+translatable%3d%22false%22%3eCgkI17fEsu4GEAIQAQ%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
 and.ClientId=
 android.SetupDone=true

@@ -42,13 +42,14 @@ public class StorageHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("highscore", score);
             PlayerPrefs.Save();
+
         }
     }
 
     public int GetHighScore()
     {
         return PlayerPrefs.GetInt("highscore");
-    }
+    }   
 
     private void SetPlayerPrefs()
     {
