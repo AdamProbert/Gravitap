@@ -13,20 +13,14 @@ public class GetHighScore : MonoBehaviour
     void Start()
     {
         text = GetComponent<Text>();
-        //gs = transform.root.GetComponent<GameServicesHandler>();
         sh = transform.root.GetComponent<StorageHandler>();
-        //long highscore = gs.GetHighScore();
-
-        //if(highscore != -1)
-        //{
-        //    Debug.Log("Getting high score from GameServices");
-        //    text.text = "Highscore\n" + highscore.ToString();
-        //}
-        //else
-        //{
         Debug.Log("Getting high score from storage");
-        text.text = "Highscore\n" + sh.GetHighScore().ToString();
-        //}
-        
+        text.text = "Highscore\n" + sh.HighScore.ToString();
+        sh.SHOnHighScoreChange += OnHighScoreChange;
+    }
+
+    void OnHighScoreChange(int newscore)
+    {
+        text.text = "Highscore\n" + sh.HighScore.ToString();
     }
 }
