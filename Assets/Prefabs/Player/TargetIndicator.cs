@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetIndicator : MonoBehaviour
 {
     Vector3 targetPostition = Vector3.zero;
+    public GoalManager goalManager;
 
     void Update()
     {
@@ -14,16 +15,37 @@ public class TargetIndicator : MonoBehaviour
 
     }
 
+
+    // Finds the closest goal to the player
     void FindTarget()
     {
-        {
-            GameObject[] goals = GameObject.FindGameObjectsWithTag("Goal");
-            foreach(GameObject g in goals)
-            {                
-                if (g.GetComponent<NormalGoal>() != null && g.GetComponent<Goal>().alive)
-                    targetPostition = g.transform.position;
-            }
-            
+        
+        List<GameObject> goals = goalManager.GetAllGoals();        
+        GameObject closestGoal = null;
+        foreach(GameObject g in goals)
+        {                
+            if (g.GetComponent<NormalGoal>() != null && g.GetComponent<Goal>().alive)
+                if(!closestGoal)
+                {
+                    closestGoal = g;
+                }
+                else
+                {
+                    if(Vector3.Distance(transform.position, g.transform.position) < Vector3.Distance(transform.position, closestGoal.transform.position))
+                    {
+                        closestGoal = g;                        
+                    }
+                }
         }
+        if(closestGoal)
+        {
+            targetPostition = closestGoal.transform.position;
+            GetComponentInChildren<Renderer>().enabled = true;
+        }
+        else
+        {
+            GetComponentInChildren<Renderer>().enabled = false;
+        }
+        
     }
 }

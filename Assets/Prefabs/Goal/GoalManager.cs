@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class GoalManager : MonoBehaviour
 {
     public GameObject goalPrefab;
-    private GameObject currentGoal;
+    private List<GameObject> currentGoals;
     public GameObject map;
     private BodyManager bm;
     public MapManager mm; // From editor
     public PlayerScript player;
     private ScoreManager sm;
     private int m_goalCount = 0;
+
+    private int goalsRequired = 1;
 
 
     public int CurrentGoalCount
@@ -35,6 +37,7 @@ public class GoalManager : MonoBehaviour
         bm = GameObject.Find("BodyManager").GetComponent<BodyManager>();
         sm = GetComponent<ScoreManager>();
         mm.OnMapChange += OnMapChangeHandler;
+        currentGoals = new List<GameObject>();
     }
 
 
@@ -48,6 +51,7 @@ public class GoalManager : MonoBehaviour
             if(goal.GetComponent<NormalGoal>() != null)
             {
                 CurrentGoalCount += 1;
+                currentGoals.Remove(goal);
                 SpawnGoal();
             }
         }
@@ -56,20 +60,35 @@ public class GoalManager : MonoBehaviour
     // Spawns a new goal at random location on map
     public void SpawnGoal()
     {
-        currentGoal = Instantiate(goalPrefab, GetSpawnPoint(), Quaternion.identity);
+        GameObject currentGoal = Instantiate(goalPrefab, GetSpawnPoint(), Quaternion.identity);
         currentGoal.transform.parent = transform;
+        currentGoals.Add(currentGoal);
     }
 
-    public GameObject GetCurrentGoal()
+    public GameObject GetRandomGoal()
     {
-        return currentGoal;
+        return currentGoals[Random.Range(0, currentGoals.Count)];
+    }
+
+    public List<GameObject> GetAllGoals()
+    {
+        return currentGoals;
     }
 
     void OnMapChangeHandler(GameObject newMap)
     {
+        goalsRequired += 1;
         map = newMap;
-        Destroy(currentGoal);
-        SpawnGoal();
+        foreach(GameObject g in currentGoals)
+        {
+            Destroy(g);
+        }
+        currentGoals.Clear();
+        for (int i = 0; i < goalsRequired; i++)
+        {
+            SpawnGoal();    
+        }
+        
     }
 
     public Vector3 GetSpawnPoint()

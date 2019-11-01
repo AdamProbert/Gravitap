@@ -35,7 +35,7 @@ public class GoalTransporter : BaseHazzard
         // Then move the goal to new "allowed" position
         if (base.alive)
         {
-            GameObject cg = gm.GetCurrentGoal();
+            GameObject cg = gm.GetRandomGoal();
             GameObject ps1 = Instantiate(ps, transform.position, Quaternion.identity);
             GameObject ps2 = Instantiate(ps, cg.transform.position, Quaternion.identity);
             Destroy(ps1, psDuration);

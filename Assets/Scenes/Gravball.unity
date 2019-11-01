@@ -2310,6 +2310,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 903378729165288468, guid: 00902370ae9f29044b96329033313990,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781419902635999134, guid: 00902370ae9f29044b96329033313990,
+        type: 3}
+      propertyPath: goalManager
+      value: 
+      objectReference: {fileID: 7216349967644518239}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00902370ae9f29044b96329033313990, type: 3}
 --- !u!4 &1256368853 stripped
@@ -6516,6 +6541,7 @@ GameObject:
   - component: {fileID: 7879482523902522393}
   - component: {fileID: 7879482523902522395}
   - component: {fileID: 7879482523902522396}
+  - component: {fileID: 7879482523902522397}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6670,6 +6696,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1db10f9bc0da53499001af9629f04f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7879482523902522397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879482523902522392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b2dfb7b2445cf42af7e9f8c0ce114b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 0
 --- !u!224 &8069729825123848346
 RectTransform:
   m_ObjectHideFlags: 0

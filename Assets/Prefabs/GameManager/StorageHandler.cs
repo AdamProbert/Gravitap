@@ -29,8 +29,8 @@ public class StorageHandler : MonoBehaviour
     {
         gsh.OnHighScoreChange += GSHighScoreChangeHandler;
         HighScore = PlayerPrefs.GetInt("highscore"); // First set highscore to playerprefs score
-
     }
+
     public void Awake()
     {
         if (!PlayerPrefs.HasKey("highscore"))
@@ -51,6 +51,10 @@ public class StorageHandler : MonoBehaviour
         if (!PlayerPrefs.HasKey("tutorial"))
         {
             PlayerPrefs.SetInt("tutorial", 1);
+        }
+        if (!PlayerPrefs.HasKey("playcount"))
+        {
+            PlayerPrefs.SetInt("playcount", 0);
         }
 
         PlayerPrefs.Save();
@@ -88,5 +92,27 @@ public class StorageHandler : MonoBehaviour
         volumeSlider.value = PlayerPrefs.GetFloat("volume");
         explosions.isOn = PlayerPrefs.GetInt("explosions") == 1? true : false;
         tutorial.isOn = PlayerPrefs.GetInt("tutorial") == 1? true : false;
+    }
+
+    public int GetPlayCount()
+    {
+        return PlayerPrefs.GetInt("playcount");
+    }
+
+    public void IncrementPlayCount()
+    {
+        int count = GetPlayCount();
+        PlayerPrefs.SetInt("playcount", count+=1);
+    }
+
+    // If player will get an ad next time they load the app reduce the play count by 1, so they have to play at least
+    // Once next time before getting that ad.
+    void OnApplicationQuit()
+    {
+        int count = GetPlayCount();
+        if(count % 3 == 0 && count != 0)
+        {
+            PlayerPrefs.SetInt("playcount", count-=1);
+        }
     }
 }

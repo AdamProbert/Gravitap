@@ -85,10 +85,10 @@ public class GameManager : MonoBehaviour
             endingGame = true;
             int points = sm.GetCurrentScore();
             sh.SetHighScore(points);
+            sh.IncrementPlayCount();
             //gs.SetHighScore(points);
             SceneManager.LoadScene(0);
         }
-        
     }
 
     // Close the application
