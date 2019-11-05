@@ -1590,11 +1590,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8020538255997026789, guid: 1d233f8024abab342b68927db6f0534d,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
+    - target: {fileID: 2004204239, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
+      propertyPath: storageHandler
+      value: 
+      objectReference: {fileID: 4821894569415986224}
+    - target: {fileID: 2004204239, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
+      propertyPath: gsh
+      value: 
+      objectReference: {fileID: 7879482523902522396}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
 --- !u!224 &746699323 stripped
@@ -2308,26 +2311,6 @@ PrefabInstance:
     - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 110327389396664670, guid: 00902370ae9f29044b96329033313990,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 903378729165288468, guid: 00902370ae9f29044b96329033313990,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4781419902635999134, guid: 00902370ae9f29044b96329033313990,
@@ -4209,6 +4192,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 2004204239, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
+      propertyPath: gsh
+      value: 
+      objectReference: {fileID: 7879482523902522396}
+    - target: {fileID: 2004204239, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
+      propertyPath: storageHandler
+      value: 
+      objectReference: {fileID: 4821894569415986224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d233f8024abab342b68927db6f0534d, type: 3}
 --- !u!224 &2073523613 stripped
@@ -5336,6 +5327,7 @@ MonoBehaviour:
   explosions: {fileID: 1785171630}
   tutorial: {fileID: 446297788}
   gsh: {fileID: 7879482523902522396}
+  highscore: -1
 --- !u!95 &4821894569620720113
 Animator:
   serializedVersion: 3
@@ -6709,6 +6701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 0
+  sh: {fileID: 4821894569415986224}
 --- !u!224 &8069729825123848346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7260,4 +7253,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 7077326772435622816, guid: 3cf971a270ebdbd4ca50b3a94f13aa3d, type: 3}
+  player: {fileID: 13840018}
   affectingPlayer: 0

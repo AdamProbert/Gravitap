@@ -15,7 +15,7 @@ public class AddManager : MonoBehaviour
         sh = GetComponent<StorageHandler>();
         Advertisement.Initialize(playStoreID, testMode);
         // StartCoroutine (ShowBannerWhenReady ()); Banner adds not working in europe yet apparently
-        if(sh.GetPlayCount() > 1 && sh.GetPlayCount() % 3 == 0)
+        if(sh.GetPlayCount() > 1 && sh.GetPlayCount() % Parameters.livesForAdd == 0)
         {
             StartCoroutine (ShowFullScreenVideoWhenReady()); 
         }

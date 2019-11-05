@@ -11,32 +11,15 @@ public class StorageHandler : MonoBehaviour
 
     public GameServicesHandler gsh;
 
-    private int shHighScore = -1;
-    public int HighScore
-    {
-        get { return shHighScore; }
-        set
-        {
-            if (shHighScore == value) return;
-            shHighScore = value;
-            SHOnHighScoreChange?.Invoke(shHighScore);
-        }
-    }
-    public delegate void OnHighScoreChangeDeligate(int shHighScore);
-    public event OnHighScoreChangeDeligate SHOnHighScoreChange;
+    public int highscore = -1;
 
     void Start()
     {
         gsh.OnHighScoreChange += GSHighScoreChangeHandler;
-        HighScore = PlayerPrefs.GetInt("highscore"); // First set highscore to playerprefs score
     }
 
     public void Awake()
     {
-        if (!PlayerPrefs.HasKey("highscore"))
-        {
-            PlayerPrefs.SetInt("highscore", 0);
-        }
 
         if (!PlayerPrefs.HasKey("volume"))
         {
@@ -67,24 +50,6 @@ public class StorageHandler : MonoBehaviour
         Debug.Log("StorageHandler: GSHHighScoreChangeHanlder called with: " + newScore);
         PlayerPrefs.SetInt("highscore", newScore);
         PlayerPrefs.Save();
-        HighScore = newScore;
-    }
-
-    public void SetHighScore(int score)
-    {
-        
-        if(score > HighScore){
-            HighScore = score;
-        }
-        if (score > PlayerPrefs.GetInt("highscore"))
-        {
-            PlayerPrefs.SetInt("highscore", score);
-            PlayerPrefs.Save();
-        }
-        if(score > gsh.HighScore)
-        {
-            gsh.SetHighScore(score);
-        }
     }
 
     private void SetPlayerPrefs()
@@ -110,7 +75,7 @@ public class StorageHandler : MonoBehaviour
     void OnApplicationQuit()
     {
         int count = GetPlayCount();
-        if(count % 3 == 0 && count != 0)
+        if(count % Parameters.livesForAdd == 0 && count != 0)
         {
             PlayerPrefs.SetInt("playcount", count-=1);
         }

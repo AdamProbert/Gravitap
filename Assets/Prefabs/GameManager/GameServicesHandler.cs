@@ -31,6 +31,10 @@ public class GameServicesHandler : MonoBehaviour
             RuntimeManager.Init();
             Debug.Log("Initialising runtime manger");
         }
+
+        // If already initialised reload user score. I.e. For second play 
+        GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_HighScore, OnLocalUserScoreLoaded);
+
     }
 
     void OnEnable()

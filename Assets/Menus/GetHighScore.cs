@@ -6,21 +6,44 @@ using UnityEngine.UI;
 public class GetHighScore : MonoBehaviour
 {
 
-    //private GameServicesHandler gs;
-    private StorageHandler sh;
+    public StorageHandler storageHandler;
+    public GameServicesHandler gsh;
     private Text text;
     // Start is called before the first frame update
+
+    int highscore;
     void Start()
     {
         text = GetComponent<Text>();
-        sh = transform.root.GetComponent<StorageHandler>();
-        Debug.Log("Getting high score from storage");
-        text.text = "Highscore\n" + sh.HighScore.ToString();
-        sh.SHOnHighScoreChange += OnHighScoreChange;
+        highscore = gsh.HighScore;
+        if(highscore == -1)
+        {
+            Debug.Log("GSH high score == -1");
+            highscore = storageHandler.highscore;
+            if(highscore == -1)
+            {
+                Debug.Log("SH high score == -1");
+                text.text = "Highscore\nnot loaded";
+            }
+            else
+            {
+                text.text = "Highscore\n" + highscore.ToString();
+            }
+            
+        }
+        else
+        {
+            text.text = "Highscore\n" + highscore.ToString();
+        }
+        
+        
+        gsh.OnHighScoreChange += OnHighScoreChange;
     }
 
     void OnHighScoreChange(int newscore)
     {
-        text.text = "Highscore\n" + sh.HighScore.ToString();
+        Debug.Log("On high score changed");
+        highscore = newscore;
+        text.text = "Highscore\n" + gsh.HighScore.ToString();
     }
 }
